@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  min_messages: warning
+  timeout: 5000
+  pool: <%= [ENV.fetch("MAX_THREADS", 5), ENV.fetch("DB_POOL", 5)].max %>
+  username: sport
+  password: moskieva
+development:
+  database: sportcms_dev
+  <<: *defaults
+
+test:
+  database: sportcms_test
+  <<: *defaults
+
+production: &deploy
+  <<: *defaults
+
+staging: *deploy
