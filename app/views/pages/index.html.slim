@@ -1,0 +1,16 @@
+
+.row
+  .medium-8.medium-centered.columns
+    h2 Pages
+  .row.column
+.row.small-up-1.medium-up-2.large-up-3
+  table.table.table-striped.pages-list
+      thead
+      tr
+         th Author
+         th Title
+      - pages.each do |page|
+        tr
+          td= page.user.full_name
+          td= (link_to page.title, page)
+        br

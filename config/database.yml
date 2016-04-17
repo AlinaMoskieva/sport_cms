@@ -12,6 +12,7 @@ development:
 
 test:
   database: sportcms_test
+  encoding: unicode
   <<: *defaults
 
 production: &deploy

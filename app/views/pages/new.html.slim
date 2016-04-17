@@ -1,0 +1,11 @@
+= simple_form_for(page) do |f|
+    .form-inputs
+      = f.input :title
+      = f.input :index
+      = f.input :url
+      = f.input :content, input_html: { class: "tinymce" }
+
+    .form-actions
+      = f.button :submit
+      '  or
+      = link_to 'Back', :back
