@@ -7,8 +7,11 @@
       = page.body
     h4
       = page.theme
-    = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
-    '
-    = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' })
+    - policy = PagePolicy.new(current_user, page)
+    - if policy.update?
+      = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+      '
+    - if policy.destroy?
+      = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
   .medium-2.columns data-sticky-container=""
     = render "rigth_menu"

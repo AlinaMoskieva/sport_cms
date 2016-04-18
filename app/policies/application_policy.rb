@@ -3,6 +3,10 @@ class ApplicationPolicy
 
   def initialize(user, record)
     @user = user
-    @record = record.to_model
+    if record.nil?
+      @record = record
+    else
+      @record = record.to_model
+    end
   end
 end

@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   def create
     page.user = current_user
 
+    authorize page
+
     if page.save
       redirect_to(page)
     else
@@ -13,6 +15,8 @@ class PagesController < ApplicationController
   end
 
   def update
+    authorize page
+
     if page.save
       redirect_to(page)
     else
@@ -21,6 +25,8 @@ class PagesController < ApplicationController
   end
 
   def destroy
+    authorize page
+
     if page.destroy
       redirect_to root_path
     else
