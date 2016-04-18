@@ -4,7 +4,7 @@ describe "#show" do
   let(:page) { Page.new }
 
   it "visitor can read page content" do
-    visit page_path
+    visit "/pages/#{page.id}"
 
     expect(page).to have_content(page.title)
     expect(page).to have_content(page.body)

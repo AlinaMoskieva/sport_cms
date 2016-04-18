@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
     if page.save
       redirect_to(page)
+      flash[:notice] = 'Page was successfully created.'
     else
       render :new
     end
@@ -19,6 +20,7 @@ class PagesController < ApplicationController
 
     if page.save
       redirect_to(page)
+      flash[:notice] = 'Page was successfully updated.'
     else
       render :edit
     end
@@ -29,6 +31,7 @@ class PagesController < ApplicationController
 
     if page.destroy
       redirect_to root_path
+      flash[:notice] = 'Page was successfully deleted.'
     else
       render :edit
     end

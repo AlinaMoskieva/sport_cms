@@ -1,0 +1,14 @@
+ .row
+  .medium-8.medium-centered.columns
+    h2 Edit
+  .medium-8
+   .scaffold-form
+     = simple_form_for(comment) do |f|
+       .form-inputs
+         = f.input :body
+
+       .form-actions
+         = f.button :submit
+         '  or
+         = link_to 'Back', :back
+

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
   has_many :page
+  has_many :comments
   validates :full_name, presence: true
 
   def default_values

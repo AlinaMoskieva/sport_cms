@@ -11,17 +11,22 @@
         span
           i.fi-torso
             = page.user.full_name
+            ="                   "
         span
           i.fi-calendar
-            = page.created_at.strftime("%m/%d/%Y at %I:%M%p")
-        span
-          i.fi-comments
-           = "  TODO"
+            = page.created_at.strftime("%m/%d/%Y at %I:%M%p   ")
+
       p
         = truncate(page.body, length: 330)
-      h5
-        = "Tags  "
-        = page.theme
+      span
+        i.fi-price-tag
+          = "Tags:  "
+          = page.theme
+      .right align="right "
+        span
+          i.fi-comments
+            = " "
+            = page.comments.size
       hr/
   .medium-3.columns data-sticky-container=""
     = render "rigth_menu"

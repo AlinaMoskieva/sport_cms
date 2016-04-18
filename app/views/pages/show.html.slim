@@ -5,13 +5,59 @@
   .medium-7.columns
     p
       = page.body
-    h4
-      = page.theme
-    - policy = PagePolicy.new(current_user, page)
-    - if policy.update?
-      = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
-      '
-    - if policy.destroy?
-      = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
-  .medium-2.columns data-sticky-container=""
+    span
+      i.fi-price-tag
+        = "Tags:  "
+        = page.theme
+    br
+    .medium-8.medium-centered.columns
+      - policy = PagePolicy.new(current_user, page)
+      - if policy.update?
+        = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+        '
+      - if policy.destroy?
+        = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
+        '
+        = link_to("Back", :back, class: "small secondary button")
+  .medium-2.columns
+   br
+  .medium-3.columns data-sticky-container=""
     = render "rigth_menu"
+  .row
+   .medium-7.columns
+      p
+        h4 Comments
+        - page.comments.each do |comment|
+          span
+            i.fi-torso
+              ="  Commenter: #{comment.user.full_name}"
+          br
+          span
+            i.fi-comment
+            br
+             = comment.body
+          .right align="right "
+            span
+              i.fi-pencil
+                = link_to("  Edit    ", edit_comment_path(comment))
+
+              i.fi-trash
+
+                = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+
+          hr/
+
+      p
+        strong Add a comment
+        = form_for([page, page.comments.build]) do |f|
+          p
+           strong Commenter:
+           = current_user.email
+
+          p
+           strong Comment
+          br
+          = f.text_area :body
+          p
+          = f.button :submit , class:"secondary small button"
+
