@@ -37,14 +37,15 @@
             br
              = comment.body
           .right align="right "
-            span
-              i.fi-pencil
-                = link_to("  Edit    ", edit_comment_path(comment))
-
-              i.fi-trash
-
-                = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-
+            - policy = CommentPolicy.new(current_user, comment)
+            - if policy.update?
+                span
+                  i.fi-pencil
+                    = link_to("  Edit    ", edit_comment_path(comment))
+            - if policy.destroy?
+                span
+                  i.fi-trash
+                    = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
           hr/
 
       p

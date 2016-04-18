@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
   expose(:comments) { Comment.page(params[:page]) }
 
   def create
+    authorize comment
+
     page = Page.find(params[:page_id])
     comment.user = current_user
     comment.page_id = page.id
@@ -18,6 +20,8 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize comment
+
     if comment.save
       redirect_to(Page.find(comment.page_id))
       flash[:notice] = 'Comment was successfully updated.'
@@ -27,6 +31,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize comment
+
     if comment.destroy
       redirect_to(root_path)
       flash[:notice] = 'Comment was successfully deleted.'
