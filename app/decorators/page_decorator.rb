@@ -1,3 +1,3 @@
 class PageDecorator < ApplicationDecorator
-  delegate :title, :body, :position, :theme
+  delegate :title, :body, :theme
 end

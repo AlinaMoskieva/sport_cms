@@ -1,16 +1,27 @@
-
 .row
-  .medium-8.medium-centered.columns
-    h2 Pages
-  .row.column
-.row.small-up-1.medium-up-2.large-up-3
-  table.table.table-striped.pages-list
-      thead
-      tr
-         th Author
-         th Title
-      - pages.each do |page|
-        tr
-          td= page.user.full_name
-          td= (link_to page.title, page)
-        br
+  .medium-9.medium-centered.columns
+    h2
+      = "Sport news"
+    br
+  .medium-7.columns
+    - pages.each do |page|
+      h5
+        =(link_to page.title, page)
+      p
+        span
+          i.fi-torso
+            = page.user.full_name
+        span
+          i.fi-calendar
+            = page.created_at.strftime("%m/%d/%Y at %I:%M%p")
+        span
+          i.fi-comments
+           = "  TODO"
+      p
+        = truncate(page.body, length: 330)
+      h5
+        = "Tags  "
+        = page.theme
+      hr/
+  .medium-3.columns data-sticky-container=""
+    = render "rigth_menu"

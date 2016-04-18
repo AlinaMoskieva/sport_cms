@@ -1,8 +1,14 @@
 .row
- .medium-8.columns
-   h2 align="center"
-    = page.title
-   p
-    = page.body
-   h4
-    = page.theme
+  .medium-7.columns
+    h2 align="center"
+     = page.title
+  .medium-7.columns
+    p
+      = page.body
+    h4
+      = page.theme
+    = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+    '
+    = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' })
+  .medium-2.columns data-sticky-container=""
+    = render "rigth_menu"
