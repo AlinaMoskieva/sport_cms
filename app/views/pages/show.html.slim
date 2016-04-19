@@ -27,7 +27,7 @@
    .medium-7.columns
       p
         h4 Comments
-        - page.comments.each do |comment|
+        - comments.each do |comment|
           span
             i.fi-torso
               ="  Commenter: #{comment.user.full_name}"

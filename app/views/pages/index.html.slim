@@ -4,7 +4,7 @@
       = "Sport news"
     br
   .medium-7.columns
-    - pages.each do |page|
+    - pagess.each do |page|
       h5
         =(link_to page.title, page)
       p
@@ -26,7 +26,7 @@
         span
           i.fi-comments
             = " "
-            = page.comments.size
+            = page.comments.count
       hr/
   .medium-3.columns data-sticky-container=""
     = render "rigth_menu"

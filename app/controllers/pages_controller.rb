@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   expose(:page, attributes: :page_params)
-  expose(:pages) { Page.all.order(created_at: :desc).includes(:user) }
+  expose(:comments) { page.comments.includes(:user) }
+  expose(:pagess) { Page.includes(:user).order(created_at: :desc) }
 
   def create
     page.user = current_user
