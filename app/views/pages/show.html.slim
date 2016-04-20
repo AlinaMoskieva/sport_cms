@@ -50,7 +50,7 @@
 
       p
         strong Add a comment
-        = form_for([page, page.comments.build]) do |f|
+        = form_for([page, Comment.new(page_id: page.id)]) do |f|
           p
            strong Commenter:
            = current_user.email

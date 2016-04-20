@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
-  expose(:page, attributes: :page_params)
-  expose(:comments) { page.comments.includes(:user) }
-  expose(:pagess) { Page.includes(:user).order(created_at: :desc) }
+  expose_decorated(:page, attributes: :page_params)
+  expose_decorated(:comments) { page.comments.includes(:user) }
+
+  def index
+    @pages = Page.includes(:user).order(created_at: :desc)
+  end
 
   def create
     page.user = current_user

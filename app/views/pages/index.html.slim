@@ -4,7 +4,7 @@
       = "Sport news"
     br
   .medium-7.columns
-    - pagess.each do |page|
+    - @pages.each do |page|
       h5
         =(link_to page.title, page)
       p
