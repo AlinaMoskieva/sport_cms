@@ -1,5 +1,5 @@
 class AddCategoryToPages < ActiveRecord::Migration
   def change
-   add_column :pages, :category, :integer
+   add_column :pages, :category_id, :integer
   end
 end

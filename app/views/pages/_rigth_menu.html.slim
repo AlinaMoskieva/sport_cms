@@ -2,22 +2,9 @@
   .sticky data-anchor="content" data-sticky=""
     h4 Categories
     ul
+    - category.each do |category|
       li
-        = "Football"
-      li
-        = "Volleyball"
-      li
-        = "Baseball"
-      li
-        = "Snowboard"
-      li
-        = "Athletics"
-      li
-        = "Golf"
-      li
-        = "Tennis"
-      li
-        = "Swimming"
+        = link_to(category.category, pages_path(category_id: category.id))
     h4 Authors
 
 

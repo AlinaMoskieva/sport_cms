@@ -21,7 +21,7 @@
       span
         i.fi-price-tag
           = "Tags:  "
-          = page.theme
+          = link_to(page.category.category, pages_path(category_id: page.category.id) )
       .right align="right "
         span
           i.fi-comments

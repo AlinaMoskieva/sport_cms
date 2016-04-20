@@ -1,9 +1,11 @@
 class PagesController < ApplicationController
   expose_decorated(:page, attributes: :page_params)
   expose_decorated(:comments) { page.comments.includes(:user) }
+  expose(:category){ Category.all}
 
   def index
-    @pages = Page.includes(:user).order(created_at: :desc)
+    @pages = Page.includes(:category).includes(:user).order(created_at: :desc)
+    @pages = @pages.where(category_id: params[:category_id] ) if params[:category_id]
   end
 
   def create
@@ -42,6 +44,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit( :title, :body, :theme, :user_id)
+    params.require(:page).permit( :title, :body, :user_id, :category_id)
   end
 end

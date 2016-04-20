@@ -1,5 +1,5 @@
 class PageDecorator < ApplicationDecorator
-  delegate :title, :body, :theme, :created_at
+  delegate :title, :body, :created_at, :category_id
 
   decorates_association :comments
 
@@ -9,5 +9,9 @@ class PageDecorator < ApplicationDecorator
 
   def how_many_comments
     object.comments.count
+  end
+
+  def get_category
+    object.category
   end
 end

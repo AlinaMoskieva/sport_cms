@@ -8,7 +8,7 @@
     span
       i.fi-price-tag
         = "Tags:  "
-        = page.theme
+        = link_to(page.get_category.category, pages_path(category_id: page.get_category.id))
     br
     .medium-8.medium-centered.columns
       - policy = PagePolicy.new(current_user, page)
