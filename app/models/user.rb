@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def default_values
     self.role ||= 'user'
   end
+
+  def administrator?
+    self.role == "administrator"
+  end
 end

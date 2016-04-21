@@ -14,7 +14,7 @@
             ="                   "
         span
           i.fi-calendar
-            = page.created_at.strftime("%m/%d/%Y at %I:%M%p   ")
+            = page.data_format
 
       p
         = truncate(page.body, length: 330)

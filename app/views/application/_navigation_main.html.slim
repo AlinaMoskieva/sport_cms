@@ -1,6 +1,6 @@
 ul.left
   - if user_signed_in?
     = active_link_to "Home", root_path, active: :exclusive, wrap_tag: :li
-    - policy = PagePolicy.new(current_user, nil)
+    - policy = PagePolicy.new(current_user, Page.new)
     - if policy.create?
       = active_link_to "New page", new_page_path, active: :exclusive, wrap_tag: :li

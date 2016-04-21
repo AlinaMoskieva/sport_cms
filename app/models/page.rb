@@ -3,4 +3,8 @@ class Page < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   belongs_to :category
+
+  def data_format
+    created_at.strftime("%m/%d/%Y at %I:%M%p ")
+  end
 end

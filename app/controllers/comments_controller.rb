@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     comment.page_id = page.id
 
     if comment.save
-      redirect_to(Page.find(comment.page_id))
+      redirect_to comment.page
       flash[:notice] = 'Comment was successfully created.'
     else
       render :new
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     authorize comment
 
     if comment.save
-      redirect_to(Page.find(comment.page_id))
+      redirect_to comment.page
       flash[:notice] = 'Comment was successfully updated.'
     else
       render :edit
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def destroy
     authorize comment
 
-    if comment.destroy
+    if comment.delete
       redirect_to(root_path)
       flash[:notice] = 'Comment was successfully deleted.'
 
