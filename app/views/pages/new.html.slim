@@ -6,7 +6,8 @@
     = simple_form_for(page) do |f|
       .form-inputs
         = f.input :title
-        = f.input :body
+        = "Content"
+        = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 300}, required: true
         = f.input :category_id
       .form-actions(align="center")
         = f.button :submit, class:"secondary small button"

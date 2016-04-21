@@ -13,6 +13,7 @@ html class="no-js" lang="en"
     = stylesheet_link_tag :application
 
     = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag Ckeditor.cdn_url
 
     = javascript_tag "window.App = {}"
 
@@ -31,3 +32,4 @@ html class="no-js" lang="en"
       App.currentUserData = #{{current_user.to_json}};
 
     = javascript_include_tag :application
+

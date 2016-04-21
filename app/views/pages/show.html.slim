@@ -35,7 +35,7 @@
           span
             i.fi-comment
             br
-             = comment.body
+             = comment.body.html_safe
           .right align="right "
             - policy = CommentPolicy.new(current_user, comment)
             - if policy.update?
@@ -58,7 +58,7 @@
           p
            strong Comment
           br
-          = f.text_area :body
+          = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
           p
           = f.button :submit , class:"secondary small button"
 

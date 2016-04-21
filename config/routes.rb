@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root to: "pages#index"
   resources :comments
   resources :pages
   resources  :categories
@@ -8,5 +10,4 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  root to: "pages#index"
 end
