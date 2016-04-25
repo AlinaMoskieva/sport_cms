@@ -9,38 +9,36 @@ br
       = user.full_name
     h4
       = user.email
-.row
-  .megium-6.columns
-    .panel
-       h6
-        = user.how_many_pages
-        = " posts"
-    .panel.callout
-      -pages.each do |page|
-          h5
-            =(link_to page.title, page)
-          p
+- policy = ProfilePolicy.new(current_user, Page.new)
+- if policy.index?
+  .row
+    .megium-6.columns
+      .panel
+         h6
+          = user.how_many_pages
+          = " posts"
+      .panel.callout
+        -pages.each do |page|
+            h5
+              =(link_to page.title, page)
+            p
+              span
+                i.fi-torso
+                  = page.user.full_name
+                  ="                   "
+              span
+                i.fi-calendar
+                  = page.data_format
+
+            p
+              = page.body.slice(0 .. 330).html_safe.concat(" ...")
             span
-              i.fi-torso
-                = page.user.full_name
-                ="                   "
-            span
-              i.fi-calendar
-                = page.data_format
-
-          p
-            = page.body.slice(0 .. 330).html_safe.concat(" ...")
-          span
-            i.fi-price-tag
-              = "Tags:  "
-              = link_to(page.category.category, pages_path(category_id: page.category.id) )
-          .right align="right "
-            span
-              i.fi-comments
-                = " "
-                = page.comments.count
-          hr/
-
-
-
-
+              i.fi-price-tag
+                = "Tags:  "
+                = link_to(page.category.category, pages_path(category_id: page.category.id) )
+            .right align="right "
+              span
+                i.fi-comments
+                  = " "
+                  = page.comments.count
+            hr/

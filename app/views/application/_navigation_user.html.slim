@@ -4,7 +4,9 @@ ul.right
       a.user-dropdown(href="#") = current_user.full_name_with_email
       ul.dropdown
         li
-          = link_to "Profile", profile_index_path
+          - policy = ProfilePolicy.new(current_user, Page.new)
+          - if policy.index?
+             = link_to "Profile", profile_index_path
         li
           = link_to "Edit profile", edit_user_registration_path
         li
