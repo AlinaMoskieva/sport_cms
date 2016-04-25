@@ -5,7 +5,13 @@
     - category.each do |category|
       li
         = link_to(category.category, pages_path(category_id: category.id))
+    br
     h4 Authors
+    ul
+    - users.each do |user|
+      - if  user.has_pages?
+        li
+          = link_to(user.full_name, pages_path(user_id: user.id))
 
 
 

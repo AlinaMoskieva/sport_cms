@@ -10,14 +10,13 @@
       p
         span
           i.fi-torso
-            = page.user.full_name
+            = link_to(page.user.full_name, pages_path(user_id: page.user.id))
             ="                   "
         span
           i.fi-calendar
             = page.data_format
-
       p
-        = truncate(page.body, length: 330)
+        = page.body.slice(0 .. 330).html_safe.concat(" ...")
       span
         i.fi-price-tag
           = "Tags:  "
