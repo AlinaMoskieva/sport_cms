@@ -1,0 +1,29 @@
+.row
+  .medium-8.columns
+    h2(align="center")
+      ="Users listing"
+.row
+  .medium-8.columns
+    .table-stack
+      table
+          tr
+            th №
+            th Name
+            th Role
+            th Email
+            th Update to Administrator
+            - users.each do |user|
+              tr
+                td
+                  = user.id
+                td
+                  = user.full_name
+                td
+                  = user.role
+                td
+                  = user.email
+                td
+                  = link_to("Update", edit_administrator_path(id: user.id))
+
+
+
