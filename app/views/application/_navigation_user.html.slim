@@ -8,7 +8,9 @@ ul.right
           - if policy.index?
              = link_to "Profile", profile_index_path
         li
-          = link_to("Administrators tools", administrators_path)
+          - policy = AdministratorPolicy.new(current_user, Page.new)
+          - if policy.index?
+            = link_to("Administrators tools", administrators_path)
         li
           = link_to "Edit profile", edit_user_registration_path
         li
