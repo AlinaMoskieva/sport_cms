@@ -10,7 +10,8 @@ ul.right
         li
           - policy = AdministratorPolicy.new(current_user, Page.new)
           - if policy.index?
-            = link_to("Administrators tools", administrators_path)
+            = link_to("Administrator's tools", admin_users_path)
+
         li
           = link_to "Edit profile", edit_user_registration_path
         li
