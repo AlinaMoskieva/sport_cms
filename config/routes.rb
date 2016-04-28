@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :pages
   resources :categories
   resources :profile, only: [:index]
+
+
   namespace :admin do
     resources :users
   end
+
   resources :pages do
    resources :comments, shallow: true
   end
