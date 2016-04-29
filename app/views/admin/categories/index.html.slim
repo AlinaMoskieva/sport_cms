@@ -1,0 +1,23 @@
+.row
+  .medium-8.columns
+    h2(align="center")
+      ="Listing of categories"
+    .table-stack
+      table
+        tr
+          th №
+          th Category
+          th Posts amount
+
+          - categories.each do |category|
+            tr
+              td
+                = category.id
+              td
+                = category.category
+              td
+                = category.pages.count
+
+
+
+
