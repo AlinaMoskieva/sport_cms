@@ -1,0 +1,9 @@
+.row
+  .medium-8.columns
+    h2(align="center")
+      ="Add new category"
+    = simple_form_for([:admin, category]) do |f|
+      .form-inputs
+        = f.input :category
+      .form-actions(align="center")
+        = f.button :submit, class: "secondary small button"
