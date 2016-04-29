@@ -21,7 +21,7 @@ module Admin
       return unless current_user.administrator?
       sign_in(:user, User.find(params[:id]))
       redirect_to root_url
-      flash[:notice] = "Log in as #{user.email}."
+      flash[:notice] = "Sign in as #{user.email}."
     end
 
     def user_params
