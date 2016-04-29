@@ -1,13 +1,16 @@
 .row
   .medium-8.columns
     h2(align="center")
-      ="Listing of categories"
+        ="Listing of categories"
+.row
+  .medium-8.columns
     .table-stack
       table
         tr
           th №
           th Category
           th Posts amount
+          th Delete category
 
           - categories.each do |category|
             tr
@@ -16,8 +19,14 @@
               td
                 = category.category
               td
-                = category.pages.count
+                = category.how_many_pages
+              td
+                = link_to("Delete", ([:admin, category]) , method: :delete, data: { confirm: 'Are you sure?' })
 
-= render "form"
+
+    = render "form"
+
+  .medium-3.columns data-sticky-container=""
+    = render "tools_category_menu"
 
 
