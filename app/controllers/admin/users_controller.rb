@@ -1,9 +1,9 @@
 module Admin
   class UsersController < ApplicationController
     before_filter :authenticate_user!
-    expose (:admin)
-    expose (:users) { User.all.order(id: :asc) }
-    expose (:user)
+    expose(:admin)
+    expose(:users) { User.all.order(id: :asc) }
+    expose(:user)
 
     def update
       user.update(user_params)
