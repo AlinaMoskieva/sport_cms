@@ -1,4 +1,4 @@
-class AdministratorPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   def index?
     @user.administrator?
   end

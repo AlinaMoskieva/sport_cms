@@ -8,20 +8,22 @@ module Admin
     def update
       user.update(user_params)
 
-      if user.save
-        redirect_to admin_users_path
-        flash[:notice] = 'User information was successfully update.'
-      else
-        render :edit
-        flash[:notice] = 'Something wrong.'
+      respond_to do |format|
+        if user.save
+          format.html{ redirect_to admin_users_path, notice: 'User information was successfully update.' }
+        else
+          format.tml{ render :edit, notice: 'Something wrong.' }
+        end
       end
     end
 
     def show
       return unless current_user.administrator?
       sign_in(:user, User.find(params[:id]))
-      redirect_to root_url
-      flash[:notice] = "Sign in as #{user.email}."
+
+      respond_to do |format|
+        format.html{ redirect_to root_url, notice: "Signed up as #{user.email}."}
+      end
     end
 
     def user_params

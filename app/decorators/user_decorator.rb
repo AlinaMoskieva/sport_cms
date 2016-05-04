@@ -10,10 +10,10 @@ class UserDecorator < ApplicationDecorator
   end
 
   def has_pages?
-    object.page.count > 0
+    object.pages.count > 0
   end
 
   def how_many_pages
-    object.page.count
+    object.pages.count
   end
 end

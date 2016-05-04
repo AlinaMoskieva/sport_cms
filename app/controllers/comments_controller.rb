@@ -11,34 +11,36 @@ class CommentsController < ApplicationController
     comment.user = current_user
     comment.page_id = page.id
 
-    if comment.save
-      redirect_to comment.page
-      flash[:notice] = 'Comment was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if comment.save
+        format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
+      else
+        format.html{ render :new }
+      end
     end
   end
 
   def update
     authorize comment
 
-    if comment.save
-      redirect_to comment.page
-      flash[:notice] = 'Comment was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if comment.save
+        format.html{ redirect_to comment.page, notice: 'Comment was successfully updated.' }
+      else
+        format.html{ render :edit }
+      end
     end
   end
 
   def destroy
     authorize comment
 
-    if comment.delete
-      redirect_to(root_path)
-      flash[:notice] = 'Comment was successfully deleted.'
-
-    else
-      render :edit
+    respond_to do |format|
+      if comment.delete
+        format.html{ redirect_to root_path, notice: 'Comment was successfully deleted.' }
+      else
+        format.html{ render :edit }
+      end
     end
   end
 

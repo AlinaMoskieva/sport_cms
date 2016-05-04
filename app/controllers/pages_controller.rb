@@ -13,35 +13,38 @@ class PagesController < ApplicationController
   def create
     page.user = current_user
 
-    authorize page
+    authorize page, :create?
 
-    if page.save
-      redirect_to(page)
-      flash[:notice] = 'Page was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if page.save
+        format.html{ redirect_to page, notice: 'Page was successfully created.' }
+      else
+        format.html{ render :new }
+      end
     end
   end
 
   def update
-    authorize page
+    authorize page, :update?
 
-    if page.save
-      redirect_to(page)
-      flash[:notice] = 'Page was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if page.save
+        format.html{ redirect_to page,notice: 'Page was successfully updated.' }
+      else
+        format.html{ render :edit }
+      end
     end
   end
 
   def destroy
-    authorize page
+    authorize page, :destroy?
 
-    if page.destroy
-      redirect_to root_path
-      flash[:notice] = 'Page was successfully deleted.'
-    else
-      render :edit
+    respond_to do |format|
+      if page.destroy
+        format.html{ redirect_to root_path, notice: 'Page was successfully deleted.' }
+      else
+        format.html{ render :edit }
+      end
     end
   end
 
