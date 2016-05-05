@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
-    expose_decorated(:categories) { Category.all.order(:id) }
+    expose_decorated(:categories) { Category.includes(:pages).order(:id) }
     expose(:pages) { Page.includes(:category) }
     expose_decorated(:category, attributes: :category_params)
 
