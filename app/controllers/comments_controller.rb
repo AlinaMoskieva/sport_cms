@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   respond_to :html
 
   expose(:comment, attributes: :comment_params)
-  expose(:comments) { Comment.page(params[:page]) }
+  expose(:comments) { Comment.page(params[:page]).page params[:page] }
 
   def create
     authorize comment
