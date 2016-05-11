@@ -1,3 +1,3 @@
 class CategorySubscription < ActiveRecord::Base
-  serialize :categories
+  belongs_to :user
 end

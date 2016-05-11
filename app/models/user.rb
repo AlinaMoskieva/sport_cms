@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :page
   has_many :comments
-  has_many :category_subscriptions
+
+  serialize :subscribed_categories
 
   def default_values
     self.role ||= 'user'
