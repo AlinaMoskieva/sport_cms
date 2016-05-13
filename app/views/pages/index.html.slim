@@ -36,7 +36,8 @@
               = page.comments.count
         br
         hr/
-      ul(class="pagination text-center" role="navigation" aria-label="Pagination")
+    .medium-10.medium-centred.columns
+      ul(class="pagination text-center" role="navigation" aria-label="Pagination" )
         li
           = paginate @pages, outer_window: 3
   .medium-3.columns data-sticky-container=""
