@@ -1,14 +1,14 @@
 class PagePolicy < ApplicationPolicy
 
   def destroy?
-    @user.administrator? && @record.user == @user
+    @user.nil? || @user.administrator? && @record.user == @user
   end
 
   def update?
-    @user.administrator? && @record.user == @user
+    @user.nil? || @user.administrator? && @record.user == @user
   end
 
   def create?
-    @user.administrator?
+   @user.nil? ||  @user.administrator?
   end
 end

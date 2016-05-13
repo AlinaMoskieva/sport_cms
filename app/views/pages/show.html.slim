@@ -22,10 +22,10 @@
         '
       - if policy.destroy?
         = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
-        '
-        = link_to "sub", new_category_subscription_path(category_id: page.get_category)
-        '
-        = link_to("Back", :back, class: "small secondary button")
+      '
+      = link_to "sub", new_user_path(category_id: page.get_category.id)
+      '
+      = link_to("Back", :back, class: "small secondary button")
   .medium-2.columns
    br
   .medium-3.columns data-sticky-container=""
@@ -57,15 +57,20 @@
 
       p
         strong Add a comment
-        = form_for([page, Comment.new(page_id: page.id)]) do |f|
+        - policy = CommentPolicy.new(current_user, page)
+        - if policy.create?
+          = form_for([page, Comment.new(page_id: page.id)]) do |f|
+            p
+              strong Commenter:
+              = current_user.email
+            p
+              strong Comment
+            br
+            = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
+            p
+            = f.button :submit , class:"secondary small button"
+        - else
           p
-           strong Commenter:
-           = current_user.email
-
-          p
-           strong Comment
-          br
-          = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
-          p
-          = f.button :submit , class:"secondary small button"
+            .panel(class="callout")
+              h6="You should sign in for have ability to add comments"
 
