@@ -33,45 +33,42 @@
     = render "right_menu"
   .row
    .medium-7.columns
-      p
-        h4 Comments
-        = paginate comments
-        hr/
-        - comments.each do |comment|
-          span
-            i.fi-torso
-              ="  Commenter: #{comment.author}"
-          br
-          span
-            i.fi-comment
-            br
+     p
+       h4 Comments
+       = paginate comments
+       hr/
+       -comments.each do |comment|
+         span
+           i.fi-torso
+             ="  Commenter: #{comment.author}"
+         br
+         span
+           i.fi-comment
+             br
              = comment.body.html_safe
-          .left align="left"
-            = comment.date
-          .right align="right "
-            - policy = CommentPolicy.new(current_user, comment)
-            - if policy.update?
-                span
-                  i.fi-pencil
-                    = link_to("  Edit    ", edit_comment_path(comment))
-            - if policy.destroy?
-                span
-                  i.fi-trash
-                    = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
-          hr/
-
-
-      p
+         .left align="left"
+           = comment.date
+         .right align="right "
+           - policy = CommentPolicy.new(current_user, comment)
+           - if policy.update?
+             span
+               i.fi-pencil
+                 = link_to("  Edit    ", edit_comment_path(comment))
+           - if policy.destroy?
+             span
+               i.fi-trash
+                 = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+         hr/
+       p
         strong Add a comment
         = form_for([page, Comment.new(page_id: page.id)]) do |f|
           p
-           strong Commenter:
-           = current_user.email
-
+            strong Commenter:
+            = current_user.email
           p
-           strong Comment
-          br
-          = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
+            strong Comment
+            br
+            = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
           p
           = f.button :submit , class:"secondary small button"
 
