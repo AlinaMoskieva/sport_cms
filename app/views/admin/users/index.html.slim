@@ -6,27 +6,27 @@
   .medium-8.columns
     .table-stack
       table
-          tr
-            th №
-            th Name
-            th Role
-            th Email
-            th Update to Administrator
-            th New session
-            - users.each do |user|
-              tr
-                td
-                  = user.id
-                td
-                  = user.full_name
-                td
-                  = user.role
-                td
-                  = user.email
-                td
-                  = link_to("Update", edit_admin_user_path(id: user.id))
-                td
-                  = link_to("New session as user", admin_user_path(id: user.id))
+        tr
+          th №
+          th Name
+          th Role
+          th Email
+          th Update to Administrator
+          th New session
+          - users.each do |user|
+            tr
+              td
+                = user.id
+              td
+                = user.full_name
+              td
+                = user.role
+              td
+                = user.email
+              td
+                = link_to("Update", edit_admin_user_path(id: user.id))
+              td
+                = link_to("New session as user", admin_user_path(id: user.id))
       = paginate users
   .medium-3.columns data-sticky-container=""
     = render "tools_menu"
