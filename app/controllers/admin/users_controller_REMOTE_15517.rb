@@ -3,28 +3,25 @@ module Admin
     before_filter :authenticate_user!
     expose(:admin)
     expose(:users) { User.all.order(id: :asc) }
-
     expose(:user)
 
     def update
       user.update(user_params)
 
-      respond_to do |format|
-        if user.save
-          format.html{ redirect_to admin_users_path, notice: 'User information was successfully update.' }
-        else
-          format.tml{ render :edit, notice: 'Something wrong.' }
-        end
+      if user.save
+        redirect_to admin_users_path
+        flash[:notice] = 'User information was successfully update.'
+      else
+        render :edit
+        flash[:notice] = 'Something wrong.'
       end
     end
 
     def show
       return unless current_user.administrator?
       sign_in(:user, User.find(params[:id]))
-
-      respond_to do |format|
-        format.html{ redirect_to root_url, notice: "Signed up as #{user.email}."}
-      end
+      redirect_to root_url
+      flash[:notice] = "Log in as #{user.email}."
     end
 
     def user_params

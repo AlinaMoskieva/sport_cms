@@ -1,0 +1,12 @@
+.row
+  h2= "Sports A-Z"
+  - letter = "z"
+  - categories.each do |c|
+    - if c.start_with?(letter)
+        = link_to(c.category, pages_path(category_id: c.id))
+    - else
+      h2
+        = c.first_letter
+      = link_to(c.category, pages_path(category_id: c.id))
+    br
+    - letter = c.first_letter

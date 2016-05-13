@@ -1,10 +1,11 @@
 
-  .sticky data-anchor="content" data-sticky=""
-    h4 Categories
+    h4
+      = link_to( "Categories", categories_path)
     ul
-    - category.each do |category|
-      li
-        = link_to(category.category, pages_path(category_id: category.id))
+    - categories.each do |category|
+      - if category.has_content?
+        li
+          = link_to(category.category, pages_path(category_id: category.id))
     br
     h4 Authors
     ul
