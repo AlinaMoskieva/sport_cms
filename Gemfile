@@ -22,6 +22,8 @@ gem "metamagic"
 gem "simple_form"
 gem "slim"
 gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # all other gems
 gem "decent_decoration"

@@ -25,11 +25,13 @@
   .medium-2.columns
    br
   .medium-3.columns data-sticky-container=""
-    = render "rigth_menu"
+    = render "right_menu"
   .row
    .medium-7.columns
       p
         h4 Comments
+        = paginate comments
+        hr/
         - comments.each do |comment|
           span
             i.fi-torso
@@ -39,6 +41,8 @@
             i.fi-comment
             br
              = comment.body.html_safe
+          .left align="left"
+            = comment.date
           .right align="right "
             - policy = CommentPolicy.new(current_user, comment)
             - if policy.update?
@@ -50,6 +54,7 @@
                   i.fi-trash
                     = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
           hr/
+
 
       p
         strong Add a comment

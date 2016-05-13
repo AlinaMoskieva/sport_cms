@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
+  paginates_per 2
   before_save :default_values
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
-  has_many :page
+  has_many :pages
   has_many :comments
   validates :full_name, presence: true
 

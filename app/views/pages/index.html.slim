@@ -27,5 +27,9 @@
             = " "
             = page.comments.count
       hr/
+    ul(class="pagination text-center" role="navigation" aria-label="Pagination")
+      li
+        = paginate @pages, outer_window: 3
   .medium-2.columns data-sticky-container=""
-    = render "rigth_menu"
+    = render "right_menu"
+

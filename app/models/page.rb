@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+  paginates_per 5
   validates :title, :body, :user_id, :category_id, presence: true
   belongs_to :user
   has_many :comments
