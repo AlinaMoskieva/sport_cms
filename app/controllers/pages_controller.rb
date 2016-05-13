@@ -11,6 +11,11 @@ class PagesController < ApplicationController
     @pages = @pages.where(user_id: params[:user_id] ) if params[:user_id]
   end
 
+  def show
+    page.increment(:visitors)
+    page.save
+  end
+
   def create
     page.user = current_user
 
@@ -50,6 +55,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit( :title, :body, :user_id, :category_id)
+    params.require(:page).permit( :title, :body, :user_id, :category_id, :visitors)
   end
 end

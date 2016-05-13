@@ -20,4 +20,12 @@ class CategoryDecorator < ApplicationDecorator
   def start_with?(letter)
     object.category.start_with?(letter)
   end
+
+  def how_many_viewed
+    viewed = 0
+    object.pages.each do |c|
+      viewed = viewed + c.visitors
+    end
+    return viewed
+  end
 end

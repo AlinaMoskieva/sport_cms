@@ -10,6 +10,7 @@
           th №
           th Category
           th Posts amount
+          th Viewed amount
           th Delete category
 
           - categories.each do |category|
@@ -20,6 +21,8 @@
                 = category.category
               td
                 = category.how_many_pages
+              td
+                = category.how_many_viewed
               td
                 = link_to("Delete", ([:admin, category]) , method: :delete, data: { confirm: 'Are you sure?' })
 
