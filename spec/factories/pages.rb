@@ -3,6 +3,6 @@ FactoryGirl.define do
     title "Test page"
     body "test body"
     user_id 1
-    theme "sport"
+    category_id 1
   end
 end

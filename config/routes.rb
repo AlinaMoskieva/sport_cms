@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :pages
   resources :categories, only: [:index]
   resources :profile, only: [:index]
+  resources :category_subscriptions
+  resources :users_category
 
 
   namespace :admin do

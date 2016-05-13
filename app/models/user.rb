@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
 
   before_save :default_values
 
+  validates :full_name, presence: true
+
   has_many :pages
   has_many :comments
 
-  validates :full_name, presence: true
+  serialize :subscribed_categories
 
   def default_values
     self.role ||= 'user'

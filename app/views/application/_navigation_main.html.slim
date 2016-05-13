@@ -4,3 +4,4 @@ ul.left
     - policy = PagePolicy.new(current_user, Page.new)
     - if policy.create?
       = active_link_to "New page", new_page_path, active: :exclusive, wrap_tag: :li
+    = active_link_to "Subscriptions", pages_path(format: "subscriptions"),  wrap_tag: :li
