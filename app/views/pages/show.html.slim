@@ -23,7 +23,7 @@
       - if policy.destroy?
         = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
       '
-      = link_to "sub", new_user_path(category_id: page.get_category.id)
+      = link_to "sub", new_users_category_path(category_id: page.get_category.id), class: "small secondary button"
       '
       = link_to("Back", :back, class: "small secondary button")
   .medium-2.columns
