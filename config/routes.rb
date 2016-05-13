@@ -6,10 +6,15 @@ Rails.application.routes.draw do
   resources :categories
   resources :profile, only: [:index]
 
+
+  namespace :admin do
+    resources :users
+    resources :categories
+  end
+
   resources :pages do
    resources :comments, shallow: true
   end
 
   devise_for :users
-
 end
