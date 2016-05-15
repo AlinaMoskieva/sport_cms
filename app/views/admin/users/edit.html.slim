@@ -4,7 +4,7 @@
       ="Edit #{user.email}"
     = simple_form_for([:admin, user]) do |f|
       .form-inputs
-        = f.input :role
+        = f.input :role, collection: [:administrator, :user]
       .form-actions
         = f.button :submit, "Update", class:"secondary small button"
         '
