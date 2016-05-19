@@ -4,5 +4,6 @@ FactoryGirl.define do
     body "test body"
     user
     category
+    visitors 2
   end
 end
