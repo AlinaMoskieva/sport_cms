@@ -25,7 +25,11 @@ feature "View page" do
     expect(page).to have_content(site_page.user.full_name)
     expect(page).to have_content(site_page.category.category)
     expect(page).to have_content(site_page.visitors)
+    expect(page).to_not have_link("Delete")
+    expect(page).to_not have_link("Edit page")
+    expect(page).to_not have_link("Subscribe")
     expect(page).to have_link("Back")
+    expect(page).to_not have_field("body")
 
   end
 end

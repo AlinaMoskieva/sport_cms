@@ -23,8 +23,8 @@
       - if policy.destroy?
         = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
       '
-      - sub_policy = UsersCategoryPolicy.new(current_user, page)
-      - if sub_policy.create?
+      - sub_policy = UserPolicy.new(current_user, page)
+      - if sub_policy.create_subscription?
 
         = link_to "Subscribe", new_users_category_path(category_id: page.get_category.id), class: "small secondary button"
         '
