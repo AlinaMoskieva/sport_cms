@@ -4,11 +4,10 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.nil? || @record.user == @user
+    @user.nil? ? false : @record.user == @user
   end
 
   def destroy?
-    @user.nil? ||  @record.user == @user
-    # || @page.user ==@user -???
+    @user.nil? ? false :  @record.user == @user
   end
 end
