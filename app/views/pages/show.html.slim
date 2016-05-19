@@ -43,26 +43,35 @@
        = paginate comments
        hr/
        -comments.each do |comment|
-         span
-           i.fi-torso
-             ="  Commenter: #{comment.author}"
-         br
-         span
-           i.fi-comment
-             br
-             = comment.body.html_safe
-         .left align="left"
-           = comment.date
-         .right align="right "
-           - policy = CommentPolicy.new(current_user, comment)
-           - if policy.update?
+         .row
+           .medium-1.columns
+             span
+              i.fi-torso
+           .medium-11.columns
+              ="Commenter: #{comment.author}"
+         .row
+           .medium-1.columns
+             span
+               i.fi-comment
+           .medium-11.columns
+              = comment.body.html_safe
+         .row
+           .medium-1.columns
+             span
+               i.fi-clock
+           .medium-6.columns
+             = comment.date
+           .medium-2.columns
+             - policy = CommentPolicy.new(current_user, comment)
+             - if policy.update?
              span
                i.fi-pencil
-                 = link_to("  Edit    ", edit_comment_path(comment))
-           - if policy.destroy?
-             span
-               i.fi-trash
-                 = link_to("  Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+                 = link_to("Edit", edit_comment_path(comment))
+           .medium-2.columns
+              - if policy.destroy?
+                span
+                  i.fi-trash
+                    = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
          hr/
        p
         strong Add a comment
