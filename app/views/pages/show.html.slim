@@ -39,7 +39,7 @@
        -comments.each do |comment|
          span
            i.fi-torso
-             ="  Commenter: #{comment.author}"
+             ="Commenter: #{comment.author}"
          br
          span
            i.fi-comment
@@ -52,7 +52,7 @@
            - if policy.update?
              span
                i.fi-pencil
-                 = link_to("  Edit    ", edit_comment_path(comment))
+                 = link_to("Edit", edit_comment_path(comment))
            - if policy.destroy?
              span
                i.fi-trash
