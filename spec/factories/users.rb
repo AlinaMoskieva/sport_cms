@@ -6,6 +6,7 @@ FactoryGirl.define do
     password_confirmation { password }
     confirmed_at 1.hour.ago
     role "user"
+    subscribed_categories Array.new
 
   end
 
