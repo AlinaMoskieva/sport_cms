@@ -24,7 +24,7 @@ feature "View page as administrator" do
     end
 
     it "has link to subscribes" do
-      expect(page).to have_link("subscribes")
+      expect(page).to have_link("Subscribtions here!")
 
     end
 
