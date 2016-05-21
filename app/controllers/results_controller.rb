@@ -23,6 +23,17 @@ class ResultsController < ApplicationController
   end
 
   def result_params
-    params.require(:result).permit(:category_id, :country, :result, :prize)
+    params.require(:result).permit(:category_id,
+                                   :country,
+                                   :result,
+                                   :prize,
+                                   :first_team,
+                                   :second_team,
+                                   :first_result,
+                                   :second_result,
+                                   :first_crew_members,
+                                   :second_crew_members,
+                                   :first_team_country,
+                                   :second_team_country)
   end
 end
