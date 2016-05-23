@@ -3,22 +3,31 @@
     h2(align="center")="Add new result"
     br
 .row
-  .medium-8.columns
+  .medium-12.columns
     = simple_form_for(result) do |f|
       .form-inputs
-        = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
-        = "For individual sport"
-        = f.input :result, placeholder: "Achievement"
-        = f.input :prize
-        = f.input :country, as: :country
-        = "For team sport"
-        = f.input :first_team, placeholder: "Team's name"
-        = f.input :second_team, placeholder: "Team's name"
-        = f.input :first_crew_members
-        = f.input :second_crew_members
+        .medium-6.medium-centered.columns
+          = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
+        br
+        .medium-12.columns
+          .medium-6.columns
+            h4= "For individual sport"
+            = f.input :result, placeholder: "Achievement"
+            = f.input :prize
+            = f.input :country, as: :country
+        .medium-12.columns
+          h4(align="center")= "For team sport"
+          .medium-6.columns
+            = f.input :first_team, placeholder: "Team's name"
+            = f.input :first_team_country, as: :country
+            = f.input :first_team_members
+            = f.input :first_team_result
+          .medium-6.columns
+            = f.input :second_team, placeholder: "Team's name"
+            = f.input :second_team_country, as: :country
+            = f.input :second_team_members
+            = f.input :second_team_result
 
-        = f.input :first_result
-        = f.input :second_result
       .form-actions(align="center")
         = f.button :submit, class:"secondary small button"
         '

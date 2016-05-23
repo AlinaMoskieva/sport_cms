@@ -29,10 +29,10 @@ class ResultsController < ApplicationController
                                    :prize,
                                    :first_team,
                                    :second_team,
-                                   :first_result,
-                                   :second_result,
-                                   :first_crew_members,
-                                   :second_crew_members,
+                                   :first_team_result,
+                                   :second_team_result,
+                                   :first_team_members,
+                                   :second_team_members,
                                    :first_team_country,
                                    :second_team_country)
   end
