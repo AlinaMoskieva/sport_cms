@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   expose(:result, attributes: :result_params)
-  expose(:results) { Result.all }
+  expose(:results) { Result.all.order(created_at: :desc) }
   expose(:categories) { Category.all }
 
   def index
@@ -36,6 +36,7 @@ class ResultsController < ApplicationController
                                    :first_team_members,
                                    :second_team_members,
                                    :first_team_country,
-                                   :second_team_country)
+                                   :second_team_country,
+                                   :created_at)
   end
 end
