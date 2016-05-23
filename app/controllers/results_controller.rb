@@ -8,6 +8,8 @@ class ResultsController < ApplicationController
   end
 
   def create
+    authorize result
+
     result = Result.new(result_params)
 
     respond_to do |format|
