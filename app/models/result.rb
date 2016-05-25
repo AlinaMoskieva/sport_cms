@@ -24,4 +24,6 @@ class Result
 
   has_one :page
 
+  paginates_per 5
+
 end

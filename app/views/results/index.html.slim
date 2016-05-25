@@ -111,3 +111,8 @@
             .medium-8.columns.end
               = result.second_team_country
           hr/
+    .medium-10.medium-centred.columns
+      ul(class="pagination text-center" role="navigation" aria-label="Pagination" )
+        li
+          = paginate results, outer_window: 3
+
