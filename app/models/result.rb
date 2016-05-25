@@ -17,6 +17,7 @@ class Result
   field :first_team_country, type: String
   field :second_team_country, type: String
   field :created_at, type: Date
+  field :sportsmen,type: String
 
   validates_presence_of :category_id
 

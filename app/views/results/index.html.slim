@@ -1,10 +1,53 @@
 .row
-  .medium-10.medium-centered.columns
-    h2="Results. I am here!"
+  .medium-10.medium-centered.columns.end
+    h2="Results"
+.row
+  .medium-12.columns
+    - results.each do |result|
+      .medium-10.columns.end
+        br
+          span
+            i.fi-pricetag-multiple
+              = result.get_category
+        span
+          i.fi-clock
+            = result.get_date
+        br
+        = result.result
+        = result.sportsmen
+        br
+        - if result.is_individual_sport?
+          span
+            i.fi-flag
+              = result.sportsmen
+          br
+          - result.winner?
+            span
+              i.fi-trophy
+                = result.result
+          br
+          span
+            i.fi-web
+              = result.country
+          br
+          span
+            i.fi-crown
+              = result.prize
+        - else
+          .medium-6.columns
+            h2="First team"
+            = result.first_team
+            = result.first_team_result
+            = result.first_team_members
+            = result.first_team_country
+          .medium-6.columns
+            h2="Second team"
+            = result.second_team
+            = result.second_team_result
+            = result.second_team_members
+            = result.second_team_country
 
-    - @results.each do |result|
-      = result.category_id
-      = result.country
+
 
 
 
