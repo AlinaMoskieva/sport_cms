@@ -3,7 +3,6 @@ class Result
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
 
-
   field :category_id, type: String
   field :country, type: String
   field :result, type: String
@@ -18,6 +17,8 @@ class Result
   field :second_team_country, type: String
   field :created_at, type: Date
   field :sportsmen,type: String
+  field :competition, type: String
+  field :page_id, type: String
 
   validates_presence_of :category_id
 

@@ -10,7 +10,9 @@ class ResultDecorator < ApplicationDecorator
              :first_team_members,
              :second_team_members,
              :first_team_country,
-             :second_team_country
+             :second_team_country,
+             :competition,
+             :page_id
 
   def get_category
     Category.find(object.category_id).category
@@ -22,6 +24,10 @@ class ResultDecorator < ApplicationDecorator
 
   def winner?
     object.result.to_i < 4
+  end
+
+  def has_link?
+    ! object.page_id.blank?
   end
 
   def is_individual_sport?

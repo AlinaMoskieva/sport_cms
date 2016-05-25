@@ -38,6 +38,8 @@ class ResultsController < ApplicationController
                                    :first_team_country,
                                    :second_team_country,
                                    :created_at,
-                                   :sportsmen)
+                                   :sportsmen,
+                                   :competition,
+                                   :page_id)
   end
 end

@@ -4,52 +4,110 @@
 .row
   .medium-12.columns
     - results.each do |result|
-      .medium-10.columns.end
+      .medium-8.columns.end
         br
+        .medium-1.columns
           span
             i.fi-pricetag-multiple
-              = result.get_category
-        span
-          i.fi-clock
-            = result.get_date
+        .medium-11.columns.end
+          = result.get_category
         br
-        = result.result
-        = result.sportsmen
-        br
-        - if result.is_individual_sport?
+        .medium-1.columns
           span
-            i.fi-flag
-              = result.sportsmen
-          br
-          - result.winner?
+            i.fi-clock
+        .medium-11.columns.end
+          = result.get_date
+        br
+        .medium-1.columns
+          span
+            i.fi-calendar
+        .medium-11.columns.end
+          =result.competition
+        br
+        - if result.has_link?
+          .medium-1.columns
             span
-              i.fi-trophy
-                = result.result
+              i.fi-paperclip
+          .medium-11.columns.end
+            = link_to("Read more ..", page_path(result.page_id.to_i))
           br
-          span
-            i.fi-web
-              = result.country
+        - if result.is_individual_sport?
+          .medium-1.columns
+            span
+              i.fi-flag
+          .medium-11.columns.end
+            = result.sportsmen
           br
-          span
-            i.fi-crown
-              = result.prize
+          - if result.winner?
+            .medium-1.columns
+              span
+                i.fi-trophy
+            .medium-11.columns.end
+              = result.result
+          br
+          .medium-1.columns
+            span
+              i.fi-web
+          .medium-11.columns.end
+            = result.country
+          br
+          .medium-1.columns
+            span
+              i.fi-crown
+          .medium-11.columns.end
+            = result.prize
+          hr/
         - else
           .medium-6.columns
-            h2="First team"
-            = result.first_team
-            = result.first_team_result
-            = result.first_team_members
-            = result.first_team_country
+            br
+            h6="First team"
+            .medium-2.columns
+              span
+                i.fi-torsos-all
+            .medium-8.columns.end
+              = result.first_team
+            br
+            .medium-1.columns
+              span
+                i.fi-flag
+            .medium-8.columns.end
+              = result.first_team_result
+            br
+            .medium-1.columns
+              span
+                i.fi-torsos-all
+            .medium-8.columns.end
+              = result.first_team_members
+            br
+            .medium-1.columns
+              span
+                i.fi-web
+            .medium-8.columns.end
+              = result.first_team_country
           .medium-6.columns
-            h2="Second team"
-            = result.second_team
-            = result.second_team_result
-            = result.second_team_members
-            = result.second_team_country
-
-
-
-
-
-
-
+            br
+            h6="Second team"
+            .medium-1.columns
+              span
+                i.fi-torsos-all
+            .medium-8.columns.end
+              = result.second_team
+            br
+            .medium-1.columns
+              span
+                i.fi-flag
+            .medium-8.columns.end
+              = result.second_team_result
+            br
+            .medium-1.columns
+              span
+                i.fi-torsos-all
+            .medium-8.columns.end
+               = result.second_team_members
+            br
+            .medium-1.columns
+              span
+                i.fi-web
+            .medium-8.columns.end
+              = result.second_team_country
+          hr/
