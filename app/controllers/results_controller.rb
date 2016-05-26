@@ -13,7 +13,7 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if result.save
-        format.html{ redirect_to :back, notice: "The person has been created!" }
+        format.html{ redirect_to :back, notice: "The result has been created!" }
       else
         format.html{ render 'new' }
       end
