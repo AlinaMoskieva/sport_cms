@@ -4,6 +4,7 @@ ruby "2.3.0"
 
 gem "rails", "4.2.6"
 gem "pg"
+gem 'mongoid', '~> 4.0.0'
 
 # assets
 gem "autoprefixer-rails"
@@ -44,6 +45,8 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
+gem 'country_select'
+
 
 group :staging, :production do
   gem "newrelic_rpm"
