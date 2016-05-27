@@ -9,8 +9,6 @@ class ResultsController < ApplicationController
   def create
     authorize result
 
-    result = Result.new(result_params)
-
     respond_to do |format|
       if result.save
         format.html{ redirect_to :back, notice: "The result has been created!" }
