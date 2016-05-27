@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
   def create
     authorize result
 
-    respond_to do |format|
+    respond_with(result) do |format|
       if result.save
         format.html{ redirect_to :back, notice: "The result has been created!" }
       else
