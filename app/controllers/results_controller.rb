@@ -34,7 +34,6 @@ class ResultsController < ApplicationController
                                    :second_team_members,
                                    :first_team_country,
                                    :second_team_country,
-                                   :created_at,
                                    :sportsmen,
                                    :competition,
                                    :page_id)
