@@ -22,7 +22,7 @@ class Result
   validates_presence_of :category_id
 
   has_one :page
-  belongs_to :category
+
 
   paginates_per 5
 
