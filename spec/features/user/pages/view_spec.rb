@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "View page as administrator" do
+feature "View index page" do
   include_context "current user signed in"
 
   let!(:user) { create(:user, role: "administrator") }

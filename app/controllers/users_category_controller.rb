@@ -12,13 +12,14 @@ class UsersCategoryController < ApplicationController
     authorize user, :create_subscription?
     if current_user.subscribed_categories.nil?
       current_user.subscribed_categories = []
-    end
-    if current_user.subscribed_categories.include?(params[:category_id])
-      destroy
     else
-      current_user.subscribed_categories << params[:category_id]
-      if current_user.save
-        flash[:notice] = "You successfully subscribed on #{ Category.find(params[:category_id]).category}"
+      if current_user.subscribed_categories.include?(params[:category_id])
+        destroy
+      else
+        current_user.subscribed_categories << params[:category_id]
+        if current_user.save
+          flash[:notice] = "You successfully subscribed on #{ Category.find(params[:category_id]).category}"
+        end
       end
     end
   end

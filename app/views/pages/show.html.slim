@@ -21,7 +21,7 @@
         = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
         '
       - if policy.destroy?
-        = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
+        = link_to("Delete", page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
       '
       - sub_policy = UserPolicy.new(current_user, page)
       - if sub_policy.create_subscription?
