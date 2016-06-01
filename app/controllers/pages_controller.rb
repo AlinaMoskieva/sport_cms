@@ -22,9 +22,9 @@ class PagesController < ApplicationController
   end
 
   def create
-    page.user = current_user
-
     authorize page, :create?
+
+    page.user = current_user
 
     respond_to do |format|
       if page.save
