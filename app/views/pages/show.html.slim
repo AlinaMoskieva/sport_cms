@@ -67,9 +67,9 @@
            .medium-2.columns
              - policy = CommentPolicy.new(current_user, comment)
              - if policy.update?
-             span
-               i.fi-pencil
-                 = link_to("Edit", edit_comment_path(comment))
+               span
+                 i.fi-pencil
+                   = link_to("Edit", edit_comment_path(comment), id: "comment_edit")
            .medium-2.columns
               - if policy.destroy?
                 span
