@@ -1,5 +1,4 @@
 class PagePolicy < ApplicationPolicy
-
   def destroy?
     @user.nil? ? false : @user.administrator? && @record.user == @user
   end

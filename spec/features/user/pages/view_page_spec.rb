@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "View page" do
-
   let!(:category) { create :category }
   let!(:admin_user) { create :user, :administrator }
   let!(:viewed_page) { create :page, user: admin_user, category: category }

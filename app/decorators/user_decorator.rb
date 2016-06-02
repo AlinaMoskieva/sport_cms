@@ -6,7 +6,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def administrator?
-   object.role == "administrator"
+    object.role == "administrator"
   end
 
   def has_pages?

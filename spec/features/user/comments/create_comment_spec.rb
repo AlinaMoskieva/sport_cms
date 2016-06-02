@@ -24,7 +24,7 @@ feature "Create comment"  do
       fill_in "comment_body", with: test_comment_message
       click_button "submit"
 
-      expect(site_page.comments.count).to eq(count+1)
+      expect(site_page.comments.count).to eq(count + 1)
       expect(page).to have_content(test_comment_message)
     end
   end
@@ -48,7 +48,7 @@ feature "Create comment"  do
       fill_in "comment_body", with: test_comment_message
       click_button "submit"
 
-      expect(site_page.comments.count).to eq(count+1)
+      expect(site_page.comments.count).to eq(count + 1)
       expect(page).to have_content(test_comment_message)
     end
   end

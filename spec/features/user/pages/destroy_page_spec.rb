@@ -4,7 +4,7 @@ feature "Destroy page" do
   let!(:admin_user) { create :user, :administrator }
   let!(:another_admin) { create :user, :administrator }
   let!(:test_page) { create :page, user: admin_user }
-  let!(:user){ create :user, :user }
+  let!(:user) { create :user, :user }
 
   context "as administrator i am able to destroy my page" do
     background do
@@ -18,10 +18,10 @@ feature "Destroy page" do
     end
 
     it "can remove" do
-       count = Page.count
-       click_link "Delete"
+      count = Page.count
+      click_link "Delete"
 
-       expect(Page.count).to eq(count - 1)
+      expect(Page.count).to eq(count - 1)
     end
   end
 

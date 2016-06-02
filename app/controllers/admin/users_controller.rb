@@ -3,7 +3,6 @@ module Admin
     before_filter :authenticate_user!
     expose(:admin)
     expose(:users) { User.all.order(id: :asc).page params[:page] }
-
     expose(:user)
 
     def update
@@ -11,9 +10,9 @@ module Admin
 
       respond_to do |format|
         if user.save
-          format.html{ redirect_to admin_users_path, notice: 'User information was successfully update.' }
+          format.html { redirect_to admin_users_path, notice: "User information was successfully update." }
         else
-          format.tml{ render :edit, notice: 'Something wrong.' }
+          format.tml { render :edit, notice: "Something wrong." }
         end
       end
     end
@@ -23,7 +22,7 @@ module Admin
       sign_in(:user, User.find(params[:id]))
 
       respond_to do |format|
-        format.html{ redirect_to root_url, notice: "Signed up as #{user.email}."}
+        format.html { redirect_to root_url, notice: "Signed up as #{user.email}."}
       end
     end
 

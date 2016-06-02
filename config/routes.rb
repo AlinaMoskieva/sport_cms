@@ -10,14 +10,13 @@ Rails.application.routes.draw do
   resources :users_category
   resources :results
 
-
   namespace :admin do
     resources :users
     resources :categories
   end
 
   resources :pages do
-   resources :comments, shallow: true
+    resources :comments, shallow: true
   end
 
   devise_for :users

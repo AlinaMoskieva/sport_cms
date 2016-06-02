@@ -1,18 +1,18 @@
 class PagesController < ApplicationController
   expose_decorated(:page, attributes: :page_params)
   expose_decorated(:comments) { page.comments.includes(:user).page params[:page] }
-  expose_decorated(:categories){ Category.all}
+  expose_decorated(:categories) { Category.all }
 
   expose_decorated(:users) { User.all }
-  expose(:subscribed_pages){ pages_finder }
+  expose(:subscribed_pages) { pages_finder }
 
   def index
     if params[:format]
       @pages = subscribed_pages.page params[:page]
     else
       @pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
-      @pages = @pages.where(category_id: params[:category_id] ) if params[:category_id]
-      @pages = @pages.where(user_id: params[:user_id] ) if params[:user_id]
+      @pages = @pages.where(category_id: params[:category_id]) if params[:category_id]
+      @pages = @pages.where(user_id: params[:user_id]) if params[:user_id]
     end
   end
 
@@ -28,9 +28,9 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
-        format.html{ redirect_to page, notice: 'Page was successfully created.' }
+        format.html { redirect_to page, notice: "Page was successfully created." }
       else
-        format.html{ render :new }
+        format.html { render :new }
       end
     end
   end
@@ -40,9 +40,9 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
-        format.html{ redirect_to page,notice: 'Page was successfully updated.' }
+        format.html { redirect_to page, notice: "Page was successfully updated." }
       else
-        format.html{ render :edit }
+        format.html { render :edit }
       end
     end
   end
@@ -52,15 +52,15 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.destroy
-        format.html{ redirect_to root_path, notice: 'Page was successfully deleted.' }
+        format.html { redirect_to root_path, notice: "Page was successfully deleted." }
       else
-        format.html{ render :edit }
+        format.html { render :edit }
       end
     end
   end
 
   def page_params
-    params.require(:page).permit( :title, :body, :user_id, :category_id, :visitors)
+    params.require(:page).permit(:title, :body, :user_id, :category_id, :visitors)
   end
 
   private

@@ -5,7 +5,6 @@ feature "View page" do
   let!(:category) { create :category }
   let!(:site_page) { create :page, user: user, category: category }
 
-
   scenario "view page" do
     visit "/"
 

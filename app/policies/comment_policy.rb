@@ -8,6 +8,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.nil? ? false :  @record.user == @user
+    @user.nil? ? false : @record.user == @user
   end
 end

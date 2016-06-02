@@ -33,8 +33,8 @@ feature "Edit page" do
       expect(page).to have_content(new_title)
       expect(page).to have_content(new_body)
     end
-
   end
+
   context "As administrator i can't edit not my page" do
     background do
       login_as another_admin

@@ -13,9 +13,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
-        format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
+        format.html { redirect_to comment.page, notice: "Comment was successfully created." }
       else
-        format.html{ render :new }
+        format.html { render :new }
       end
     end
   end
@@ -25,9 +25,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
-        format.html{ redirect_to comment.page, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to comment.page, notice: "Comment was successfully updated." }
       else
-        format.html{ render :edit }
+        format.html { render :edit }
       end
     end
   end
@@ -37,9 +37,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.delete
-        format.html{ redirect_to root_path, notice: 'Comment was successfully deleted.' }
+        format.html { redirect_to root_path, notice: "Comment was successfully deleted." }
       else
-        format.html{ render :edit }
+        format.html { render :edit }
       end
     end
   end

@@ -5,7 +5,6 @@ feature "Destroy comment"  do
   let!(:user) { create :user, :user }
   let!(:site_page) { create :page, user: admin_user }
 
-
   context "As administrator i am able to Destroy my comment" do
     let!(:admin_comment) { create :comment, user: admin_user, page: site_page }
 
@@ -22,7 +21,7 @@ feature "Destroy comment"  do
     it "remove comment current user's comment" do
       count = site_page.comments.count
       click_link "delete_comment"
-      expect(site_page.comments.count).to eq(count-1)
+      expect(site_page.comments.count).to eq(count - 1)
       expect(page).not_to have_content(admin_comment.body)
     end
 
@@ -44,7 +43,7 @@ feature "Destroy comment"  do
     it "remove comment current user's comment" do
       count = site_page.comments.count
       click_link "delete_comment"
-      expect(site_page.comments.count).to eq(count-1)
+      expect(site_page.comments.count).to eq(count - 1)
       expect(page).not_to have_content(user_comment.body)
     end
 

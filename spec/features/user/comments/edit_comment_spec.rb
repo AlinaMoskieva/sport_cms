@@ -65,7 +65,6 @@ feature "Edit comment" do
       visit page_path(site_page)
       expect(page).not_to have_link("comment_edit")
     end
-
   end
   context "As visitor I can't edit comments" do
     let!(:admin_comment) { create :comment, user: admin_user, page: site_page }

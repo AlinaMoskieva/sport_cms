@@ -5,22 +5,24 @@ module Admin
     expose_decorated(:category, attributes: :category_params)
 
     def create
-      if category.save
-        redirect_to admin_categories_url
-        flash[:notice] = 'Category was successfully created.'
-      else
-        redirect_to admin_categories_url
-        flash[:notice] = 'Errors.'
+      respond_to do |format|
+        if category.save
+          format.html { redirect_to admin_categories_url,
+            notice: "Category was successfully created." }
+        else
+          format.html { redirect_to admin_categories_url, notice: "Errors." }
+        end
       end
     end
 
     def destroy
-      if category.destroy
-        redirect_to admin_categories_url
-        flash[:notice] = 'Category was successfully deleted.'
-      else
-        redirect_to admin_categories_url
-        flash[:notice] = 'Errors.'
+      respond_to do |format|
+        if category.destroy
+          format.html { redirect_to admin_categories_url,
+            notice: "Category was successfully deleted." }
+        else
+          format.html { redirect_to admin_categories_url, notice: "Errors." }
+        end
       end
     end
 
