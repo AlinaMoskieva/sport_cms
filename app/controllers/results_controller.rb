@@ -11,14 +11,23 @@ class ResultsController < ApplicationController
 
     respond_with(result) do |format|
       if result.save
-        format.html{ redirect_to :back, notice: "The result has been created!" }
+        format.html{ redirect_to results_path, notice: "Result was created!" }
       else
         format.html{ render 'new' }
       end
     end
   end
 
-  def show
+  def destroy
+    authorize result
+    respond_with(result) do |format|
+      if result.destroy
+        format.html { redirect_to :back, notice: "Result was  deleted" }
+      else
+        format.html { render results_path }
+      end
+    end
+
   end
 
   def result_params
@@ -34,7 +43,6 @@ class ResultsController < ApplicationController
                                    :second_team_members,
                                    :first_team_country,
                                    :second_team_country,
-                                   :created_at,
                                    :sportsmen,
                                    :competition,
                                    :page_id)
