@@ -11,7 +11,7 @@ class ResultsController < ApplicationController
 
     respond_with(result) do |format|
       if result.save
-        format.html{ redirect_to :back, notice: "Result was created!" }
+        format.html{ redirect_to results_path, notice: "Result was created!" }
       else
         format.html{ render 'new' }
       end
