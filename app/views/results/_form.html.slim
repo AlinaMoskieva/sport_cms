@@ -1,0 +1,35 @@
+.row
+  .medium-12.columns
+    = simple_form_for(result) do |f|
+      .form-inputs
+        .medium-6.medium-centered.columns
+          = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
+        br
+        .medium-12.columns
+          .medium-6.columns
+            h4= "For individual sport"
+            = f.input :result, placeholder: "Achievement"
+            = f.input :prize
+            = f.input :country, as: :country
+            = f.input :sportsmen
+          .medium-6.columns
+            h4="General information"
+            = f.input :competition
+            = f.select( :page_id, Page.all.order(created_at: :desc).take(10).map {|page| [page.title.slice(0 .. 45).html_safe.concat(" ..."), page.id]})
+        .medium-12.columns
+          h4(align="center")= "For team sport"
+          .medium-6.columns
+            = f.input :first_team, placeholder: "Team's name"
+            = f.input :first_team_country, as: :country
+            = f.input :first_team_members
+            = f.input :first_team_result
+          .medium-6.columns
+            = f.input :second_team, placeholder: "Team's name"
+            = f.input :second_team_country, as: :country
+            = f.input :second_team_members
+            = f.input :second_team_result
+
+      .form-actions(align="center")
+        = f.button :submit, class:"secondary small button"
+        '
+        = link_to 'Back', :back, class:"secondary small button"

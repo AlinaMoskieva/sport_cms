@@ -56,7 +56,6 @@
               i.fi-crown
           .medium-11.columns.end
             = result.prize
-          hr/
         - else
           .medium-6.columns
             br
@@ -110,6 +109,12 @@
                 i.fi-web
             .medium-8.columns.end
               = result.second_team_country
+      .row
+        .large-6.large-offset-6.columns
+          - policy = ResultPolicy.new(current_user, result)
+          - if policy.destroy?
+            = link_to("Delete result",result, method: :delete, class: "tiny hollow alert button")
+        .large-8
           hr/
     .medium-10.medium-centred.columns
       ul(class="pagination text-center" role="navigation" aria-label="Pagination" )
