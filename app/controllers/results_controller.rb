@@ -27,7 +27,6 @@ class ResultsController < ApplicationController
         format.html { render results_path }
       end
     end
-
   end
 
   def result_params

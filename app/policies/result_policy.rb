@@ -6,5 +6,4 @@ class ResultPolicy < ApplicationPolicy
   def destroy?
     !@user.nil? && @user.administrator?
   end
-
 end
