@@ -3,7 +3,6 @@ require "rails_helper"
 feature "Categories" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user,:user }
-  let!(:category) {  create :category}
 
   describe "create" do
     background do
