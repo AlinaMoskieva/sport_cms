@@ -19,16 +19,16 @@ feature "Create page" do
 
     it "I can create subscription" do
       expect(page).to have_content("Subscribe")
-      click_link ("sub link")
+      click_link("sub link")
       visit page_path(site_page)
       expect(page).to have_content("Unsubscribe")
     end
 
     it "I can destroy subscription" do
       admin_user.subscribed_categories = Array.new
-      click_link ("sub link")
+      click_link("sub link")
       expect(page).to have_content("Unsubscribe")
-      click_link ("sub link")
+      click_link("sub link")
       expect(page).not_to have_content("Unsubscribe")
     end
   end
@@ -47,16 +47,16 @@ feature "Create page" do
 
     it "I can create subscription" do
       expect(page).to have_content("Subscribe")
-      click_link ("sub link")
+      click_link("sub link")
       visit page_path(site_page)
       expect(page).to have_content("Unsubscribe")
     end
 
     it "I can destroy subscription" do
       admin_user.subscribed_categories = Array.new
-      click_link ("sub link")
+      click_link("sub link")
       expect(page).to have_content("Unsubscribe")
-      click_link ("sub link")
+      click_link("sub link")
       expect(page).not_to have_content("Unsubscribe")
     end
   end

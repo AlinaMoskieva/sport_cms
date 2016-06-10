@@ -5,7 +5,7 @@ feature "Categories" do
   let!(:user) { create :user,:user }
   let!(:category) {  create :category}
 
-  describe "logged as administrator" do
+  describe "create" do
     background do
       login_as admin_user
       visit admin_categories_path
@@ -16,14 +16,23 @@ feature "Categories" do
       expect(page).to have_button("Create Category")
     end
 
-    scenario "create category" do
+    it "create category" do
       count = Category.count
       fill_in "Category", with: "Snowboarding"
       click_button "Create Category"
       expect(Category.count).to eq(count + 1)
     end
+  end
 
-    scenario "destroy category" do
+  describe "destroy" do
+    let!(:category) { create :category }
+
+    background do
+      login_as admin_user
+      visit admin_categories_path
+    end
+
+    it "destroy category" do
       count = Category.count
       click_link "Delete"
       expect(Category.count).to eq(count - 1)
