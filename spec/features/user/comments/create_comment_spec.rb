@@ -1,4 +1,4 @@
-require "rails_helper"
+ require "rails_helper"
 
 feature "Create comment"  do
   let!(:admin_user) { create :user, :administrator }

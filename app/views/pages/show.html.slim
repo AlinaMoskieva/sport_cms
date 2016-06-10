@@ -26,10 +26,10 @@
       - sub_policy = UserPolicy.new(current_user, page)
       - if sub_policy.create_subscription?
         - if  current_user.subscribed?(page.get_category.id)
-          = link_to "Unsubscribe", new_users_category_path(category_id: page.get_category.id), class: "small alert button"
+          = link_to "Unsubscribe", new_users_category_path(category_id: page.get_category.id), class: "small alert button", id: "sub link"
           '
         - else
-          = link_to "Subscribe", new_users_category_path(category_id: page.get_category.id), class: "small secondary button"
+          = link_to "Subscribe", new_users_category_path(category_id: page.get_category.id), class: "small secondary button", id: "sub link"
           '
         = link_to("Back", :back, class: "small secondary button")
       - else
@@ -94,4 +94,3 @@
           p
             .panel(class="callout")
               h6="You should sign in for have ability to add comments"
-
