@@ -18,9 +18,8 @@ feature "View page" do
   context "view page content as administrator" do
     background do
       login_as admin_user
+      visit page_path(viewed_page)
     end
-
-    before { visit page_path(viewed_page) }
 
     it "has link to edit/destroy page" do
       expect(page).to have_link("Delete")
@@ -33,9 +32,9 @@ feature "View page" do
 
     background do
       login_as user
+      visit page_path(viewed_page)
     end
 
-    before { visit page_path(viewed_page) }
 
     it "has not link to edit/destroy page" do
       expect(page).not_to have_link("Delete")
