@@ -6,7 +6,7 @@ feature "Admin User Manipulation" do
 
   before { login_as admin_user
             visit admin_users_path
-          }
+         }
 
   describe "change user role" do
     it "change role" do

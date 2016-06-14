@@ -38,7 +38,6 @@ feature "Create page" do
       visit page_path(site_page)
     }
 
-
     it "has link to subscribe" do
       expect(page).to have_link("sub link")
     end
