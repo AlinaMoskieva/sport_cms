@@ -23,4 +23,6 @@ feature "Create page" do
       expect(Page.count).to eq(count + 1)
     end
   end
+
+
 end
