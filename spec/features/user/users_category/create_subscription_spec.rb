@@ -6,12 +6,10 @@ feature "Create page" do
   let!(:admin_user) { create :user, :administrator }
 
   context "As administrator I am able create/destroy subscription" do
-
     background do
       login_as admin_user
       visit page_path(site_page)
     end
-
 
     it "has link to subscribe" do
       expect(page).to have_link("sub link")
@@ -25,7 +23,7 @@ feature "Create page" do
     end
 
     scenario "I can destroy subscription" do
-      admin_user.subscribed_categories = Array.new
+      admin_user.subscribed_categories = []
       click_link("sub link")
       expect(page).to have_content("Unsubscribe")
       click_link("sub link")
@@ -53,7 +51,7 @@ feature "Create page" do
     end
 
     scenario "I can destroy subscription" do
-      admin_user.subscribed_categories = Array.new
+      admin_user.subscribed_categories = []
       click_link("sub link")
       expect(page).to have_content("Unsubscribe")
       click_link("sub link")

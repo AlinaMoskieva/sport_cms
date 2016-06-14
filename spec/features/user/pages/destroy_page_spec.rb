@@ -19,14 +19,12 @@ feature "Destroy page" do
       expect(Page.count).to eq(count - 1)
     end
 
-
     it "hasn't link to destroy page" do
       login_as another_admin
       visit page_path(test_page)
       expect(page).not_to have_link("Delete")
     end
   end
-
 
   context "Logged as user" do
     background do

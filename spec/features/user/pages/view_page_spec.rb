@@ -35,7 +35,6 @@ feature "View page" do
       visit page_path(viewed_page)
     end
 
-
     it "has not link to edit/destroy page" do
       expect(page).not_to have_link("Delete")
       expect(page).not_to have_link("Edit page")

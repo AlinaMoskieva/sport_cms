@@ -8,7 +8,7 @@ feature "Create comment"  do
   let(:test_comment_message)  { "it is test comment ;)" }
 
   context "As administrator" do
-     before {
+    before {
       login_as admin_user
       visit page_path(site_page)
      }

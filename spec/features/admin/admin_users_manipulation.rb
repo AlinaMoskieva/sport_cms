@@ -5,7 +5,8 @@ feature "Admin User Manipulation" do
   let!(:user) { create :user, :user }
 
   before { login_as admin_user
-            visit admin_users_path }
+            visit admin_users_path
+          }
 
   describe "change user role" do
     it "change role" do

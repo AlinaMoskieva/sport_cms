@@ -7,7 +7,6 @@ feature "Create page" do
   let!(:count) { Page.count }
 
   context "as administrator I have ability to create page" do
-
     background do
       login_as admin_user
     end
