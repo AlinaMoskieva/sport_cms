@@ -5,7 +5,6 @@ feature "Categories" do
   let!(:user) { create :user, :user }
 
   describe "create" do
-    let!(:count) { Category.count }
     before {
       login_as admin_user
       visit admin_categories_path
@@ -17,9 +16,10 @@ feature "Categories" do
     end
 
     scenario "create category" do
-      fill_in "Category", with: "Snowboarding"
-      click_button "Create Category"
-      expect(Category.count).to eq(count + 1)
+      expect do
+        fill_in "Category", with: "Snowboarding"
+        click_button "Create Category"
+      end.to change { Category.count }.by(1)
     end
   end
 

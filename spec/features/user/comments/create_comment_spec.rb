@@ -4,7 +4,6 @@ feature "Create comment"  do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
   let!(:site_page) { create :page, user: admin_user }
-  let!(:count) { site_page.comments.count }
   let(:test_comment_message)  { "it is test comment ;)" }
 
   context "As administrator" do
@@ -19,10 +18,11 @@ feature "Create comment"  do
     end
 
     scenario "has ability to create comment" do
-      fill_in "comment_body", with: test_comment_message
-      click_button "submit"
+      expect do
+        fill_in "comment_body", with: test_comment_message
+        click_button "submit"
+      end.to change { [ site_page.comments.count, Comment.count ] }.by([1,1])
 
-      expect(site_page.comments.count).to eq(count + 1)
       expect(page).to have_content(test_comment_message)
     end
   end
@@ -39,16 +39,16 @@ feature "Create comment"  do
     end
 
     scenario "has ability to create comment" do
-      fill_in "comment_body", with: test_comment_message
-      click_button "submit"
+      expect do
+        fill_in "comment_body", with: test_comment_message
+        click_button "submit"
+      end.to change { [ site_page.comments.count, Comment.count ] }.by([1,1])
 
-      expect(site_page.comments.count).to eq(count + 1)
       expect(page).to have_content(test_comment_message)
     end
   end
 
   context "as visitor i can't create comment" do
-
     scenario "hasn't link to create comment" do
       visit page_path(site_page)
       expect(page).not_to have_button("submit")
