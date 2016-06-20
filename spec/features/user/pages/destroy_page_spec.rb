@@ -14,9 +14,9 @@ feature "Destroy page" do
 
     it "can remove" do
       expect(page).to have_link("Delete")
-      count = Page.count
-      click_link "Delete"
-      expect(Page.count).to eq(count - 1)
+      expect do
+        click_link "Delete"
+      end.to change { Page.count }.to(0)
     end
 
     it "hasn't link to destroy page" do

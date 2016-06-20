@@ -25,7 +25,6 @@ feature "Categories" do
 
   describe "destroy" do
     let!(:category) { create :category }
-    let!(:count) { Category.count }
 
     before {
       login_as admin_user
@@ -33,8 +32,9 @@ feature "Categories" do
     }
 
     it "destroy category" do
-      click_link "Delete"
-      expect(Category.count).to eq(count - 1)
+      expect do
+        click_link "Delete"
+      end.to change { Category.count }.to(0)
     end
   end
 end
