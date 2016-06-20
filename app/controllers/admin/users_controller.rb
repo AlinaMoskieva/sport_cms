@@ -1,8 +1,9 @@
 module Admin
   class UsersController < ApplicationController
     before_filter :authenticate_user!
+    before_action :authorization_admin
     expose(:admin)
-    expose(:users) { User.all.order(id: :asc).page params[:page] }
+    expose(:users) { User.all.order(id: :asc) }
 
     expose(:user)
 
