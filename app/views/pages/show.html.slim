@@ -44,15 +44,20 @@
          span
            i.fi-comment
              br
-             = comment.body.html_safe
+             = best_in_place comment, :body,
+               path: edit_comment_path(comment),
+               display_with: lambda { |v| v.html_safe },
+               as: :textarea,
+               ok_button: "Save",
+               ok_button_class: "tiny secondary button",
+               cancel_button: "Cancel",
+               cancel_button_class: "tiny alert button"
+
          .left align="left"
+         br
            = comment.date
          .right align="right "
            - policy = CommentPolicy.new(current_user, comment)
-           - if policy.update?
-             span
-               i.fi-pencil
-                 = link_to("Edit", edit_comment_path(comment))
            - if policy.destroy?
              span
                i.fi-trash

@@ -16,6 +16,7 @@ gem "sass-rails", "~> 5.0.0"
 gem "skim"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 2.7.2"
+gem "best_in_place"
 
 # views
 gem "active_link_to"

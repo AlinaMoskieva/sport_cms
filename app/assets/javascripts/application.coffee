@@ -6,11 +6,12 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require best_in_place
 #= require foundation
 #= require current_user
 #= require skim
 #= require_tree ../templates
-#= require_tree .
 #= require ckeditor/init
 
+#= require_tree .
 $(document).foundation()

@@ -8,4 +8,7 @@ class CommentDecorator < ApplicationDecorator
   def comment_author
     "Commenter: #{object.user.full_name}"
   end
+
+  def persisted?
+  end
 end
