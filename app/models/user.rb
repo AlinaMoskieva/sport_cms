@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :pages
   has_many :comments
+  has_many :notifications
 
   serialize :subscribed_categories
 

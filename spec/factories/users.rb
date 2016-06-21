@@ -5,7 +5,7 @@ FactoryGirl.define do
     password "123456"
     password_confirmation { password }
     confirmed_at 1.hour.ago
-    nickname { Faker::Name.name }
+    nickname { "11#{full_name.slice(1..12)}"}
   end
 
   trait :not_confirmed do
