@@ -1,0 +1,29 @@
+table.table.table-striped
+  thead
+    tr
+        th Actions
+
+  - notifications.each do |notification|
+    = notification.comment_id
+    = notification.user_id
+    tr
+      td.actions
+        = link_to(notification, class: 'btn') do
+          i.fi-eye
+          |  Show
+        = link_to(edit_notification_path(notification), class: 'btn') do
+          i.fi-pencil
+          |  Edit
+        = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
+          i.fi-trash
+          |  Delete
+
+.paginator
+  = paginate(notifications)
+
+br
+= link_to new_notification_path, class: 'btn btn-primary' do
+  i.fi-plus
+  |  New Notificatin
+
+
