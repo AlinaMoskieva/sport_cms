@@ -17,13 +17,8 @@ table.table.table-striped
         = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
           i.fi-trash
           |  Delete
-
-.paginator
-  = paginate(notifications)
-
 br
 = link_to new_notification_path, class: 'btn btn-primary' do
   i.fi-plus
   |  New Notificatin
-
 

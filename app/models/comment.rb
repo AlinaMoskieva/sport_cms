@@ -5,4 +5,5 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :page
+  has_many :notifications
 end

@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   respond_to :html
 
   expose(:notification, attributes: :notification_params)
-  expose(:notifications) { Notification.page(params[:page]) }
+  expose(:notifications) { Notification.all }
 
   def create
     notification.user_id = current_user.id
