@@ -4,7 +4,7 @@
   .small-6.end
   br
 .row
-  .small-11.columns
+  .small-12.columns
     - notifications.each do |notification|
       .row
         .medium-1.columns
@@ -41,3 +41,6 @@
       .row
         .medium-7.columns
           hr/
+    .row
+      .medium-7.columns
+        = paginate notifications, outer_window: 3
