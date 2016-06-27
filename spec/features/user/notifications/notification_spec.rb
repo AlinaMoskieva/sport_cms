@@ -4,7 +4,7 @@ feature "Notification" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
   let!(:tested_page) { create :page, user: admin_user }
-  let!(:comment_text) { "@#{user.nickname} look!"}
+  let!(:comment_text) { "@#{admin_user.nickname}"}
 
   context "As administrator" do
     background do
@@ -16,7 +16,8 @@ feature "Notification" do
       expect do
         fill_in "comment_body", with: comment_text
         click_button "submit"
-      end.to change { [Notification.count, Comment.count] }.by([1, 1])
+        visit page_path(tested_page)
+      end.to change { Notification.count }.by(1)
     end
   end
 
@@ -30,7 +31,7 @@ feature "Notification" do
       expect do
         fill_in "comment_body", with: comment_text
         click_button "submit"
-      end.to change { [Notification.count, Comment.count] }.by([1, 1])
+      end.to change { Notification.count }.by(1)
     end
   end
 end

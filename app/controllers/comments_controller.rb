@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
-        notify(comment.body) if comment.body.include?('@')
+        notify if comment.body.include?('@')
         format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
       else
         format.html{ render :new }
@@ -55,12 +55,15 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body, :user_id, :page_id)
   end
 
-  def notify(str)
-    @str = str.slice((comment.body.index('@') + 1)..comment.body.length)
-    @nick = @str.slice(0..(@str.index(' ').to_i - 1))
-    @str = @str.slice((@str.index(@nick.last) - 1 )..comment.body.length)
-    Notification.create(comment_id: comment.id,
-      user_id: User.where(nickname: @nick).ids.first )
-    notify(@str) if @str.include?('@')
+  def notify
+    mention = comment.body.scan(/@\w+/)
+    mention.uniq!
+
+    mention.each do |man|
+      man = man.slice(1..man.length)
+      Notification.create(comment_id: comment.id,
+                          user_id: User.where(nickname: man).ids.first )
+    end
+
   end
 end
