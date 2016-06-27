@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users_category
   resources :results, only: [:index, :new, :create, :destroy]
   resources :notifications, only: [:index, :new, :create, :destroy]
-  resources :hashtags, only: [:index, :new, :create]
+  resources :hashtags
 
   namespace :admin do
     resources :users
