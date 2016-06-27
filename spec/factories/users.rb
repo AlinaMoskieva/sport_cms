@@ -5,7 +5,15 @@ FactoryGirl.define do
     password "123456"
     password_confirmation { password }
     confirmed_at 1.hour.ago
-    nickname { "11#{full_name.slice(1..12)}"}
+    nickname { "11#{full_name.slice(1..3)}"}
+  end
+
+  trait :administrator do
+    role "administrator"
+  end
+
+  trait :user do
+    role "user"
   end
 
   trait :not_confirmed do

@@ -5,6 +5,15 @@ class NotificationsController < ApplicationController
   expose_decorated(:notifications) { Notification.where(user_id: current_user.id)
                                                  .order(created_at: :desc)
                                                  .page params[:page] }
+  def destroy
+    respond_to do |format|
+      if notification.delete
+          format.html{ redirect_to notifications_path, notice: 'Notification was successfully deleted' }
+      else
+          format.html{ render :back }
+      end
+    end
+  end
 
   private
 
