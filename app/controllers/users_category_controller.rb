@@ -8,24 +8,21 @@ class UsersCategoryController < ApplicationController
   end
 
   def create
-    if current_user.subscribed_categories.nil?
-      current_user.subscribed_categories = []
-    end
+    current_user.subscribed_categories = [] if current_user.subscribed_categories.nil?
     if current_user.subscribed_categories.include?(params[:category_id])
       destroy
     else
       current_user.subscribed_categories << params[:category_id]
-      if current_user.save
-        flash[:notice] = "You successfully subscribed on #{ Category.find(params[:category_id]).category}"
-      end
+      flash[:notice] = "You successfully subscribed on #{ Category.find(params[:category_id]).category}" if current_user.save
     end
   end
 
   def destroy
-    return if !current_user.subscribed_categories.include?(params[:category_id])
+    return unless current_user.subscribed_categories.include?(params[:category_id])
     if current_user.subscribed_categories.delete(params[:category_id])
-      flash[:notice] = "You successfully unsubscribe on #{ Category.find(params[:category_id]).category}"
+      flash[:notice] = "You successfully unsubscribe on
+      #{ Category.find(params[:category_id]).category}"
+      current_user.save
     end
-    current_user.save
   end
 end

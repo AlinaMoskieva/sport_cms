@@ -7,13 +7,14 @@
       = page.body.html_safe
     .left(align="left")
       span
-        i.fi-price-tag
-          = "Tags:  "
+        i.fi-bookmark
+          = "Theme:"
           = link_to(page.get_category.category, pages_path(category_id: page.get_category.id))
     .rigth(align="right")
       span
         i.fi-torsos-all-female
           = "Viewed #{page.visitors} times"
+
     br
     .medium-9.medium-centered.columns
       - if policy(page).update?
