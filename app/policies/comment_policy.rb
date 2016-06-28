@@ -1,13 +1,20 @@
 class CommentPolicy < ApplicationPolicy
   def create?
-    ! @user.nil?
+    @user.present?
   end
 
   def update?
-    @user.nil? ? false : @record.user == @user
+    owner?
   end
 
   def destroy?
-    @user.nil? ? false : @record.user == @user
+    owner?
+  end
+
+  private
+
+  def owner?
+    return false unless @user.present?
+    @record.user == @user
   end
 end
