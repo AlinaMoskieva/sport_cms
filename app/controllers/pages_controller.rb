@@ -32,6 +32,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
+        add_hashtags if page.body.include?('#')
         format.html{ redirect_to page, notice: 'Page was successfully created.' }
       else
         format.html{ render :new }
@@ -44,6 +45,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
+        add_hashtags if page.body.include?('#')
         format.html{ redirect_to page,notice: 'Page was successfully updated.' }
       else
         format.html{ render :edit }
@@ -73,5 +75,28 @@ class PagesController < ApplicationController
     Page.includes(:category)
         .includes(:user)
         .where(category_id: current_user.subscribed_categories)
+  end
+
+  def add_hashtags
+    hashes = page.body.scan(/#\w+/)
+    hashes.uniq!
+
+    hashes.each do |hash|
+      hash = hash.slice(1..hash.length)
+      hashtag = Hashtag.where( hashtag: hash ).first
+
+      if hashtag.nil?
+        h = Hashtag.new
+        h.hashtag = hash
+        h.pages = Array.new
+        h.pages << page.id
+        h.save
+      else
+        unless hashtag.pages.include?(page.id)
+          hashtag.pages << page.id
+          hashtag.save
+        end
+      end
+    end
   end
 end

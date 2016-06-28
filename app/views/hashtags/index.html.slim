@@ -1,0 +1,97 @@
+.row
+  .small-4.small-centered.columns
+    h2="Hashtags"
+    br
+.row
+  .medium-5.columns
+    .panel
+      .small-7.small-centered.columns
+        h5="10 recent hashtags"
+      .row
+        .small-10.small-centered.columns
+          .medium-10.columns
+            span
+              i.fi-pricetag-multiple
+          .medium-2.columns
+            span
+              i.fi-graph-trend
+          hr/
+          ul
+          - hashtags.order(updated_at: :desc ).limit(10).each do |hashtag|
+            .medium-10.columns
+              li
+                = link_to hashtag.hashtag, hashtag_path(hashtag)
+            .medium-2.columns
+              = hashtag.pages.length
+  .medium-5.columns
+    .panel
+      .small-7.small-centered.columns
+        h5="10 new hashtags"
+      .row
+        .small-10.small-centered.columns
+          .medium-10.columns
+            span
+              i.fi-pricetag-multiple
+          .medium-2.columns
+            span
+              i.fi-graph-trend
+          hr/
+          ul
+          - hashtags.order(created_at: :desc ).limit(10).each do |hashtag|
+            .medium-10.columns
+              li
+                = link_to hashtag.hashtag, hashtag_path(hashtag)
+            .medium-2.columns
+              = hashtag.pages.length
+  .medium-2.columns.end
+.row
+  .small-4.small-centered.columns
+    h2="All Hashtags"
+    br
+.row
+  .medium-10.columns
+      .medium-4.columns
+        .medium-10.columns
+            span
+              i.fi-pricetag-multiple
+        .medium-2.columns
+            span
+              i.fi-graph-trend
+        hr/
+        - hashtags.limit(hashtags.length / 3 + 1).each do |hash|
+          .medium-10.columns
+            li
+             = link_to hash.hashtag, hashtag_path(hash)
+          .medium-2.columns
+            = hash.pages.length
+      .medium-4.columns
+        .medium-10.columns
+            span
+              i.fi-pricetag-multiple
+        .medium-2.columns
+            span
+              i.fi-graph-trend
+        hr/
+        - hashtags.limit(hashtags.length / 3 + 1).offset(hashtags.length / 3 + 1).each do |hash|
+          .medium-10.columns
+            li
+             = link_to hash.hashtag, hashtag_path(hash)
+          .medium-2.columns
+            = hash.pages.length
+      .medium-4.columns
+        .medium-10.columns
+            span
+              i.fi-pricetag-multiple
+        .medium-2.columns
+            span
+              i.fi-graph-trend
+        hr/
+        - hashtags.offset(2*hashtags.length / 3 + 1).each do |hash|
+          .medium-10.columns
+            li
+             = link_to hash.hashtag, hashtag_path(hash)
+          .medium-2.columns
+            = hash.pages.length
+
+
+
