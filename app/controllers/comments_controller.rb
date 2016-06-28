@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  respond_to :html
+  respond_to :html, :js
 
   expose(:comment, attributes: :comment_params)
   expose(:comments) { Comment.page(params[:page]).page params[:page] }
@@ -26,8 +26,12 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if comment.save
         format.html{ redirect_to comment.page, notice: 'Comment was successfully updated.' }
+        format.js
+        format.json { respond_with_bip(comment) }
       else
         format.html{ render :edit }
+        format.js
+        format.json { respond_with_bip(comment) }
       end
     end
   end
