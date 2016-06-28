@@ -31,7 +31,7 @@ class UsersCategoryController < ApplicationController
     if current_user.subscribed_categories.delete(params[:category_id])
       flash[:notice] = "You successfully unsubscribe on
        #{ Category.find(params[:category_id]).category}"
+       current_user.save
     end
-    current_user.save
   end
 end

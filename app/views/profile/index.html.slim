@@ -1,22 +1,31 @@
 br
 .row
-  .medium-3.columns
+  .medium-4.columns
     .panel
       = image_tag user.image
-  .medium-1.columns
-  .medium-8.columns
+  .medium-2.columns
+  .medium-3.columns
     h2
       = user.full_name
     h4
       = user.email
-- policy = ProfilePolicy.new(current_user, Page.new)
-- if policy.index?
-  .row
-    .megium-6.columns
-      .panel
-         h6
-          = user.how_many_pages
-          = " posts"
+  .medium-2.columns
+    = link_to "Edit profile", edit_user_registration_path
+.row
+  .medium-4.columns
+    .panel
+      h4="My subscriptions (#{subscriptions.count})"
+      .row
+        .medium-10.columns
+          ul
+          - subscriptions.each do |sub|
+            li
+              = sub.category
+    .panel
+      h4="My pages (#{user.how_many_pages})"
+
+  .medium-8.columns
+    - if policy(current_user).index?
       .panel
         -pages.each do |page|
             h5

@@ -1,0 +1,64 @@
+.row
+  .small-7.small-centered.columns
+    h2="Statistic for ##{hashtag.hashtag}"
+    br
+.row
+  .small-7.small-centered.columns
+    .medium-6.columns
+      span
+        i.fi-pricetag-multiple
+    .medium-2.columns
+      span
+        i.fi-graph-trend
+    .medium-4.end
+    .medium-8.columns
+      hr/
+.row
+  .small-7.small-centered.columns
+    ul
+    .medium-6.columns
+      li
+        = "##{hashtag.hashtag}"
+    .medium-2.columns
+      = hashtag.pages.length
+    .medium-4.end
+.row
+  .small-7.small-centered.columns
+    h2="Content"
+.row
+  .medium-8.columns
+    - if pages.count == 0
+      h4="Unfortunately, pages are not found"
+    - pages.each do |page|
+      .column
+        h5(align="center")
+          =(link_to page.title, page)
+      p
+        .medium-6.columns
+          span
+            i.fi-torso
+              = link_to(page.user.full_name, pages_path(user_id: page.user.id))
+        .medium-6.columns
+          span
+            i.fi-calendar
+              = page.data_format
+      .column
+        p
+          = page.body.slice(0 .. 330).html_safe.concat(" ...")
+
+        .medium-5.columns
+          span
+            i.fi-price-tag
+            = "Tags:  "
+            = link_to(page.category.category, pages_path(category_id: page.category.id) )
+        .medium-5.columns
+          span
+            i.fi-torsos-all-female
+              = "Viewed #{page.visitors} times"
+        .medium-2.columns
+          span
+            i.fi-comments
+              = page.comments.count
+        br
+        hr/
+    = paginate pages, outer_window: 3

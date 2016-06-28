@@ -16,6 +16,7 @@ gem "sass-rails", "~> 5.0.0"
 gem "skim"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 2.7.2"
+gem "best_in_place"
 
 # views
 gem "active_link_to"
@@ -45,6 +46,8 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
+gem 'country_select'
+
 
 group :staging, :production do
   gem "newrelic_rpm"
