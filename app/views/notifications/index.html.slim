@@ -1,0 +1,46 @@
+.row
+  .small-6.large-centered.columns
+    h3="Notifications"
+  .small-6.end
+  br
+.row
+  .small-12.columns
+    - notifications.each do |notification|
+      .row
+        .medium-1.columns
+          = image_tag notification.photo
+        .medium-6.columns
+          .row
+            .medium-1.columns
+              span
+                i.fi-torso
+            .medium-8.columns
+              ="Commenter: #{notification.sender} ( #{notification.sender_email} )"
+            .medium-3.columns
+              = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
+                i.fi-x
+                  |  Delete
+          .row
+            .medium-1.columns
+              span
+                i.fi-comment
+            .medium-8.columns
+              = notification.comment
+            .medium-3.columns
+              = link_to page_path(notification.page) do
+                i.fi-arrow-right
+                  | View
+          .row
+            .medium-1.columns
+              span
+                i.fi-clock
+            .medium-8.columns
+              = notification.date
+            .medium-3.columns.end
+        .medium-2.columns.end
+      .row
+        .medium-7.columns
+          hr/
+    .row
+      .medium-7.columns
+        = paginate notifications, outer_window: 3
