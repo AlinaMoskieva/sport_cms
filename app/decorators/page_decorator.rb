@@ -11,7 +11,7 @@ class PageDecorator < ApplicationDecorator
     object.comments.count
   end
 
-  def get_category
+  def category
     object.category
   end
 end
