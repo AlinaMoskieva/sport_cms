@@ -4,7 +4,7 @@
     br
 .row
   .medium-5.columns
-
+    .panel
       .small-7.small-centered.columns
         h5="10 recent hashtags"
       .row
@@ -72,7 +72,7 @@
             span
               i.fi-graph-trend
         hr/
-        - hashtags.limit(hashtags.length / 3 + 1).offset(hashtags.length / 3).each do |hash|
+        - hashtags.limit(hashtags.length / 3 + 1).offset(hashtags.length / 3 + 1).each do |hash|
           .medium-10.columns
             li
              = link_to hash.hashtag, hashtag_path(hash)

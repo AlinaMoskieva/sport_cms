@@ -27,9 +27,11 @@
     h2="Content"
 .row
   .medium-8.columns
+    - if pages.count == 0
+      h4="Unfortunately, pages are not found"
     - pages.each do |page|
       .column
-        h5
+        h5(align="center")
           =(link_to page.title, page)
       p
         .medium-6.columns
@@ -59,3 +61,4 @@
               = page.comments.count
         br
         hr/
+    = paginate pages, outer_window: 3

@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if comment.save
         notify if comment.body.include?('@')
-        add_hashtags if page.body.include?('#')
+        add_hashtags if comment.body.include?('#')
         format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
       else
         format.html{ render :new }
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
-        add_hashtags if page.body.include?('#')
+        add_hashtags if comment.body.include?('#')
         format.html{ redirect_to comment.page, notice: 'Comment was successfully updated.' }
         format.js
         format.json { respond_with_bip(comment) }
