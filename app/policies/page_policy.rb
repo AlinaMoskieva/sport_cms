@@ -1,13 +1,20 @@
 class PagePolicy < ApplicationPolicy
   def destroy?
-    @user.nil? ? false : @user.administrator? && @record.user == @user
+    owner?
   end
 
   def update?
-    @user.nil? ? false : @user.administrator? && @record.user == @user
+    owner?
   end
 
   def create?
-    @user.nil? ? false : @user.administrator?
+    @user.present? && @user.administrator?
+  end
+
+  private
+
+  def owner?
+    return false unless @user.present?
+    @user.administrator? && @record.user == @user
   end
 end
