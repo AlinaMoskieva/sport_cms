@@ -4,10 +4,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create_subscription?
-    @user.nil? ? false : true
+    @user.present?
   end
 
   def destroy_subscription?
-    @user.nil? ? false : true
+    @user.present?
   end
 end
