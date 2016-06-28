@@ -4,7 +4,7 @@ defaults: &defaults
   min_messages: warning
   timeout: 5000
   pool: <%= [ENV.fetch("MAX_THREADS", 5), ENV.fetch("DB_POOL", 5)].max %>
-  username: sport
+  username: postgres
   password: moskieva
 development:
   database: sportcms_dev

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   serialize :subscribed_categories
 
   def default_values
-    self.role ||= 'user'
+    self.role ||= "user"
   end
 
   def administrator?

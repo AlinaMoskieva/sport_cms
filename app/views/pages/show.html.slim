@@ -16,16 +16,25 @@
           = "Viewed #{page.visitors} times"
 
     br
-    .medium-9.medium-centered.columns
+    .medium-11.medium-centered.columns
       - if policy(page).update?
         = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
         '
       - if policy(page).destroy?
         = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
       '
-      = link_to "sub", new_users_category_path(category_id: page.get_category.id), class: "small secondary button"
-      '
-      = link_to("Back", :back, class: "small secondary button")
+      - sub_policy = UserPolicy.new(current_user, page)
+      - if sub_policy.create_subscription?
+        - if  current_user.subscribed?(page.get_category.id)
+          = link_to "Unsubscribe", new_users_category_path(category_id: page.get_category.id), class: "small alert button", id: "sub link"
+          '
+        - else
+          = link_to "Subscribe", new_users_category_path(category_id: page.get_category.id), class: "small secondary button", id: "sub link"
+          '
+        = link_to("Back", :back, class: "small secondary button")
+      - else
+        .back_button(align="right")
+          = link_to("Back", :back, class: "small radius expanded secondary  button")
   .medium-2.columns
    br
   .medium-3.columns data-sticky-container=""
@@ -36,15 +45,19 @@
        h4 Comments
        = paginate comments
        hr/
-       -comments.each do |comment|
-         span
-           i.fi-torso
-             = comment.comment_author
-         br
-         span
-           i.fi-comment
-             br
-             - if policy(comment).update?
+       - comments.each do |comment|
+         .row
+           .medium-1.columns
+             span
+              i.fi-torso
+           .medium-11.columns
+              = comment.comment_author
+         .row
+           .medium-1.columns
+             span
+               i.fi-comment
+           .medium-11.columns
+              - if policy(comment).update?
                = best_in_place comment, :body,
                  path: edit_comment_path(comment),
                  display_with: lambda { |v| v.html_safe },
@@ -53,15 +66,20 @@
                  ok_button_class: "tiny secondary button",
                  cancel_button: "Cancel",
                  cancel_button_class: "tiny alert button"
-             - else
+              - else
                = comment.body
-           br
-           = comment.date
-         .right align="right "
-           - if policy(comment).destroy?
+         .row
+           .medium-1.columns
              span
-               i.fi-trash
-                 = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' })
+               i.fi-clock
+           .medium-6.columns
+             = comment.date
+           .medium-2.columns
+              - policy = CommentPolicy.new(current_user, comment)
+              - if policy.destroy?
+                span
+                  i.fi-trash
+                    = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
          hr/
        p
         strong Add a comment
@@ -81,4 +99,3 @@
           p
             .panel(class="callout")
               h6="You should sign in for have ability to add comments"
-

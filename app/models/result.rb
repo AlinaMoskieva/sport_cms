@@ -19,7 +19,7 @@ class Result
   field :competition, type: String
   field :page_id, type: String
 
-  validates_presence_of :category_id
+  validates :category_id, presence: true
 
   has_one :page
 

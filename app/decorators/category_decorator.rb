@@ -1,10 +1,6 @@
 class CategoryDecorator < ApplicationDecorator
   delegate :category, :id
 
-  def category
-    object.category
-  end
-
   def how_many_pages
     object.pages.count
   end
@@ -24,7 +20,7 @@ class CategoryDecorator < ApplicationDecorator
   def how_many_viewed
     viewed = 0
     object.pages.each do |c|
-      viewed = viewed + c.visitors
+      viewed += c.visitors
     end
     return viewed
   end

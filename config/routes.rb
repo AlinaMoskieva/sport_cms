@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :pages do
-   resources :comments, shallow: true
+    resources :comments, shallow: true
   end
 
   devise_for :users
