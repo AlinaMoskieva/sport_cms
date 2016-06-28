@@ -16,6 +16,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def new
+    authorization_admin
+  end
+
   def show
     page.increment(:visitors)
     page.save
