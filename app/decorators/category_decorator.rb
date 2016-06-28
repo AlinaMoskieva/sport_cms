@@ -5,7 +5,7 @@ class CategoryDecorator < ApplicationDecorator
     object.pages.count
   end
 
-  def has_content?
+  def content?
     object.pages.count > 0
   end
 

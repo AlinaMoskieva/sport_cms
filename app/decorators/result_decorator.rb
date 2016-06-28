@@ -14,11 +14,11 @@ class ResultDecorator < ApplicationDecorator
              :competition,
              :page_id
 
-  def get_category
-    Category.find(object.category_id).category
+  def category
+    object.category.category
   end
 
-  def get_date
+  def date
     object.created_at.strftime("%m.%d.%Y at %I:%M%P")
   end
 
@@ -26,11 +26,11 @@ class ResultDecorator < ApplicationDecorator
     object.result.to_i < 4
   end
 
-  def has_link?
-    ! object.page_id.blank?
+  def link?
+    object.page_id.present?
   end
 
-  def is_individual_sport?
+  def individual_sport?
     object.first_team.blank? || object.second_team.blank? ||
     object.first_team_result.blank? || object.second_team_result.blank?
   end

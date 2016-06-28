@@ -3,7 +3,7 @@
       = link_to( "Categories", categories_path)
     ul
     - categories.each do |category|
-      - if category.has_content?
+      - if category.content?
         li
           = link_to(category.category, pages_path(category_id: category.id))
     br
