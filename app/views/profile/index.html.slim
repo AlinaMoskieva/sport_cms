@@ -3,12 +3,14 @@ br
   .medium-4.columns
     .panel
       = image_tag user.image
-  .medium-1.columns
-  .medium-6.columns
+  .medium-2.columns
+  .medium-3.columns
     h2
       = user.full_name
     h4
       = user.email
+  .medium-2.columns
+    = link_to "Edit profile", edit_user_registration_path
 .row
   .medium-4.columns
     .panel
