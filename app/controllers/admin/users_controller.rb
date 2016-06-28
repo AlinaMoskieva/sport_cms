@@ -3,7 +3,7 @@ module Admin
     before_filter :authenticate_user!
     before_action :authorization_admin
     expose(:admin)
-    expose(:users) { User.all.order(id: :asc) }
+    expose(:users) { User.all.order(id: :asc).page params[:pages] }
 
     expose(:user)
 
