@@ -51,7 +51,7 @@
              span
               i.fi-torso
            .medium-11.columns
-              = comment.comment_author
+              = comment.user_full_name
          .row
            .medium-1.columns
              span
@@ -67,7 +67,7 @@
                  cancel_button: "Cancel",
                  cancel_button_class: "tiny alert button"
               - else
-               = comment.body
+               = comment.body.html_safe
          .row
            .medium-1.columns
              span
