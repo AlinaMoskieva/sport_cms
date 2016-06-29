@@ -1,8 +1,8 @@
-after :category do
-admin = Users.find(1)
+after :categories do
+admin = User.find(1)
   20.times do |page|
-    admin.page.create!(body: Faker::Lorem.paragraphs,
+    admin.pages.create!(body: Faker::Lorem.paragraphs,
                       title: Faker::Lorem.sentence(3, true, 4),
-                      category_id: Faker::Number.between(1, Category.length))
+                      category_id: Faker::Number.between(1, 10))
   end
 end
