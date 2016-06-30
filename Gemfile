@@ -4,7 +4,7 @@ ruby "2.3.0"
 
 gem "rails", "4.2.6"
 gem "pg"
-gem 'mongoid', '~> 4.0.0'
+gem "mongoid", "~> 4.0.0"
 
 # assets
 gem "autoprefixer-rails"
@@ -23,9 +23,9 @@ gem "active_link_to"
 gem "metamagic"
 gem "simple_form"
 gem "slim"
-gem 'ckeditor'
-gem 'carrierwave'
-gem 'mini_magick'
+gem "ckeditor"
+gem "carrierwave"
+gem "mini_magick"
 
 # all other gems
 gem "decent_decoration"

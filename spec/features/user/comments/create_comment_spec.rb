@@ -1,16 +1,16 @@
- require "rails_helper"
+require "rails_helper"
 
-feature "Create comment"  do
+feature "Create comment" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
   let!(:site_page) { create :page, user: admin_user }
   let(:test_comment_message)  { "it is test comment ;)" }
 
   context "As administrator" do
-    before {
+    before do
       login_as admin_user
       visit page_path(site_page)
-     }
+    end
 
     it "has link to create new comment" do
       expect(page).to have_content(admin_user.email)
@@ -21,17 +21,17 @@ feature "Create comment"  do
       expect do
         fill_in "comment_body", with: test_comment_message
         click_button "submit"
-      end.to change { [ site_page.comments.count, Comment.count ] }.by([1,1])
+      end.to change { [site_page.comments.count, Comment.count] }.by([1, 1])
 
       expect(page).to have_content(test_comment_message)
     end
   end
 
   context "As user i am able to create comment" do
-    before {
+    before do
       login_as user
       visit page_path(site_page)
-    }
+    end
 
     it "has link to create new comment" do
       expect(page).to have_content(user.email)
@@ -42,7 +42,7 @@ feature "Create comment"  do
       expect do
         fill_in "comment_body", with: test_comment_message
         click_button "submit"
-      end.to change { [ site_page.comments.count, Comment.count ] }.by([1,1])
+      end.to change { [site_page.comments.count, Comment.count] }.by([1, 1])
 
       expect(page).to have_content(test_comment_message)
     end

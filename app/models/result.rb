@@ -15,14 +15,13 @@ class Result
   field :second_team_members, type: String
   field :first_team_country, type: String
   field :second_team_country, type: String
-  field :sportsmen,type: String
+  field :sportsmen, type: String
   field :competition, type: String
   field :page_id, type: String
 
   validates :category_id, presence: true
 
   has_one :page
-
 
   paginates_per 5
 
