@@ -1,5 +1,4 @@
 after :categories do
-admin = User.find(1)
   20.times do |page|
     Page.create!(body: Faker::Lorem.paragraphs,
                         title: Faker::Lorem.sentence(3, true, 4),
