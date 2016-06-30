@@ -32,8 +32,8 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
-        add_hashtags if page.body.include?('#')
-        format.html{ redirect_to page, notice: 'Page was successfully created.' }
+        add_hashtags if page.body.include?("#")
+        format.html { redirect_to page, notice: "Page was successfully created." }
       else
         format.html { render :new }
       end
@@ -45,8 +45,8 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if page.save
-        add_hashtags if page.body.include?('#')
-        format.html{ redirect_to page,notice: 'Page was successfully updated.' }
+        add_hashtags if page.body.include?("#")
+        format.html { redirect_to page,notice: "Page was successfully updated." }
       else
         format.html { render :edit }
       end
@@ -73,8 +73,8 @@ class PagesController < ApplicationController
 
   def pages_finder
     Page.includes(:category)
-        .includes(:user)
-        .where(category_id: current_user.subscribed_categories)
+      .includes(:user)
+      .where(category_id: current_user.subscribed_categories)
   end
 
   def add_hashtags
@@ -83,7 +83,7 @@ class PagesController < ApplicationController
 
     hashes.each do |hash|
       hash = hash.slice(1..hash.length)
-      hashtag = Hashtag.where( hashtag: hash ).first
+      hashtag = Hashtag.where(hashtag: hash).first
 
       if hashtag.nil?
         h = Hashtag.new

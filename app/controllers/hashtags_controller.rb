@@ -10,6 +10,7 @@ class HashtagsController < ApplicationController
   end
 
   private
+
   def hashtag_params
     params.require(:hashtag).permit(:hashtag, :pages)
   end
@@ -17,6 +18,6 @@ class HashtagsController < ApplicationController
   def pages_finder
     Page.includes(:category)
         .includes(:user)
-        .where(id: hashtag.pages ).page params[:page]
+        .where(id: hashtag.pages).page params[:page]
   end
 end

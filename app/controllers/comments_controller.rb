@@ -14,9 +14,9 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if comment.save
 
-        notify if comment.body.include?('@')
-        add_hashtags if comment.body.include?('#')
-        format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
+        notify if comment.body.include?("@")
+        add_hashtags if comment.body.include?("#")
+        format.html{ redirect_to comment.page, notice: "Comment was successfully created." }
 
       else
         format.html { render :new }
@@ -29,8 +29,8 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
-        add_hashtags if comment.body.include?('#')
-        format.html{ redirect_to comment.page, notice: 'Comment was successfully updated.' }
+        add_hashtags if comment.body.include?("#")
+        format.html { redirect_to comment.page, notice: "Comment was successfully updated." }
         format.js
         format.json { respond_with_bip(comment) }
       else
@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
     mention.each do |man|
       man = man.slice(1..man.length)
       Notification.create(comment_id: comment.id,
-                          user_id: User.where(nickname: man).ids.first )
+                          user_id: User.where(nickname: man).ids.first)
     end
   end
 
@@ -76,12 +76,12 @@ class CommentsController < ApplicationController
 
     hashes.each do |hash|
       hash = hash.slice(1..hash.length)
-      hashtag = Hashtag.where( hashtag: hash ).first
+      hashtag = Hashtag.where(hashtag: hash).first
 
       if hashtag.nil?
         h = Hashtag.new
         h.hashtag = hash
-        h.pages = Array.new
+        h.pages = []
         h.pages << comment.page_id
         h.save
       else

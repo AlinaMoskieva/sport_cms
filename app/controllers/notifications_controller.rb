@@ -8,9 +8,9 @@ class NotificationsController < ApplicationController
   def destroy
     respond_to do |format|
       if notification.delete
-          format.html{ redirect_to notifications_path, notice: 'Notification was successfully deleted' }
+        format.html { redirect_to notifications_path, notice: "Notification was successfully deleted" }
       else
-          format.html{ render :back }
+        format.html { render :back }
       end
     end
   end

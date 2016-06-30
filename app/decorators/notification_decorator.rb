@@ -1,5 +1,4 @@
 class NotificationDecorator < ApplicationDecorator
-
   def sender
     User.find(Comment.find(object.comment_id).user_id).full_name
   end

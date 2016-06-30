@@ -4,9 +4,10 @@ feature "Admin User Manipulation" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
 
-  before { login_as admin_user
-            visit admin_users_path
-         }
+  before do
+    login_as admin_user
+    visit admin_users_path
+  end
 
   describe "change user role" do
     it "change role" do
