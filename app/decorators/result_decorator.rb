@@ -15,7 +15,7 @@ class ResultDecorator < ApplicationDecorator
              :page_id
 
   def category
-    object.category.category
+    Category.find(object.category_id).category
   end
 
   def date

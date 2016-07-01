@@ -1,6 +1,5 @@
-after :pages do
+after :comments do
   20.times do
-    Hashtag.create!(hashtag: Faker::Lorem.word,
-                    pages_id: Faker::Number.between(1, 20))
+    Hashtag.create!(hashtag: "Omm")
   end
 end

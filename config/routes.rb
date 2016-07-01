@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :profile, only: [:index]
   resources :category_subscriptions
   resources :users_category
-  resources :results, only: %i(index create destroy)
+  resources :results
   resources :notifications, only: %i(index create destroy)
   resources :hashtags
 
