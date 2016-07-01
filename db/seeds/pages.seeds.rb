@@ -3,6 +3,6 @@ after :categories do
     Page.create!(body: Faker::Lorem.paragraphs,
                         title: Faker::Lorem.sentence(3, true, 4),
                         category_id: Faker::Number.between(1, 10),
-                        user_id: Faker::Number.between(1, 23))
+                        user_id: Faker::Number.between(1, User.count))
   end
 end

@@ -18,7 +18,7 @@ module Admin
       end
     end
 
-    def show
+    def show#remove
       return unless current_user.administrator?
       sign_in(:user, User.find(params[:id]))
 
