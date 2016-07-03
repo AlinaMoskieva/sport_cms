@@ -1,15 +1,17 @@
 class NotificationDecorator < ApplicationDecorator
+  delegate :comment
+  delegate :user, :full_name, to: :comment, prefix: true
 
   def sender
-    User.find(Comment.find(object.comment_id).user_id).full_name
+    object.comment.user.full_name
   end
 
   def sender_email
-    User.find(Comment.find(object.comment_id).user_id).email
+    object.comment.user.email
   end
 
   def comment
-    Comment.find(object.comment_id).body.html_safe
+    object.comment.body.html_safe
   end
 
   def date
@@ -17,10 +19,10 @@ class NotificationDecorator < ApplicationDecorator
   end
 
   def photo
-    User.find(Comment.find(object.comment_id).user_id).image
+    object.comment.user.image
   end
 
   def page
-    Page.find(Comment.find(object.comment_id).page_id)
+    object.comment.page
   end
 end
