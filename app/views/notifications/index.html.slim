@@ -15,7 +15,7 @@
               span
                 i.fi-torso
             .medium-8.columns
-              ="Commenter: #{notification.sender} ( #{notification.sender_email} )"
+              ="Commenter: #{notification.comment_full_name} ( #{notification.sender_email} )"
             .medium-3.columns
               = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
                 i.fi-x

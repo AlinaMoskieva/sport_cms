@@ -42,7 +42,7 @@
   .row
    .medium-7.columns
      p
-       h4 Comments
+       h4="Comments (#{page.comments_count})"
        = paginate comments
        hr/
        - comments.each do |comment|

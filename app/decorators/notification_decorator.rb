@@ -1,6 +1,6 @@
 class NotificationDecorator < ApplicationDecorator
   delegate :comment
-  delegate :user, :full_name, to: :comment, prefix: true
+  delegate :full_name, to: :comment, prefix: true
 
   def sender
     object.comment.user.full_name
