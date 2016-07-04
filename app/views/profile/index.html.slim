@@ -22,7 +22,7 @@ br
             li
               = sub.category
     .panel
-      h4="My pages (#{user.how_many_pages})"
+      h4="My pages (#{user.pages_count})"
 
   .medium-8.columns
     - if policy(current_user).index?
@@ -34,7 +34,6 @@ br
               span
                 i.fi-torso
                   = page.user.full_name
-                  ="                   "
               span
                 i.fi-calendar
                   = page.data_format
@@ -48,7 +47,7 @@ br
             .right align="right "
               span
                 i.fi-comments
-                  = " "
+
                   = page.comments.count
             hr/
         = paginate pages, outer_window: 3

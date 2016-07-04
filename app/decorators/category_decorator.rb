@@ -1,9 +1,6 @@
 class CategoryDecorator < ApplicationDecorator
-  delegate :category, :id
-
-  def how_many_pages
-    object.pages.count
-  end
+  delegate :category, :id, :pages
+  delegate :count, to: :pages, prefix: true
 
   def content?
     object.pages.count > 0

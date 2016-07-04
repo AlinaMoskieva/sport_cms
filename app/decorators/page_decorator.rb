@@ -5,8 +5,4 @@ class PageDecorator < ApplicationDecorator
   delegate :count, to: :comments, prefix: true
 
   decorates_association :comments
-
-  def how_many_comments
-    object.comments.count
-  end
 end
