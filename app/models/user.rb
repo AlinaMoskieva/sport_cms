@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  enum role: [ :user, :admin ]
+
   paginates_per 2
 
   mount_uploader :image, ImageUploader
@@ -18,10 +20,10 @@ class User < ActiveRecord::Base
   serialize :subscribed_categories
 
   def default_values
-    self.role ||= "user"
+    self.role ||= 0
   end
 
   def administrator?
-    self.role == "administrator"
+    self.admin?
   end
 end
