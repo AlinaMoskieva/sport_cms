@@ -1,9 +1,13 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorize_admin
+    before_action :authorize_resource, only: [:show, :update]
     expose(:users) { User.all.order(id: :asc).page params[:page] }
     expose(:user)
+
+    def index
+      authorize User
+    end
 
     def update
       user.update(user_params)
@@ -26,12 +30,14 @@ module Admin
       end
     end
 
+    private
+
     def user_params
       params.require(:user).permit(:role)
     end
 
-    def authorize_admin
-      authorize current_user
+    def authorize_resource
+      authorize user
     end
   end
 end
