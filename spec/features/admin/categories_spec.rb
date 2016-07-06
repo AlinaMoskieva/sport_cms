@@ -5,10 +5,10 @@ feature "Categories" do
   let!(:user) { create :user, :user }
 
   describe "create" do
-    before {
+    before do
       login_as admin_user
       visit admin_categories_path
-    }
+    end
 
     it "form exist" do
       expect(page).to have_content("Add new category")
@@ -26,10 +26,10 @@ feature "Categories" do
   describe "destroy" do
     let!(:category) { create :category }
 
-    before {
+    before do
       login_as admin_user
       visit admin_categories_path
-    }
+    end
 
     it "destroy category" do
       expect do

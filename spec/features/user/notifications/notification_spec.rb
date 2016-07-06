@@ -4,7 +4,7 @@ feature "Notification" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
   let!(:tested_page) { create :page, user: admin_user }
-  let!(:comment_text) { "@#{admin_user.nickname}"}
+  let!(:comment_text) { "@#{admin_user.nickname}" }
 
   context "As administrator" do
     background do

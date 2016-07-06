@@ -33,10 +33,10 @@ feature "Create page" do
   context "As user I am able create subscription" do
     let!(:user) { create :user, :user }
 
-    before {
+    before do
       login_as user
       visit page_path(site_page)
-    }
+    end
 
     it "has link to subscribe" do
       expect(page).to have_link("sub link")

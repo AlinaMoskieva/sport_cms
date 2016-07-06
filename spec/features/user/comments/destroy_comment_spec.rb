@@ -8,10 +8,10 @@ feature "Destroy comment"  do
   context "As administrator i am able to Destroy my comment" do
     let!(:admin_comment) { create :comment, user: admin_user, page: site_page }
 
-    before {
+    before do
       login_as admin_user
       visit page_path(site_page)
-    }
+    end
 
     it "has link to Destroy comment" do
       expect(page).to have_link("Delete")
@@ -20,7 +20,7 @@ feature "Destroy comment"  do
     scenario "remove comment current user's comment" do
       expect do
         click_link "delete_comment"
-      end.to change{ site_page.comments.count }.to(0)
+      end.to change { site_page.comments.count }.to(0)
 
       expect(page).not_to have_content(admin_comment.body)
     end
@@ -35,15 +35,15 @@ feature "Destroy comment"  do
   context "As user i am able to Destroy my comment" do
     let!(:user_comment) { create :comment, user: user, page: site_page }
 
-    before {
+    before do
       login_as user
       visit page_path(site_page)
-    }
+    end
 
     scenario "remove comment current user's comment" do
       expect do
         click_link "delete_comment"
-      end.to change{ site_page.comments.count }.to(0)
+      end.to change { site_page.comments.count }.to(0)
 
       expect(page).not_to have_content(user_comment.body)
     end
