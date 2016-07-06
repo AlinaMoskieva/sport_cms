@@ -19,5 +19,5 @@ class UserPolicy < ApplicationPolicy
     @user.administrator?
   end
 
-  alias edit? update?
+  alias_method  :edit?, :update?
 end

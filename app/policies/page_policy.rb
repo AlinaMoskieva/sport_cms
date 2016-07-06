@@ -11,7 +11,7 @@ class PagePolicy < ApplicationPolicy
     @user.present? && @user.administrator?
   end
 
-  alias new? create?
+  alias_method :new?, :create?
 
   private
 
