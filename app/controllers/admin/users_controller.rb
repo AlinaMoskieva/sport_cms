@@ -3,7 +3,7 @@ module Admin
     before_action :authenticate_user!
     before_action :authorize_resource, only: [:show, :update]
     expose(:users) { User.all.order(id: :asc).page params[:page] }
-    expose(:user)
+    expose(:user, attributes: :user_params)
 
     def index
       authorize User

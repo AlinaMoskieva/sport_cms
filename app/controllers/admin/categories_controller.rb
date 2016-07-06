@@ -27,6 +27,8 @@ module Admin
       end
     end
 
+    private
+
     def category_params
       params.require(:category).permit(:category, :id)
     end

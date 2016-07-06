@@ -3,7 +3,9 @@ class UserPolicy < ApplicationPolicy
     @user.administrator?
   end
 
-  alias show? index?
+  def show?
+    @user.administrator?
+  end
 
   def create_subscription?
     @user.present?
