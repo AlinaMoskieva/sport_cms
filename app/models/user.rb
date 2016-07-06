@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: { user: "user", admin: "admin" }
+  enum role: { user: "user", admin: "administrator" }
 
   paginates_per 2
 

@@ -10,11 +10,11 @@ FactoryGirl.define do
   end
 
   trait :administrator do
-    role 1
+    role "administrator"
   end
 
   trait :user do
-    role 0
+    role "user"
   end
 
   trait :not_confirmed do
