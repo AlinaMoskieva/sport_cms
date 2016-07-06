@@ -1,26 +1,23 @@
 class NotificationDecorator < ApplicationDecorator
+  decorates_association :comment
 
-  def sender
-    object.comment.user.full_name
+  delegate :recepient
+  delegate :full_name, to: :recepient, prefix: true
+  delegate :page, to: :comment, prefix: true
+
+  def sender_name
+    comment.author_full_name
   end
 
   def sender_email
-    object.comment.user.email
-  end
-
-  def comment
-    object.comment.body.html_safe
+    comment.author_email
   end
 
   def date
     object.created_at.strftime("%m.%d.%Y at %I:%M%P")
   end
 
-  def photo
-    object.comment.user.image
-  end
-
-  def page
-    object.comment.page
+  def sender_photo
+    comment.author_image
   end
 end

@@ -15,7 +15,7 @@
               span
                 i.fi-torso
             .medium-8.columns
-              ="Commenter: #{(notification.sender)} ( #{notification.sender_email} )"
+              ="Commenter: #{(notification.recepient_full_name)} ( #{notification.sender_email} )"
             .medium-3.columns
               = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
                 i.fi-x
@@ -27,7 +27,7 @@
             .medium-8.columns
               = notification.comment
             .medium-3.columns
-              = link_to page_path(notification.page) do
+              = link_to page_path(notification.comment_page) do
                 i.fi-arrow-right
                   | View
           .row

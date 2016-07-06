@@ -16,13 +16,13 @@ class PagesController < ApplicationController
     end
   end
 
-  def new
-    authorization_admin
-  end
-
   def show
     page.increment(:visitors)
     page.save
+  end
+
+  def new
+    authorize page
   end
 
   def create

@@ -1,4 +1,5 @@
 class PagePolicy < ApplicationPolicy
+
   def destroy?
     owner?
   end
@@ -10,6 +11,8 @@ class PagePolicy < ApplicationPolicy
   def create?
     @user.present? && @user.administrator?
   end
+
+  alias new? create?
 
   private
 
