@@ -9,7 +9,7 @@ class UserDecorator < ApplicationDecorator
     object.role == "administrator"
   end
 
-  def has_pages?
+  def pages?
     object.pages.count > 0
   end
 
@@ -18,6 +18,6 @@ class UserDecorator < ApplicationDecorator
   end
 
   def subscribed?(category_id)
-    object.subscribed_categories.nil? ? false : object.subscribed_categories.include?(category_id.to_s)
+    object.subscribed_categories.present? && object.subscribed_categories.include?(category_id.to_s)
   end
 end

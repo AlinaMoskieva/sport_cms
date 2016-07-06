@@ -9,7 +9,7 @@
       span
         i.fi-bookmark
           = "Theme:"
-          = link_to(page.get_category.category, pages_path(category_id: page.get_category.id))
+          = link_to(page.category.category, pages_path(category_id: page.category.id))
     .rigth(align="right")
       span
         i.fi-torsos-all-female
@@ -25,11 +25,11 @@
       '
       - sub_policy = UserPolicy.new(current_user, page)
       - if sub_policy.create_subscription?
-        - if  current_user.subscribed?(page.get_category.id)
-          = link_to "Unsubscribe", new_users_category_path(category_id: page.get_category.id), class: "small alert button", id: "sub link"
+        - if  current_user.subscribed?(page.category.id)
+          = link_to "Unsubscribe", new_users_category_path(category_id: page.category.id), class: "small alert button", id: "sub link"
           '
         - else
-          = link_to "Subscribe", new_users_category_path(category_id: page.get_category.id), class: "small secondary button", id: "sub link"
+          = link_to "Subscribe", new_users_category_path(category_id: page.category.id), class: "small secondary button", id: "sub link"
           '
         = link_to("Back", :back, class: "small secondary button")
       - else

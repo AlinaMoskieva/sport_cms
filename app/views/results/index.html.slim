@@ -10,13 +10,13 @@
           span
             i.fi-pricetag-multiple
         .medium-11.columns.end
-          = result.get_category
+          = result.category
         br
         .medium-1.columns
           span
             i.fi-clock
         .medium-11.columns.end
-          = result.get_date
+          = result.date
         br
         .medium-1.columns
           span
@@ -24,14 +24,14 @@
         .medium-11.columns.end
           =result.competition
         br
-        - if result.has_link?
+        - if result.link?
           .medium-1.columns
             span
               i.fi-paperclip
           .medium-11.columns.end
             = link_to("Read more ..", page_path(result.page_id.to_i))
           br
-        - if result.is_individual_sport?
+        - if result.individual_sport?
           .medium-1.columns
             span
               i.fi-flag

@@ -19,7 +19,7 @@ feature "Create page" do
         select "tennis", from: "page_category_id"
 
         click_button "Create Page"
-      end.to change{ Page.count }.by(1)
+      end.to change { Page.count }.by(1)
     end
   end
 
