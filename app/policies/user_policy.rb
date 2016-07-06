@@ -3,6 +3,8 @@ class UserPolicy < ApplicationPolicy
     @user.administrator?
   end
 
+  alias show? index?
+
   def create_subscription?
     @user.present?
   end
@@ -10,4 +12,10 @@ class UserPolicy < ApplicationPolicy
   def destroy_subscription?
     @user.present?
   end
+
+  def update?
+    @user.administrator?
+  end
+
+  alias edit? update?
 end

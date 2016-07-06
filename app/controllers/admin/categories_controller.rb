@@ -1,9 +1,9 @@
 module Admin
   class CategoriesController < ApplicationController
-    before_action :authorization_admin
     expose_decorated(:categories) { Category.includes(:pages).order(:id) }
     expose(:pages) { Page.includes(:category) }
     expose_decorated(:category, attributes: :category_params)
+    before_action :authorize_admin
 
     def create
       respond_to do |format|
@@ -29,6 +29,10 @@ module Admin
 
     def category_params
       params.require(:category).permit(:category, :id)
+    end
+
+    def authorize_admin
+      authorize category
     end
   end
 end

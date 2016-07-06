@@ -11,6 +11,8 @@ class PagePolicy < ApplicationPolicy
     @user.present? && @user.administrator?
   end
 
+  alias new? create?
+
   private
 
   def owner?
