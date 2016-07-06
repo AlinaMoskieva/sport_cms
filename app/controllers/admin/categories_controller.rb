@@ -3,7 +3,7 @@ module Admin
     expose_decorated(:categories) { Category.includes(:pages).order(:id) }
     expose(:pages) { Page.includes(:category) }
     expose_decorated(:category, attributes: :category_params)
-    before_action :authorize_admin
+    before_action :authorize_resource
 
     def create
       respond_to do |format|
@@ -31,7 +31,7 @@ module Admin
       params.require(:category).permit(:category, :id)
     end
 
-    def authorize_admin
+    def authorize_resource
       authorize category
     end
   end
