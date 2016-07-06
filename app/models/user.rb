@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [ :user, :admin ]
+  enum role: { user: "user", admin: "admin" }
 
   paginates_per 2
 
@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
-
-  before_save :default_values
 
   validates :full_name, presence: true
   validates :nickname, uniqueness: true
@@ -18,10 +16,6 @@ class User < ActiveRecord::Base
   has_many :notifications
 
   serialize :subscribed_categories
-
-  def default_values
-    self.role ||= 0
-  end
 
   def administrator?
     self.admin?
