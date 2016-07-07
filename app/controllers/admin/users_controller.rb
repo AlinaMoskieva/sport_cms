@@ -36,8 +36,6 @@ module Admin
       params.require(:user).permit(:role)
     end
 
-    private
-
     def authorize_resource
       authorize user
     end

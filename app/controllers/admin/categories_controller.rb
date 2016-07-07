@@ -33,8 +33,6 @@ module Admin
       params.require(:category).permit(:category, :id)
     end
 
-    private
-
     def authorize_resource
       authorize category
     end
