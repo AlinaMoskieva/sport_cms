@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 20160707093830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
-    t.string   "image"
-    t.string   "nickname"
-    t.text     "subscribed_categories"
     t.string   "role"
+    t.string   "image"
+    t.text     "subscribed_categories"
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
