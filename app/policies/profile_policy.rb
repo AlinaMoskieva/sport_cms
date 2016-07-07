@@ -1,5 +1,5 @@
 class ProfilePolicy < ApplicationPolicy
   def index?
-    @user.administrator?
+    admin?
   end
 end

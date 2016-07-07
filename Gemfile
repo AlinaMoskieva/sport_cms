@@ -46,7 +46,7 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
-gem 'country_select'
+gem "country_select"
 
 
 group :staging, :production do

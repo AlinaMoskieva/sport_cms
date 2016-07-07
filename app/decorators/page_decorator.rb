@@ -1,5 +1,5 @@
 class PageDecorator < ApplicationDecorator
-  delegate :title, :body, :created_at, :category_id, :visitors, :category
+  delegate :title, :body, :created_at, :category_id, :visitors, :category, :user
 
   decorates_association :comments
 

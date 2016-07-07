@@ -1,10 +1,9 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorization_admin
-    expose(:admin)
-    expose(:users) { User.all.order(id: :asc).page params[:page] }
-    expose(:user)
+    before_action :authorize_resource, only: %i(show update index)
+    expose(:users) { |users| users.order(id: :asc).page params[:page] }
+    expose(:user, attributes: :user_params)
 
     def update
       user.update(user_params)
@@ -18,8 +17,7 @@ module Admin
       end
     end
 
-    def show#remove
-      return unless current_user.administrator?
+    def show
       sign_in(:user, User.find(params[:id]))
 
       respond_to do |format|
@@ -27,8 +25,14 @@ module Admin
       end
     end
 
+    private
+
     def user_params
       params.require(:user).permit(:role)
+    end
+
+    def authorize_resource
+      authorize user
     end
   end
 end

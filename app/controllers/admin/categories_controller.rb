@@ -1,15 +1,14 @@
 module Admin
   class CategoriesController < ApplicationController
-    before_action :authorization_admin
-    expose_decorated(:categories) { Category.includes(:pages).order(:id) }
-    expose(:pages) { Page.includes(:category) }
+    expose_decorated(:categories) { |categories| categories.includes(:pages).order(:id) }
+    expose(:pages) { |pages| pages.includes(:category) }
     expose_decorated(:category, attributes: :category_params)
+    before_action :authorize_resource
 
     def create
       respond_to do |format|
         if category.save
-          format.html { redirect_to admin_categories_url,
-            notice: "Category was successfully created." }
+          format.html { redirect_to admin_categories_url, notice: "Created." }
         else
           format.html { redirect_to admin_categories_url, notice: "Errors." }
         end
@@ -19,16 +18,21 @@ module Admin
     def destroy
       respond_to do |format|
         if category.destroy
-          format.html { redirect_to admin_categories_url,
-            notice: "Category was successfully deleted." }
+          format.html { redirect_to admin_categories_url, notice: "Deleted." }
         else
           format.html { redirect_to admin_categories_url, notice: "Errors." }
         end
       end
     end
 
+    private
+
     def category_params
       params.require(:category).permit(:category, :id)
+    end
+
+    def authorize_resource
+      authorize category
     end
   end
 end
