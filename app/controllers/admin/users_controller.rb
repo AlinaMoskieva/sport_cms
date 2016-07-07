@@ -5,12 +5,13 @@ module Admin
     expose(:users) { |users| users.order(id: :asc).page params[:page] }
     expose(:user, attributes: :user_params)
 
+
     def update
       user.update(user_params)
 
       respond_to do |format|
         if user.save
-          format.html { redirect_to admin_users_path, notice: "User information was successfully update." }
+          format.html { redirect_to admin_users_path, notice: "Update." }
         else
           format.tml { render :edit, notice: "Something wrong." }
         end

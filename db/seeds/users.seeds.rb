@@ -3,6 +3,6 @@
               full_name:  Faker::Name.name ,
               password: Faker::Internet.password,
               nickname: Faker::Name.first_name,
-              role: "user",
+              role: :user,
               confirmed_at: DateTime.now )
 end
