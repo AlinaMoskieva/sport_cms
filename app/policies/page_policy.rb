@@ -8,7 +8,7 @@ class PagePolicy < ApplicationPolicy
   end
 
   def create?
-    @user.present? && @user.administrator?
+    user.present? && user.administrator?
   end
 
   alias_method :new?, :create?
@@ -16,7 +16,7 @@ class PagePolicy < ApplicationPolicy
   private
 
   def owner?
-    return false unless @user.present?
-    @user.administrator? && @record.user == @user
+    return false unless user.present?
+    user.administrator? && record.user == user
   end
 end
