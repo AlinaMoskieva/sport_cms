@@ -8,8 +8,7 @@ module Admin
     def create
       respond_to do |format|
         if category.save
-          format.html { redirect_to admin_categories_url,
-            notice: "Category was successfully created." }
+          format.html { redirect_to admin_categories_url, notice: "Created." }
         else
           format.html { redirect_to admin_categories_url, notice: "Errors." }
         end
@@ -19,8 +18,7 @@ module Admin
     def destroy
       respond_to do |format|
         if category.destroy
-          format.html { redirect_to admin_categories_url,
-            notice: "Category was successfully deleted." }
+          format.html { redirect_to admin_categories_url, notice: "Deleted." }
         else
           format.html { redirect_to admin_categories_url, notice: "Errors." }
         end

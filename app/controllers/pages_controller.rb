@@ -46,7 +46,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       if page.save
         add_hashtags if page.body.include?("#")
-        format.html { redirect_to page,notice: "Page was successfully updated." }
+        format.html { redirect_to page, notice: "Page was successfully updated." }
       else
         format.html { render :edit }
       end
@@ -88,7 +88,7 @@ class PagesController < ApplicationController
       if hashtag.nil?
         h = Hashtag.new
         h.hashtag = hash
-        h.pages = Array.new
+        h.pages = []
         h.pages << page.id
         h.save
       else

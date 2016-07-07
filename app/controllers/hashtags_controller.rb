@@ -17,7 +17,7 @@ class HashtagsController < ApplicationController
 
   def pages_finder
     Page.includes(:category)
-        .includes(:user)
-        .where(id: hashtag.pages).page params[:page]
+      .includes(:user)
+      .where(id: hashtag.pages).page params[:page]
   end
 end

@@ -4,6 +4,6 @@ class ResultPolicy < ApplicationPolicy
   end
 
   def destroy?
-   admin?
+    admin?
   end
 end
