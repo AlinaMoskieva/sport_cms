@@ -1,10 +1,10 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    user.present? && user.administrator?
+    admin?
   end
 
   def show?
-    user.present? && user.administrator?
+    admin?
   end
 
   def create_subscription?
@@ -16,8 +16,12 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && user.administrator?
+    admin?
   end
 
   alias_method  :edit?, :update?
+
+  def admin?
+    user.present? && user.administrator?
+  end
 end

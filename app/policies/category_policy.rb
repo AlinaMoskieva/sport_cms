@@ -1,13 +1,17 @@
 class CategoryPolicy < ApplicationPolicy
   def create?
-    user.present? && user.administrator?
+    admin?
   end
 
   def destroy?
-    user.present? && user.administrator?
+    admin?
   end
 
   def index?
+    admin?
+  end
+
+  def admin?
     user.present? && user.administrator?
   end
 end
