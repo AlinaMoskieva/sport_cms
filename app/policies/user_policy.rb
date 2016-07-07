@@ -20,8 +20,4 @@ class UserPolicy < ApplicationPolicy
   end
 
   alias_method  :edit?, :update?
-
-  def admin?
-    user.present? && user.administrator?
-  end
 end

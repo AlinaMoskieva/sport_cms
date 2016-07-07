@@ -5,4 +5,10 @@ class ApplicationPolicy
     @user = user
     @record = record
   end
+
+  protected
+
+  def admin?
+    user.present? && user.administrator?
+  end
 end

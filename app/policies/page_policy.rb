@@ -8,7 +8,7 @@ class PagePolicy < ApplicationPolicy
   end
 
   def create?
-    user.present? && user.administrator?
+    admin?
   end
 
   alias_method :new?, :create?

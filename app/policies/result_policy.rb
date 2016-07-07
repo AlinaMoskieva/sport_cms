@@ -1,9 +1,9 @@
 class ResultPolicy < ApplicationPolicy
   def create?
-    user.present? && user.administrator?
+    admin?
   end
 
   def destroy?
-    user.present? && user.administrator?
+   admin?
   end
 end

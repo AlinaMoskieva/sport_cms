@@ -10,8 +10,4 @@ class CategoryPolicy < ApplicationPolicy
   def index?
     admin?
   end
-
-  def admin?
-    user.present? && user.administrator?
-  end
 end
