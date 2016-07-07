@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authorization_admin
-    unless current_user && current_user.role == "administrator"
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user && current_user.role == "administrator"
   end
 end

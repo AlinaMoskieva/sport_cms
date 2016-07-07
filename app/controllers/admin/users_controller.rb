@@ -9,14 +9,14 @@ module Admin
 
       respond_to do |format|
         if user.save
-          format.html { redirect_to admin_users_path, notice: "User information was successfully update." }
+          format.html { redirect_to admin_users_path, notice: "Update." }
         else
           format.tml { render :edit, notice: "Something wrong." }
         end
       end
     end
 
-    def show#remove
+    def show
       return unless current_user.administrator?
       sign_in(:user, User.find(params[:id]))
 
