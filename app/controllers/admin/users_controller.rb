@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorize_resource, only: [:show, :update, :in]
+    before_action :authorize_resource, only: [:show, :update, :index]
     expose(:users) { |users| users.order(id: :asc).page params[:page] }
     expose(:user, attributes: :user_params)
 
