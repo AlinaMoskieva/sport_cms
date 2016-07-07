@@ -1,6 +1,6 @@
 class CommentPolicy < ApplicationPolicy
   def create?
-    @user.present?
+    user.present?
   end
 
   def update?
@@ -14,7 +14,7 @@ class CommentPolicy < ApplicationPolicy
   private
 
   def owner?
-    return false unless @user.present?
-    @record.user == @user
+    return false unless user.present?
+    record.user == user
   end
 end

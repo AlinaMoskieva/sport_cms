@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
-
-  def authorization_admin
-    redirect_to root_path unless current_user && current_user.role == "administrator"
-  end
 end

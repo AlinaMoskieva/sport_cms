@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def new
-  #  authorization_admin
+    authorize page
   end
 
   def show
