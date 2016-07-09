@@ -21,10 +21,6 @@ class PagesController < ApplicationController
     page.save
   end
 
-  def new
-    authorize page
-  end
-
   def create
     authorize page, :create?
 
