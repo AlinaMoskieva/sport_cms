@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   expose_decorated(:comments) { page.comments.includes(:author).page params[:page] }
   expose_decorated(:categories) { Category.all }
 
-  expose_decorated(:users) { User.all }
+  expose_decorated(:users) { User.includes(:pages) }
   expose(:subscribed_pages) { pages_finder }
 
   def index
