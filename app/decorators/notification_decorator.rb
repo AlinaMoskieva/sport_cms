@@ -3,7 +3,7 @@ class NotificationDecorator < ApplicationDecorator
 
   delegate :recepient
   delegate :full_name, to: :recepient, prefix: true
-  delegate :page, to: :comment, prefix: true
+  delegate :page, :body, to: :comment, prefix: true
 
   def sender_name
     comment.author_full_name

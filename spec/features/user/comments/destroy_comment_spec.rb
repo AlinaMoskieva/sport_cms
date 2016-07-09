@@ -6,7 +6,7 @@ feature "Destroy comment"  do
   let!(:site_page) { create :page, user: admin_user }
 
   context "As administrator i am able to Destroy my comment" do
-    let!(:admin_comment) { create :comment, user: admin_user, page: site_page }
+    let!(:admin_comment) { create :comment, author: admin_user, page: site_page }
 
     before do
       login_as admin_user
@@ -33,7 +33,7 @@ feature "Destroy comment"  do
   end
 
   context "As user i am able to Destroy my comment" do
-    let!(:user_comment) { create :comment, user: user, page: site_page }
+    let!(:user_comment) { create :comment, author: user, page: site_page }
 
     before do
       login_as user

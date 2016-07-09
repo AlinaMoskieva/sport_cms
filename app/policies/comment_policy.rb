@@ -15,6 +15,6 @@ class CommentPolicy < ApplicationPolicy
 
   def owner?
     return false unless @user.present?
-    @record.user == @user
+    @record.author == @user
   end
 end

@@ -8,16 +8,14 @@ class CommentsController < ApplicationController
     authorize comment
 
     page = Page.find(params[:page_id])
-    comment.user = current_user
+    comment.author = current_user
     comment.page_id = page.id
 
     respond_to do |format|
       if comment.save
-
         notify if comment.body.include?('@')
         add_hashtags if comment.body.include?('#')
         format.html{ redirect_to comment.page, notice: 'Comment was successfully created.' }
-
       else
         format.html { render :new }
       end

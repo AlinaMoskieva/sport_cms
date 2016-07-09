@@ -8,7 +8,7 @@
     - notifications.each do |notification|
       .row
         .medium-1.columns
-          = image_tag notification.photo
+          = image_tag notification.sender_photo
         .medium-6.columns
           .row
             .medium-1.columns
@@ -25,7 +25,7 @@
               span
                 i.fi-comment
             .medium-8.columns
-              = notification.comment
+              = notification.comment_body.html_safe
             .medium-3.columns
               = link_to page_path(notification.comment_page) do
                 i.fi-arrow-right
