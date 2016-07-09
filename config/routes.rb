@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
+  mount Ckeditor::Engine => "/ckeditor"
 
   root to: "pages#index"
   resources :comments
@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :profile, only: [:index]
   resources :category_subscriptions
   resources :users_category
-  resources :results, only: [:index, :new, :create, :destroy]
-  resources :notifications, only: [:index, :new, :create, :destroy]
+  resources :results
+  resources :notifications, only: %i(index create destroy)
   resources :hashtags
 
   namespace :admin do

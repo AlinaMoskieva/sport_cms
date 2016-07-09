@@ -8,10 +8,6 @@ class UserDecorator < ApplicationDecorator
     "#{object.full_name} (#{object.email})"
   end
 
-  def full_name
-    object.full_name
-  end
-
   def administrator?
     object.administrator?
   end

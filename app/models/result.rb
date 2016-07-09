@@ -15,7 +15,7 @@ class Result
   field :second_team_members, type: String
   field :first_team_country, type: String
   field :second_team_country, type: String
-  field :sportsmen,type: String
+  field :sportsmen, type: String
   field :competition, type: String
   field :page_id, type: String
 
@@ -24,7 +24,5 @@ class Result
   has_one :page
   has_one :category
 
-
   paginates_per 5
-
 end

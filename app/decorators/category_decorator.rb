@@ -19,6 +19,5 @@ class CategoryDecorator < ApplicationDecorator
     object.pages.each do |c|
       viewed += c.visitors
     end
-    return viewed
   end
 end

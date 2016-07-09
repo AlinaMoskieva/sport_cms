@@ -22,6 +22,6 @@ class ResultDecorator < ApplicationDecorator
 
   def individual_sport?
     object.first_team.blank? || object.second_team.blank? ||
-    object.first_team_result.blank? || object.second_team_result.blank?
+      object.first_team_result.blank? || object.second_team_result.blank?
   end
 end
