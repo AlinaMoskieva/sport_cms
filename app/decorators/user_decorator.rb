@@ -1,8 +1,11 @@
 class UserDecorator < ApplicationDecorator
+  decorates_association :pages
+
+  private :pages
+
   delegate :id, :full_name, :email, :role, :image, :subscribed_categories, :pages
   delegate to: :pages, prefix: true
 
-  decorates_association :pages
 
   def full_name_with_email
     "#{object.full_name} (#{object.email})"
