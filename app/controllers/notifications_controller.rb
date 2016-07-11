@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
 
   def notification_finder
     Notification.where(user_id: current_user.id)
-      .includes(:comment)
+      .includes(comment: [:page, :author])
       .includes(:recepient)
       .order(created_at: :desc)
       .page params[:page]
