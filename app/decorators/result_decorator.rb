@@ -1,8 +1,8 @@
 class ResultDecorator < ApplicationDecorator
   delegate :country, :result, :prize, :sportsmen, :first_team, :second_team,
     :first_team_result, :second_team_result, :first_team_members,
-    :second_team_members, :first_team_country, :second_team_country, :competition,
-    :page_id
+    :second_team_members, :first_team_country, :second_team_country,
+    :competition, :page_id
 
   def category
     Category.find(object.category_id).category

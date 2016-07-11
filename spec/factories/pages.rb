@@ -5,5 +5,6 @@ FactoryGirl.define do
     user
     category
     visitors 2
+    comments_count 0
   end
 end

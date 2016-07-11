@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
   expose_decorated(:page, attributes: :page_params)
-  expose_decorated(:comments) { page.comments.includes(:user).page params[:page] }
+  expose_decorated(:comments) { page.comments.includes(:author).page params[:page] }
   expose_decorated(:categories) { Category.all }
 
-  expose_decorated(:users) { User.all }
+  expose_decorated(:users)
   expose(:subscribed_pages) { pages_finder }
 
   def index

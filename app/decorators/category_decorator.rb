@@ -1,12 +1,8 @@
 class CategoryDecorator < ApplicationDecorator
-  delegate :category, :id
-
-  def how_many_pages
-    object.pages.count
-  end
+  delegate :category, :id, :pages, :pages_count
 
   def content?
-    object.pages.count > 0
+    object.pages_count > 0
   end
 
   def first_letter
@@ -18,9 +14,6 @@ class CategoryDecorator < ApplicationDecorator
   end
 
   def how_many_viewed
-    viewed = 0
-    object.pages.each do |c|
-      viewed += c.visitors
-    end
+    Page.where(category_id: object.id).sum("visitors")
   end
 end

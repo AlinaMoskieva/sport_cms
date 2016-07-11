@@ -20,12 +20,10 @@ class NotificationsController < ApplicationController
     params.require(:notification).permit(:comment_id, :user_id)
   end
 
-<<<<<<< HEAD
   def notification_finder
-=======
-  def notifications_finder
->>>>>>> master
     Notification.where(user_id: current_user.id)
+      .includes(comment: [:page, :author])
+      .includes(:recepient)
       .order(created_at: :desc)
       .page params[:page]
   end

@@ -1,6 +1,6 @@
 class Notification < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :recepient, class_name: "User", foreign_key: :user_id
   belongs_to :comment
-  validates :comment_id, :user_id, presence: true
+  validates :comment, :recepient, presence: true
   paginates_per 5
 end

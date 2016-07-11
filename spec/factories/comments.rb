@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
     body "Test comment"
-    user
+    association :author, factory: :user
     page
   end
 end

@@ -1,25 +1,25 @@
 class NotificationDecorator < ApplicationDecorator
-  def sender
-    User.find(Comment.find(object.comment_id).user_id).full_name
+  decorates_association :comment
+
+  private :comment
+
+  delegate :recepient
+  delegate :full_name, to: :recepient, prefix: true
+  delegate :page, :body, to: :comment, prefix: true
+
+  def sender_name
+    comment.author_full_name
   end
 
   def sender_email
-    User.find(Comment.find(object.comment_id).user_id).email
-  end
-
-  def comment
-    Comment.find(object.comment_id).body.html_safe
+    comment.author_email
   end
 
   def date
     object.created_at.strftime("%m.%d.%Y at %I:%M%P")
   end
 
-  def photo
-    User.find(Comment.find(object.comment_id).user_id).image
-  end
-
-  def page
-    Page.find(Comment.find(object.comment_id).page_id)
+  def sender_photo
+    comment.author_image
   end
 end

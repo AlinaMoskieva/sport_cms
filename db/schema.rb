@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707133030) do
+ActiveRecord::Schema.define(version: 20160711120312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "category",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "category",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "pages_count", default: 0
   end
 
   create_table "category_subscriptions", force: :cascade do |t|
@@ -68,13 +69,14 @@ ActiveRecord::Schema.define(version: 20160707133030) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.text     "body",        null: false
-    t.integer  "user_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",                      null: false
+    t.text     "body",                       null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "category_id"
     t.integer  "visitors"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 20160707133030) do
     t.string   "nickname"
     t.text     "subscribed_categories"
     t.string   "role",                   default: "user", null: false
+    t.integer  "pages_count",            default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

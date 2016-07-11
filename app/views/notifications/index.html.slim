@@ -8,14 +8,14 @@
     - notifications.each do |notification|
       .row
         .medium-1.columns
-          = image_tag notification.photo
+          = image_tag notification.sender_photo
         .medium-6.columns
           .row
             .medium-1.columns
               span
                 i.fi-torso
             .medium-8.columns
-              ="Commenter: #{notification.sender} ( #{notification.sender_email} )"
+              ="Commenter: #{(notification.recepient_full_name)} ( #{notification.sender_email} )"
             .medium-3.columns
               = link_to(notification, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
                 i.fi-x
@@ -25,9 +25,9 @@
               span
                 i.fi-comment
             .medium-8.columns
-              = notification.comment
+              = notification.comment_body
             .medium-3.columns
-              = link_to page_path(notification.page) do
+              = link_to page_path(notification.comment_page) do
                 i.fi-arrow-right
                   | View
           .row
