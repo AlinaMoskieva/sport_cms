@@ -1,6 +1,6 @@
 class UserDecorator < ApplicationDecorator
   delegate :id, :full_name, :email, :role, :image, :subscribed_categories, :pages
-  delegate :count, to: :pages, prefix: true
+  delegate to: :pages, prefix: true
 
   decorates_association :pages
 
@@ -13,7 +13,11 @@ class UserDecorator < ApplicationDecorator
   end
 
   def pages?
-    pages_count > 0
+    object.pages_count > 0
+  end
+
+  def pages_count
+    object.pages_count
   end
 
   def subscribed?(category_id)
