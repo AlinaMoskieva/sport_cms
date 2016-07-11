@@ -18,6 +18,6 @@ class CategoryDecorator < ApplicationDecorator
   end
 
   def how_many_viewed
-    viewed = Page.where(category_id: object.id).sum("visitors")
+    Page.where(category_id: object.id).sum("visitors")
   end
 end
