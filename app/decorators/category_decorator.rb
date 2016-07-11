@@ -15,9 +15,6 @@ class CategoryDecorator < ApplicationDecorator
   end
 
   def how_many_viewed
-    viewed = 0
-    object.pages.each do |c|
-      viewed += c.visitors
-    end
+    viewed = Page.where(category_id: object.id).sum("visitors")
   end
 end
