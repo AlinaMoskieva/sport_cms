@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Create comment"  do
+feature "Create comment" do
   let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
   let!(:site_page) { create :page, user: admin_user }

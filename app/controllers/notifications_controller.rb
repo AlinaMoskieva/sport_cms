@@ -3,6 +3,7 @@ class NotificationsController < ApplicationController
 
   expose(:notification, attributes: :notification_params)
   expose_decorated(:notifications) { notification_finder }
+
   def destroy
     respond_to do |format|
       if notification.delete
@@ -19,10 +20,19 @@ class NotificationsController < ApplicationController
     params.require(:notification).permit(:comment_id, :user_id)
   end
 
+<<<<<<< HEAD
   def notification_finder
     Notification.where(user_id: current_user.id)
       .includes(comment: [:page, :author])
       .includes(:recepient)
+=======
+<<<<<<< HEAD
+  def notification_finder
+=======
+  def notifications_finder
+>>>>>>> master
+    Notification.where(user_id: current_user.id)
+>>>>>>> master
       .order(created_at: :desc)
       .page params[:page]
   end
