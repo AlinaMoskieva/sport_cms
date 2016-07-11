@@ -60,7 +60,6 @@
               - if policy(comment).update?
                = best_in_place comment, :body,
                  path: edit_comment_path(comment),
-                 display_with: lambda { |v| v.html_safe },
                  as: :textarea,
                  ok_button: "Save",
                  ok_button_class: "tiny secondary button",

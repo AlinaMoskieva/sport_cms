@@ -1,5 +1,4 @@
 class NotificationDecorator < ApplicationDecorator
-  decorates_association :comment
 
   delegate :recepient
   delegate :full_name, to: :recepient, prefix: true
@@ -20,4 +19,6 @@ class NotificationDecorator < ApplicationDecorator
   def sender_photo
     comment.author_image
   end
+
+  private decorates_association :comment
 end
