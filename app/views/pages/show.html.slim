@@ -23,17 +23,7 @@
       - if policy(page).destroy?
         = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
       '
-      - sub_policy = UserPolicy.new(current_user, page)
-      - if sub_policy.create_subscription?
-        - if  current_user.subscribed?(page.category.id)
-          = link_to "Unsubscribe", new_users_category_path(category_id: page.category.id), class: "small alert button", id: "sub link"
-          '
-        - else
-          = link_to "Subscribe", new_users_category_path(category_id: page.category.id), class: "small secondary button", id: "sub link"
-          '
-        = link_to("Back", :back, class: "small secondary button")
-      - else
-        .back_button(align="right")
+      .back_button(align="right")
           = link_to("Back", :back, class: "small radius expanded secondary  button")
   .medium-2.columns
    br

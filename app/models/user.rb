@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :notifications
 
-  serialize :subscribed_categories
-
   def administrator?
     self.admin?
   end

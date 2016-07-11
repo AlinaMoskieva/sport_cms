@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :results
   resources :notifications, only: %i(index create destroy)
   resources :hashtags
+  resources :subscriptions, only: %i(index create destroy)
 
   namespace :admin do
     resources :users
