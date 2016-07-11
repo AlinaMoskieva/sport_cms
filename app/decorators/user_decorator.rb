@@ -3,9 +3,8 @@ class UserDecorator < ApplicationDecorator
 
   private :pages
 
-  delegate :id, :full_name, :email, :role, :image, :subscribed_categories, :pages
-  delegate to: :pages, prefix: true
-
+  delegate :id, :full_name, :email, :role, :image, :subscribed_categories, :pages,
+    :pages_count
 
   def full_name_with_email
     "#{object.full_name} (#{object.email})"
@@ -17,10 +16,6 @@ class UserDecorator < ApplicationDecorator
 
   def pages?
     object.pages_count > 0
-  end
-
-  def pages_count
-    object.pages_count
   end
 
   def subscribed?(category_id)
