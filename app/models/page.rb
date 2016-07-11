@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   validates :title, :body, :user_id, :category_id, presence: true
 
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: :pages_count
   has_many :comments
   has_one :result
   has_many :hashtags

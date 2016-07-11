@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627122653) do
+ActiveRecord::Schema.define(version: 20160711095311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "category",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "category",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "pages_count", default: 0
   end
 
   create_table "category_subscriptions", force: :cascade do |t|
@@ -87,8 +88,8 @@ ActiveRecord::Schema.define(version: 20160627122653) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -104,10 +105,10 @@ ActiveRecord::Schema.define(version: 20160627122653) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
-    t.string   "role"
     t.string   "image"
-    t.text     "subscribed_categories"
     t.string   "nickname"
+    t.text     "subscribed_categories"
+    t.string   "role",                   default: "user", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
