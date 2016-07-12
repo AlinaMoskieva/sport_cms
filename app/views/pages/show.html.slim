@@ -17,14 +17,19 @@
 
     br
     .medium-11.medium-centered.columns
-      - if policy(page).update?
-        = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+      - if current_user.present?
+        - if policy(page).update?
+          = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+          '
+        - if policy(page).destroy?
+          = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
+          '
+        - if Subscription.where(category_id: page.category_id, user_id: current_user.id).empty?
+          = link_to("Subscribe", new_subscription_path(category_id: page.category.id), class: "small secondary button")
+        - else
+          = link_to("Unsubscribe", Subscription.where(category_id: page.category_id, user_id: current_user.id).first, method: :delete, class: "small alert button")
         '
-      - if policy(page).destroy?
-        = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
-      '
-      .back_button(align="right")
-          = link_to("Back", :back, class: "small radius expanded secondary  button")
+      = link_to("Back", :back, class: "small radius expanded secondary  button")
   .medium-2.columns
    br
   .medium-3.columns data-sticky-container=""
