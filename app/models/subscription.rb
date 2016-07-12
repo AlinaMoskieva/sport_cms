@@ -1,6 +1,6 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :users
+  belongs_to :user
   belongs_to :category
 
-  validates :user_id, :category_id, presence: true
+  validates :user, :category, presence: true
 end
