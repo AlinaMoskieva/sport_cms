@@ -10,12 +10,14 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+    authorize subscription, :create?
     subscription.user_id = current_user.id
     subscription.category_id = params[:category_id]
     flash[:format] = "Subscribed on #{Category.find(params[:category_id]).category}"  if subscription.save
   end
 
   def destroy
+    authorize subscription
     if subscription.destroy
       redirect_to :back
       flash[:format] = "Unsubscribed"
