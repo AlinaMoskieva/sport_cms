@@ -4,7 +4,7 @@ feature "Destroy subscription" do
   let!(:category) { create :category }
   let!(:user) { create :user, :administrator }
   let!(:site_page) { create :page, user: user, category: category }
-  let!(:subscription) {create :subscription, user: user, category: category}
+  let!(:subscription) { create :subscription, user: user, category: category }
 
   context "Logged user" do
     before do
@@ -19,9 +19,10 @@ feature "Destroy subscription" do
     scenario "can Destroy subscription" do
       expect do
         click_link "Unsubscribe"
-      end.to change{ Subscription.count }.by(-1)
+      end.to change { Subscription.count }.by(-1)
     end
   end
+
   context "As visitor" do
     it "has not link to Unsubscribe" do
       visit page_path(site_page)
