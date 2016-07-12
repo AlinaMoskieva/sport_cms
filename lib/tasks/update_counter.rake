@@ -13,6 +13,7 @@ namespace :update_counter do
 
     User.ids.each do |u|
       User.reset_counters(u, :pages)
+      User.reset_counters(u, :subscriptions)
     end
     puts "Users updates"
   end
