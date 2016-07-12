@@ -47,7 +47,7 @@ br
           = paginate pages, outer_window: 3
   .medium-1.columns
   .medium-3.columns
-    h4="Noteworthy categories (#{current_user.subscriptions.count}):"
+    h4="Noteworthy categories (#{current_user.subscriptions_count}):"
     ul
       - categories.each do |c|
         li
