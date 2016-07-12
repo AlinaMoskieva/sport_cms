@@ -4,16 +4,11 @@ class PagesController < ApplicationController
   expose_decorated(:categories) { Category.all }
 
   expose_decorated(:users)
-  expose(:subscribed_pages) { pages_finder }
 
   def index
-    if params[:format]
-      @pages = subscribed_pages.page params[:page]
-    else
-      @pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
-      @pages = @pages.where(category_id: params[:category_id]) if params[:category_id]
-      @pages = @pages.where(user_id: params[:user_id]) if params[:user_id]
-    end
+    @pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
+    @pages = @pages.where(category_id: params[:category_id]) if params[:category_id]
+    @pages = @pages.where(user_id: params[:user_id]) if params[:user_id]
   end
 
   def new
@@ -70,12 +65,6 @@ class PagesController < ApplicationController
   end
 
   private
-
-  def pages_finder
-    Page.includes(:category)
-      .includes(:user)
-      .where(category_id: current_user.subscribed_categories)
-  end
 
   def add_hashtags
     hashes = page.body.scan(/#\w+/)

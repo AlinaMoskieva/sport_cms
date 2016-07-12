@@ -1,1 +1,55 @@
-h2= "Hello"
+br
+.row
+  .medium-8.columns
+    h3(align="center")="My subscriptions"
+    br
+  .medium-8.columns
+    - pages.each do |page|
+      .column
+        h5(align="center")
+          - if page.title.length > 79
+            = link_to page.title.slice(0 .. 79).concat(" ..."), page
+          - else
+            = link_to page.title, page
+      p
+        .medium-6.columns
+          span
+            i.fi-torso
+              = link_to(page.user.full_name, pages_path(user_id: page.user.id))
+        .medium-6.columns
+          span
+            i.fi-calendar
+              = page.data_format
+      .column
+        p
+          - if page.body.length > 330
+            = page.body.html_safe.slice(0 .. 330).concat(" ...")
+          - else
+            = page.body.html_safe
+        .medium-5.columns
+          span
+            i.fi-price-tag
+              = "Category: "
+              = link_to(page.category.category, pages_path(category_id: page.category.id) )
+        .medium-5.columns
+          span
+            i.fi-torsos-all-female
+              = "Viewed #{page.visitors} times"
+        .medium-2.columns
+          span
+            i.fi-comments
+              = page.comments_count
+        br
+        hr/
+    .medium-8.medium-centred.columns
+      ul(class="pagination text-center" role="navigation" aria-label="Pagination" )
+        li
+          = paginate pages, outer_window: 3
+  .medium-1.columns
+  .medium-3.columns
+    h4="Noteworthy categories (#{current_user.subscriptions.count}):"
+    ul
+      - categories.each do |c|
+        li
+          = link_to c.category, pages_path(category_id: c.id)
+
