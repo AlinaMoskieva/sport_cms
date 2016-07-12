@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => "/ckeditor"
 
-  root to: "pages#index"
   resources :comments
   resources :pages
   resources :categories, only: [:index]
@@ -11,7 +10,7 @@ Rails.application.routes.draw do
   resources :results
   resources :notifications, only: %i(index create destroy)
   resources :hashtags
-  resources :subscriptions, only: %i(index new create destroy)
+  resources :subscriptions, only: %i(index destroy)
 
   namespace :admin do
     resources :users
@@ -20,7 +19,10 @@ Rails.application.routes.draw do
 
   resources :pages do
     resources :comments, shallow: true
+    resources :subscriptions, only: %i(create), module: :pages
   end
 
   devise_for :users
+
+  root to: "pages#index"
 end
