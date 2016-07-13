@@ -2,13 +2,14 @@ class PagesController < ApplicationController
   expose_decorated(:page, attributes: :page_params)
   expose_decorated(:comments) { page.comments.includes(:author).page params[:page] }
   expose_decorated(:categories) { Category.all }
+  expose(:pages)
 
   expose_decorated(:users)
 
   def index
-    @pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
-    @pages = @pages.where(category_id: params[:category_id]) if params[:category_id]
-    @pages = @pages.where(user_id: params[:user_id]) if params[:user_id]
+    self.pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
+    self.pages = pages.where(category_id: params[:category_id]) if params[:category_id]
+    self.pages = pages.where(user_id: params[:user_id]) if params[:user_id]
   end
 
   def new
