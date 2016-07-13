@@ -22,10 +22,7 @@ br
               = page.data_format
       .column
         p
-          - if page.body.length > 330
-            = page.body.html_safe.slice(0 .. 330).concat(" ...")
-          - else
-            = page.body.html_safe
+          = page.preview_body
         .medium-5.columns
           span
             i.fi-price-tag
