@@ -16,6 +16,6 @@ class PagePolicy < ApplicationPolicy
   private
 
   def owner?
-    user.present? && user.administrator? && record.user == user
+    user.admin? && record.user == user
   end
 end
