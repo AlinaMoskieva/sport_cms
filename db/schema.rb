@@ -95,6 +95,9 @@ ActiveRecord::Schema.define(version: 20160712133300) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "subscriptions", ["category_id"], name: "index_subscriptions_on_category_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",     null: false
     t.string   "encrypted_password",     default: "",     null: false
@@ -124,4 +127,6 @@ ActiveRecord::Schema.define(version: 20160712133300) do
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "subscriptions", "categories"
+  add_foreign_key "subscriptions", "users"
 end
