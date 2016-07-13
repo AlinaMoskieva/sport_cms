@@ -7,10 +7,7 @@ br
     - pages.each do |page|
       .column
         h5(align="center")
-          - if page.title.length > 79
-            = link_to page.title.slice(0 .. 79).concat(" ..."), page
-          - else
-            = link_to page.title, page
+          = link_to  page.shorten_title, page
       p
         .medium-6.columns
           span

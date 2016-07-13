@@ -6,8 +6,8 @@
   .medium-7.columns
     - pages.each do |page|
       .column
-        h5
-          =(link_to page.title, page)
+        h5(align="center")
+          =(link_to page.shorten_title, page)
       p
         .medium-6.columns
           span

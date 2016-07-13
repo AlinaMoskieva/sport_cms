@@ -15,4 +15,12 @@ class PageDecorator < ApplicationDecorator
       object.body.html_safe
     end
   end
+
+  def shorten_title
+    if object.title.length > 79
+      object.title.slice(0 .. 79).concat(" ...")
+    else
+      object.title
+    end
+  end
 end
