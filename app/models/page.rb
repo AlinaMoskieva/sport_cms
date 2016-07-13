@@ -7,8 +7,4 @@ class Page < ActiveRecord::Base
   has_many :comments
   has_one :result
   has_many :hashtags
-
-  def data_format
-    created_at.strftime("%m/%d/%Y at %I:%M%p ")
-  end
 end

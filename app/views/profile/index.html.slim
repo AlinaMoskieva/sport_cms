@@ -18,7 +18,7 @@ br
       .row
         .medium-10.columns
           ul
-          - subscriptions.each do |sub|
+          - categories.each do |sub|
             li
               = sub.category
     .panel
@@ -33,21 +33,21 @@ br
             p
               span
                 i.fi-torso
-                  = page.user.full_name
+                  = page.user_full_name
               span
                 i.fi-calendar
                   = page.data_format
 
             p
-              = page.body.slice(0 .. 330).html_safe.concat(" ...")
+              = page.preview_body
             span
               i.fi-price-tag
                 = "Tags:  "
-                = link_to(page.category.category, pages_path(category_id: page.category.id) )
+                = link_to(page.category_category, pages_path(category_id: page.category.id) )
             .right align="right "
               span
                 i.fi-comments
 
-                  = page.comments.count
+                  = page.comments_count
             hr/
         = paginate pages, outer_window: 3

@@ -12,20 +12,19 @@
         .medium-6.columns
           span
             i.fi-torso
-              = link_to(page.user.full_name, pages_path(user_id: page.user.id))
+              = link_to(page.user_full_name, pages_path(user_id: page.user_id))
         .medium-6.columns
           span
             i.fi-calendar
               = page.data_format
       .column
         p
-          = page.body.slice(0 .. 330).html_safe.concat(" ...")
-
+          = page.preview_body
         .medium-5.columns
           span
             i.fi-price-tag
             = "Tags:  "
-            = link_to(page.category.category, pages_path(category_id: page.category.id) )
+            = link_to(page.category_category, pages_path(category_id: page.category.id) )
         .medium-5.columns
           span
             i.fi-torsos-all-female
@@ -33,7 +32,7 @@
         .medium-2.columns
           span
             i.fi-comments
-              = page.comments.count
+              = page.comments_count
         br
         hr/
     .medium-10.medium-centred.columns
