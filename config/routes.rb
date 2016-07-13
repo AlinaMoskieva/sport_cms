@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :results
   resources :notifications, only: %i(index create destroy)
   resources :hashtags
-  resources :subscriptions, only: %i(destroy)
 
   namespace :admin do
     resources :users
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :pages do
     resources :comments, shallow: true
-    resources :subscriptions, only: %i(create), module: :pages
+    resources :subscriptions, only: %i(create destroy), module: :pages
   end
 
   resources :user do

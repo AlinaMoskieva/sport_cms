@@ -8,9 +8,12 @@ module Pages
       authorize subscription, :create?
       subscription.user = current_user
       subscription.category = page.category
-      flash[:notice] = "Subscribed on #{subscription.category.category}"
-      subscription.save
-      redirect_to :back
+      respond_with subscription, location: -> { page } if subscription.save
+    end
+
+    def destroy
+      authorize subscription
+      respond_with subscription, location: -> { page } if subscription.destroy
     end
   end
 end

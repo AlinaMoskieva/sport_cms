@@ -3,9 +3,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     authorize subscription
-    if subscription.destroy
-      redirect_to :back
-      flash[:notice] = "Unsubscribed"
-    end
+    page = Page.find(subscription.page.id)
+    respond_with subscription, location: -> { page } if subscription.destroy
   end
 end
