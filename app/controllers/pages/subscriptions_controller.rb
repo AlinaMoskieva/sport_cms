@@ -1,5 +1,6 @@
 module Pages
   class SubscriptionsController < ApplicationController
+    respond_to :html
     expose(:page)
     expose(:subscriptions)
     expose(:subscription)

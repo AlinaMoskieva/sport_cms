@@ -9,8 +9,8 @@ module Users
 
     def subscribed_pages_finder
       Page.includes(:user).includes(:category)
-       .where("category_id IN (?)", user.subscriptions.map(&:category_id))
-       .page params[:page]
+        .where("category_id IN (?)", user.subscriptions.map(&:category_id))
+        .page params[:page]
     end
   end
 end
