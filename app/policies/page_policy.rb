@@ -3,6 +3,10 @@ class PagePolicy < ApplicationPolicy
     owner?
   end
 
+  def subscribed?
+    Subscription.where(category_id: record.category.id, user_id: user.id).empty?
+  end
+
   def update?
     owner?
   end
