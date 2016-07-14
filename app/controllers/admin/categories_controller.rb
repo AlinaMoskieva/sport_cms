@@ -5,23 +5,13 @@ module Admin
     before_action :authorize_resource
 
     def create
-      respond_to do |format|
-        if category.save
-          format.html { redirect_to admin_categories_url, notice: "Created." }
-        else
-          format.html { redirect_to admin_categories_url, notice: "Errors." }
-        end
-      end
+      category.save
+      respond_with category, location: -> { admin_categories_url }
     end
 
     def destroy
-      respond_to do |format|
-        if category.destroy
-          format.html { redirect_to admin_categories_url, notice: "Deleted." }
-        else
-          format.html { redirect_to admin_categories_url, notice: "Errors." }
-        end
-      end
+      category.destroy
+      respond_with category, location: -> { admin_categories_url }
     end
 
     private
