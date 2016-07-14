@@ -9,18 +9,10 @@ class PageDecorator < ApplicationDecorator
   end
 
   def preview_body
-    if object.body.length > 330
-      object.body.html_safe.slice(0..330).concat(" ...")
-    else
-      object.body.html_safe
-    end
+    object.body.html_safe.truncate(230)
   end
 
   def shorten_title
-    if object.title.length > 79
-      object.title.slice(0..79).concat(" ...")
-    else
-      object.title
-    end
+    object.title.truncate(79)
   end
 end
