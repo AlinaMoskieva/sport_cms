@@ -7,14 +7,8 @@ module Admin
 
     def update
       user.update(user_params)
-
-      respond_to do |format|
-        if user.save
-          format.html { redirect_to admin_users_path, notice: "Update." }
-        else
-          format.tml { render :edit, notice: "Something wrong." }
-        end
-      end
+      user.save
+      respond_with user, location: admin_users_path
     end
 
     def show
