@@ -24,19 +24,9 @@ class CommentsController < ApplicationController
 
   def update
     authorize comment
-
-    respond_to do |format|
-      if comment.save
-        add_hashtags if comment.body.include?("#")
-        format.html { redirect_to comment.page, notice: "Comment was successfully updated." }
-        format.js
-        format.json { respond_with_bip(comment) }
-      else
-        format.html { render :edit }
-        format.js
-        format.json { respond_with_bip(comment) }
-      end
-    end
+    add_hashtags if comment.body.include?("#")
+    comment.save
+    respond_with comment, location: comment.page
   end
 
   def destroy
