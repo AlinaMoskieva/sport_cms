@@ -3,7 +3,7 @@ class UserDecorator < ApplicationDecorator
 
   private :pages
 
-  delegate :id, :full_name, :email, :role, :image, :subscribed_categories, :pages,
+  delegate :id, :full_name, :email, :role, :image, :pages,
     :pages_count, :subscriptions_count, :subscribed?
 
   def full_name_with_email
