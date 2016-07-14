@@ -8,25 +8,14 @@ class ResultsController < ApplicationController
 
   def create
     authorize result
-
-    respond_with(result) do |format|
-      if result.save
-        format.html { redirect_to results_path, notice: "Result was created!" }
-      else
-        format.html { render "new" }
-      end
-    end
+    result.save
+    respond_with result, location: results_path
   end
 
   def destroy
     authorize result
-    respond_with(result) do |format|
-      if result.destroy
-        format.html { redirect_to :back, notice: "Result was  deleted" }
-      else
-        format.html { render results_path }
-      end
-    end
+    result.destroy
+    respond_with result, location: results_path
   end
 
   def result_params
