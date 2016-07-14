@@ -3,4 +3,5 @@ class Category < ActiveRecord::Base
 
   has_many :pages
   has_many :results
+  has_many :subscriptions, dependent: :destroy
 end

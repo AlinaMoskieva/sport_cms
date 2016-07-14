@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
 
   belongs_to :user, counter_cache: :pages_count
   belongs_to :category, counter_cache: :pages_count
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_one :result
   has_many :hashtags
 end

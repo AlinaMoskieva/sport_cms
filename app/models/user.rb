@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :pages
   has_many :comments
-  has_many :notifications
-  has_many :subscriptions
+  has_many :notifications, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
 
   def administrator?
     self.admin?
