@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def administrator?
     self.admin?
   end
+
+  def subscribed?(category_id)
+    Subscription.where(category_id: category_id, user_id: self.id).empty?
+  end
 end

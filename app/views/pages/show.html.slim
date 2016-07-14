@@ -28,7 +28,7 @@
           - if policy(page).destroy?
             = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
             '
-          - if policy(page).subscribed?
+          - if current_user.subscribed?(page.category_id)
             = link_to("Subscribe", page_subscriptions_path(page), method: :post, class: "small secondary button")
           - else
             = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
