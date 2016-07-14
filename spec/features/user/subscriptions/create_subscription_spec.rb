@@ -5,7 +5,7 @@ feature "Create subscription" do
   let!(:user) { create :user, :administrator }
   let!(:site_page) { create :page, user: user }
 
-  context "Logged user" do
+  describe "create" do
     before do
       login_as user
       visit page_path(site_page)
@@ -20,13 +20,6 @@ feature "Create subscription" do
         click_link "Subscribe"
       end.to change { Subscription.count }.by(1)
       expect(page).to have_link("Unsubscribe")
-    end
-  end
-
-  context "As visitor" do
-    it "has not link to Subscribe" do
-      visit page_path(site_page)
-      expect(page).not_to have_link("Subscribe")
     end
   end
 end

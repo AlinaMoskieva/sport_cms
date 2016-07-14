@@ -7,19 +7,9 @@ feature "Destroy subscription" do
   let!(:subscription) { create :subscription, user: user, category: category }
 
   describe "Destroy" do
-    before do
-      login_as user
+    it "has not link to Unsubscribe" do
       visit page_path(site_page)
-    end
-
-    it "has link to Unsubscribe" do
-      expect(page).to have_link("Unsubscribe")
-    end
-
-    scenario "can Destroy subscription" do
-      expect do
-        click_link "Unsubscribe"
-      end.to change { Subscription.count }.by(-1)
+      expect(page).not_to have_link("Unsubscribe")
     end
   end
 end

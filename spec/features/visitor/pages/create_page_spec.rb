@@ -1,11 +1,8 @@
 require "rails_helper"
 
 feature "Create page" do
-  let!(:user) { create :user, :user }
-
-  context "Logged as user" do
+  context "as visitor" do
     background do
-      login_as user
       visit root_path
     end
 
