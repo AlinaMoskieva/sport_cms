@@ -22,42 +22,23 @@ class PagesController < ApplicationController
 
   def create
     authorize page, :create?
-
     page.user = current_user
-
-    respond_to do |format|
-      if page.save
-        add_hashtags if page.body.include?("#")
-        format.html { redirect_to page, notice: "Page was successfully created." }
-      else
-        format.html { render :new }
-      end
-    end
+    add_hashtags if page.body.include?("#")
+    page.save
+    respond_with page, location: page
   end
 
   def update
     authorize page, :update?
-
-    respond_to do |format|
-      if page.save
-        add_hashtags if page.body.include?("#")
-        format.html { redirect_to page, notice: "Page was successfully updated." }
-      else
-        format.html { render :edit }
-      end
-    end
+    add_hashtags if page.body.include?("#")
+    page.save
+    respond_with page, location: -> { page }
   end
 
   def destroy
     authorize page, :destroy?
-
-    respond_to do |format|
-      if page.destroy
-        format.html { redirect_to root_path, notice: "Page was successfully deleted." }
-      else
-        format.html { render :edit }
-      end
-    end
+    page.destroy
+    respond_with page, location: root_path
   end
 
   def page_params
