@@ -41,14 +41,8 @@ class CommentsController < ApplicationController
 
   def destroy
     authorize comment
-
-    respond_to do |format|
-      if comment.delete
-        format.html { redirect_to root_path, notice: "Comment was successfully deleted." }
-      else
-        format.html { render :edit }
-      end
-    end
+    comment.destroy
+    respond_with comment, location: comment.page
   end
 
   private
