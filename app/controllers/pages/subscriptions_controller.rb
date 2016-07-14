@@ -9,12 +9,14 @@ module Pages
       authorize subscription, :create?
       subscription.user = current_user
       subscription.category = page.category
-      respond_with subscription, location: -> { page } if subscription.save
+      subscription.save
+      respond_with subscription, location: -> { page }
     end
 
     def destroy
       authorize subscription
-      respond_with subscription, location: -> { page } if subscription.destroy
+      subscription.destroy
+      respond_with subscription, location: -> { page }
     end
   end
 end
