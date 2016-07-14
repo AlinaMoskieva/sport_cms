@@ -1,13 +1,7 @@
 class HashtagsController < ApplicationController
   expose(:hashtag, attributes: :hashtag_params)
   expose(:hashtags) { Hashtag.all }
-  expose(:pages) { pages_finder }
-
-  def index
-  end
-
-  def show
-  end
+  expose_decorated(:pages) { pages_finder }
 
   private
 
