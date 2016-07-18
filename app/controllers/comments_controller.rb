@@ -10,45 +10,23 @@ class CommentsController < ApplicationController
     page = Page.find(params[:page_id])
     comment.author = current_user
     comment.page_id = page.id
-
-    respond_to do |format|
-      if comment.save
-        notify if comment.body.include?("@")
-        add_hashtags if comment.body.include?("#")
-        format.html { redirect_to comment.page, notice: "Comment was successfully created." }
-      else
-        format.html { render :new }
-      end
-    end
+    comment.save
+    notify if comment.body.include?("@")
+    add_hashtags if comment.body.include?("#")
+    respond_with comment, location: comment.page
   end
 
   def update
     authorize comment
-
-    respond_to do |format|
-      if comment.save
-        add_hashtags if comment.body.include?("#")
-        format.html { redirect_to comment.page, notice: "Comment was successfully updated." }
-        format.js
-        format.json { respond_with_bip(comment) }
-      else
-        format.html { render :edit }
-        format.js
-        format.json { respond_with_bip(comment) }
-      end
-    end
+    add_hashtags if comment.body.include?("#")
+    comment.save
+    respond_with comment, location: comment.page
   end
 
   def destroy
     authorize comment
-
-    respond_to do |format|
-      if comment.delete
-        format.html { redirect_to root_path, notice: "Comment was successfully deleted." }
-      else
-        format.html { render :edit }
-      end
-    end
+    comment.destroy
+    respond_with comment, location: comment.page
   end
 
   private

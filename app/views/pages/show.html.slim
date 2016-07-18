@@ -1,100 +1,97 @@
 .row
-  .medium-7.columns
-    h2 align="center"
-     = page.title
-  .medium-7.columns
-    p
-      = page.body.html_safe
-    .left(align="left")
-      span
-        i.fi-bookmark
-          = "Theme:"
-          = link_to(page.category.category, pages_path(category_id: page.category.id))
-    .rigth(align="right")
-      span
-        i.fi-torsos-all-female
-          = "Viewed #{page.visitors} times"
-
+  .medium-8.columns
     br
-    .medium-11.medium-centered.columns
-      - if policy(page).update?
-        = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
-        '
-      - if policy(page).destroy?
-        = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
-      '
-      - sub_policy = UserPolicy.new(current_user, page)
-      - if sub_policy.create_subscription?
-        - if  current_user.subscribed?(page.category.id)
-          = link_to "Unsubscribe", new_users_category_path(category_id: page.category.id), class: "small alert button", id: "sub link"
+    h2 align="center"
+      = page.title
+    br
+.row
+  .medium-9.columns
+    .medium-11.columns
+      p
+        = page.body.html_safe
+      .left(align="left")
+        span
+          i.fi-bookmark
+            = "Theme:"
+            = link_to(page.category.category, pages_path(category_id: page.category.id))
+      .rigth(align="right")
+        span
+          i.fi-torsos-all-female
+            = "Viewed #{page.visitors} times"
+
+      br
+      .medium-11.medium-centered.columns
+        - if current_user.present?
+          - if policy(page).update?
+            = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+            '
+          - if policy(page).destroy?
+            = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
+            '
+          - if current_user.subscribed?(page.category_id)
+            = link_to("Subscribe", page_subscriptions_path(page), method: :post, class: "small secondary button")
+          - else
+            = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
           '
-        - else
-          = link_to "Subscribe", new_users_category_path(category_id: page.category.id), class: "small secondary button", id: "sub link"
-          '
-        = link_to("Back", :back, class: "small secondary button")
-      - else
-        .back_button(align="right")
-          = link_to("Back", :back, class: "small radius expanded secondary  button")
-  .medium-2.columns
-   br
-  .medium-3.columns data-sticky-container=""
-    = render "right_menu"
-  .row
-   .medium-7.columns
-     p
-       h4="Comments (#{page.comments_count})"
-       = paginate comments
-       hr/
-       - comments.each do |comment|
-         .row
-           .medium-1.columns
-             span
-              i.fi-torso
-           .medium-11.columns
-              = comment.author_full_name
-         .row
-           .medium-1.columns
-             span
-               i.fi-comment
-           .medium-11.columns
-              - if policy(comment).update?
-               = best_in_place comment, :body,
-                 path: edit_comment_path(comment),
-                 as: :textarea,
-                 ok_button: "Save",
-                 ok_button_class: "tiny secondary button",
-                 cancel_button: "Cancel",
-                 cancel_button_class: "tiny alert button"
-              - else
-               = comment.body
-         .row
-           .medium-1.columns
-             span
-               i.fi-clock
-           .medium-6.columns
-             = comment.date
-           .medium-2.columns
-              - policy = CommentPolicy.new(current_user, comment)
-              - if policy.destroy?
-                span
-                  i.fi-trash
-                    = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
-         hr/
+        = link_to("Back", :back, class: "small radius expanded secondary  button")
+    .row
+     .medium-11.columns
        p
-        strong Add a comment
-        - policy = CommentPolicy.new(current_user, page)
-        - if policy.create?
-          = form_for([page, Comment.new(page_id: page.id)]) do |f|
+         h4="Comments (#{page.comments_count})"
+         = paginate comments
+         hr/
+         - comments.each do |comment|
+           .row
+             .medium-1.columns
+               span
+                i.fi-torso
+             .medium-11.columns
+                = comment.author_full_name
+           .row
+             .medium-1.columns
+               span
+                 i.fi-comment
+             .medium-11.columns
+                - if policy(comment).update?
+                 = best_in_place comment, :body,
+                   path: edit_comment_path(comment),
+                   as: :textarea,
+                   ok_button: "Save",
+                   ok_button_class: "tiny secondary button",
+                   cancel_button: "Cancel",
+                   cancel_button_class: "tiny alert button"
+                - else
+                 = comment.body
+           .row
+             .medium-1.columns
+               span
+                 i.fi-clock
+             .medium-6.columns
+               = comment.date
+             .medium-2.columns
+                - policy = CommentPolicy.new(current_user, comment)
+                - if policy.destroy?
+                  span
+                    i.fi-trash
+                      = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
+           hr/
+         p
+          strong Add a comment
+          - policy = CommentPolicy.new(current_user, page)
+          - if policy.create?
+            = form_for([page, Comment.new(page_id: page.id)]) do |f|
+              p
+                strong Commenter:
+                = current_user.email
+              p
+                strong Comment
+              br
+              = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
+              p
+              = f.button :submit , class:"secondary small button"
+          - else
             p
-              strong Commenter:
-              = current_user.email
-            p
-              strong Comment
-            br
-            = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
-            p
-            = f.button :submit , class:"secondary small button"
-        - else
-          p
-            .panel(class="callout")
-              h6="You should sign in for have ability to add comments"
+              .panel(class="callout")
+                h6="You should sign in for have ability to add comments"
+  .medium-3.columns data-sticky-container=""
+      = render "right_menu"

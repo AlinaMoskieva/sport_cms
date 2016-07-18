@@ -7,14 +7,6 @@ class UserPolicy < ApplicationPolicy
     admin?
   end
 
-  def create_subscription?
-    user.present?
-  end
-
-  def destroy_subscription?
-    user.present?
-  end
-
   def update?
     admin?
   end

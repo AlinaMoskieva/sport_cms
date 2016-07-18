@@ -4,28 +4,27 @@
       = "Sport news"
     br
   .medium-7.columns
-    - @pages.each do |page|
+    - pages.each do |page|
       .column
-        h5
-          =(link_to page.title, page)
+        h5(align="center")
+          =(link_to page.shorten_title, page)
       p
         .medium-6.columns
           span
             i.fi-torso
-              = link_to(page.user.full_name, pages_path(user_id: page.user.id))
+              = link_to(page.user_full_name, pages_path(user_id: page.user_id))
         .medium-6.columns
           span
             i.fi-calendar
               = page.data_format
       .column
         p
-          = page.body.slice(0 .. 330).html_safe.concat(" ...")
-
+          = page.preview_body
         .medium-5.columns
           span
             i.fi-price-tag
             = "Tags:  "
-            = link_to(page.category.category, pages_path(category_id: page.category.id) )
+            = link_to(page.category_category, pages_path(category_id: page.category.id) )
         .medium-5.columns
           span
             i.fi-torsos-all-female
@@ -33,13 +32,13 @@
         .medium-2.columns
           span
             i.fi-comments
-              = page.comments.count
+              = page.comments_count
         br
         hr/
     .medium-10.medium-centred.columns
       ul(class="pagination text-center" role="navigation" aria-label="Pagination" )
         li
-          = paginate @pages, outer_window: 3
+          = paginate pages, outer_window: 3
   .medium-3.columns data-sticky-container=""
     = render "right_menu"
 

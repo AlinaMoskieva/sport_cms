@@ -5,13 +5,8 @@ class NotificationsController < ApplicationController
   expose_decorated(:notifications) { notification_finder }
 
   def destroy
-    respond_to do |format|
-      if notification.delete
-        format.html { redirect_to notifications_path, notice: "Notification was successfully deleted" }
-      else
-        format.html { render :back }
-      end
-    end
+    notification.delete
+    respond_with notification, location: -> { notifications_path }
   end
 
   private

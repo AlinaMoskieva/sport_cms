@@ -5,7 +5,6 @@ FactoryGirl.define do
     password "123456"
     password_confirmation { password }
     confirmed_at 1.hour.ago
-    subscribed_categories { [] }
     nickname { (Faker::Name.first_name).downcase  }
     pages_count 0
   end

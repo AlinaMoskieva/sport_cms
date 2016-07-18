@@ -13,11 +13,14 @@ class User < ActiveRecord::Base
 
   has_many :pages
   has_many :comments
-  has_many :notifications
-
-  serialize :subscribed_categories
+  has_many :notifications, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
 
   def administrator?
     self.admin?
+  end
+
+  def subscribed?(category_id)
+    Subscription.where(category_id: category_id, user_id: self.id).empty?
   end
 end
