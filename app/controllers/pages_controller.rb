@@ -23,16 +23,14 @@ class PagesController < ApplicationController
   def create
     authorize page, :create?
     page.user = current_user
-    add_hashtags if page.body.include?("#")
-    page.save
+    CreatePage.call(page: page)
     respond_with page, location: page
   end
 
   def update
     authorize page, :update?
-    add_hashtags if page.body.include?("#")
-    page.save
-    respond_with page, location: -> { page }
+    CreatePage.call(page: page)
+    respond_with page, location: page
   end
 
   def destroy
@@ -41,32 +39,9 @@ class PagesController < ApplicationController
     respond_with page, location: root_path
   end
 
-  def page_params
-    params.require(:page).permit(:title, :body, :user_id, :category_id, :visitors)
-  end
-
   private
 
-  def add_hashtags
-    hashes = page.body.scan(/#\w+/)
-    hashes.uniq!
-
-    hashes.each do |hash|
-      hash = hash.slice(1..hash.length)
-      hashtag = Hashtag.where(hashtag: hash).first
-
-      if hashtag.nil?
-        h = Hashtag.new
-        h.hashtag = hash
-        h.pages = []
-        h.pages << page.id
-        h.save
-      else
-        unless hashtag.pages.include?(page.id)
-          hashtag.pages << page.id
-          hashtag.save
-        end
-      end
-    end
+  def page_params
+    params.require(:page).permit(:title, :body, :user_id, :category_id, :visitors)
   end
 end
