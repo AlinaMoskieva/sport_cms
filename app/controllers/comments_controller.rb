@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
     page = Page.find(params[:page_id])
     comment.author = current_user
     comment.page_id = page.id
+    comment.save
     notify if comment.body.include?("@")
     add_hashtags if comment.body.include?("#")
-    comment.save
     respond_with comment, location: comment.page
   end
 

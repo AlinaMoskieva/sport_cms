@@ -7,7 +7,6 @@ module Admin
 
     def update
       user.update(user_params)
-      user.save
       respond_with user, location: admin_users_path
     end
 
