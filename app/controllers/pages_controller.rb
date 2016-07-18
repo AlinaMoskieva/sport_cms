@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   expose_decorated(:users)
 
   def index
-    self.pages = Page.includes(:category).includes(:user).order(created_at: :desc).page params[:page]
+    self.pages = Page.includes(:category, :user).order(created_at: :desc).page params[:page]
     self.pages = pages.where(category_id: params[:category_id]) if params[:category_id]
     self.pages = pages.where(user_id: params[:user_id]) if params[:user_id]
   end
