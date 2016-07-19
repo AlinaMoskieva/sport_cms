@@ -10,13 +10,13 @@ class CommentsController < ApplicationController
     page = Page.find(params[:page_id])
     comment.author = current_user
     comment.page_id = page.id
-    CreateComment.call(comment: comment)
+    Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
   end
 
   def update
     authorize comment
-    CreateComment.call(comment: comment)
+    Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
   end
 

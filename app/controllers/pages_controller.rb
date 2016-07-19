@@ -23,13 +23,13 @@ class PagesController < ApplicationController
   def create
     authorize page, :create?
     page.user = current_user
-    CreatePage.call(page: page)
+    Pages::Submit.call(page: page)
     respond_with page, location: page
   end
 
   def update
     authorize page, :update?
-    CreatePage.call(page: page)
+    Pages::Submit.call(page: page)
     respond_with page, location: page
   end
 
