@@ -18,7 +18,8 @@ module Hashtags
 
     def hash_init
       hashes.each do |hash|
-        init(Hashtag.where(hashtag: hash.slice(1..hash.length)).first, hash)
+        hash = hash.slice(1..hash.length)
+        init(Hashtag.where(hashtag: hash).first, hash)
       end
     end
 
@@ -31,7 +32,7 @@ module Hashtags
     end
 
     def create_new_hash(hash)
-      Hashtag.create(hashtag: hash.slice(1..hash.length), pages: [id]) || context.fail!
+      Hashtag.create(hashtag: hash, pages: [id]) || context.fail!
     end
 
     def update_hash_info(hashtag)

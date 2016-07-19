@@ -16,7 +16,7 @@ describe Notifications::Notify do
       let!(:comment) { create :comment, author: user, body: "test" }
       subject(:result) { described_class.call(comment: comment) }
 
-      it { expect { result }.to change { user.notifications.count }.by(0) }
+      it { expect { result }.to change { Notification.count }.by(0) }
     end
   end
 end

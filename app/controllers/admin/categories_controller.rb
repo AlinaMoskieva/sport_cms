@@ -6,12 +6,12 @@ module Admin
 
     def create
       category.save
-      respond_with category, location: -> { admin_categories_url }
+      respond_with category, location: admin_categories_path
     end
 
     def destroy
       category.destroy
-      respond_with category, location: -> { admin_categories_url }
+      respond_with category, location: admin_categories_path
     end
 
     private

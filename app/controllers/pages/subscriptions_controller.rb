@@ -10,13 +10,13 @@ module Pages
       subscription.user = current_user
       subscription.category = page.category
       subscription.save
-      respond_with subscription, location: -> { page }
+      respond_with subscription, location: page
     end
 
     def destroy
       authorize subscription
       subscription.destroy
-      respond_with subscription, location: -> { page }
+      respond_with subscription, location: page
     end
   end
 end
