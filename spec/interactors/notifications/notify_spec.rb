@@ -3,7 +3,6 @@ require "rails_helper"
 describe Notifications::Notify do
   let!(:user) { create :user, :administrator }
   let!(:site_page) { create :page, user: user }
-  #let!(:comment) { create :comment, author: user, body: "@#{user.nickname}" }
 
   describe ".call" do
     context "with notifications" do
