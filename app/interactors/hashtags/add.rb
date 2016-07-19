@@ -6,7 +6,7 @@ module Hashtags
     delegate :body, :id, to: :page
 
     def call
-      hash_init unless hashes.nil?
+      hash_init
     end
 
     private
@@ -18,20 +18,25 @@ module Hashtags
 
     def hash_init
       hashes.each do |hash|
-        @hashtag = Hashtag.where(hashtag: hash.slice(1..hash.length)).first
-        if @hashtag.nil?
-          Hashtag.create(hashtag: hash.slice(1..hash.length), pages: [id])
-        else
-          update_hash_info
-        end
+        init(Hashtag.where(hashtag: hash.slice(1..hash.length)).first, hash)
       end
     end
 
-    def update_hash_info
-      unless @hashtag.pages.include?(id)
-        @hashtag.pages << id
-        @hashtag.save
+    def init(hashtag, hash)
+      if hashtag.nil?
+        create_new_hash(hash)
+      else
+        update_hash_info(hashtag) unless hashtag.pages.include?(id)
       end
+    end
+
+    def create_new_hash(hash)
+      Hashtag.create(hashtag: hash.slice(1..hash.length), pages: [id]) || context.fail!
+    end
+
+    def update_hash_info(hashtag)
+      hashtag.pages << id
+      hashtag.save || context.fail!
     end
   end
 end
