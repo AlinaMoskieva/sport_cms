@@ -4,4 +4,4 @@ ul
   - categories.each do |category|
     - if category.content?
       li
-        = link_to(category.category, pages_path(category_id: category.id))
+        = link_to(category.name_with_pages, pages_path(category_id: category.id))

@@ -21,4 +21,8 @@ class UserDecorator < ApplicationDecorator
   def image_path
     object.image.blank? ? "noavatar.png" : object.image
   end
+
+  def name_with_pages
+    "#{object.full_name} (#{object.pages_count})"
+  end
 end

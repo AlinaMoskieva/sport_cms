@@ -5,6 +5,10 @@ class CategoryDecorator < ApplicationDecorator
     object.pages_count > 0
   end
 
+  def name_with_pages
+    "#{object.category} (#{object.pages_count})"
+  end
+
   def first_letter
     object.category.slice(0)
   end

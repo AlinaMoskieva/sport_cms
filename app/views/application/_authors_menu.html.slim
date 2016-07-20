@@ -3,7 +3,7 @@ ul
   - users.each do |user|
     - if  user.pages?
       li
-        = link_to(user.full_name, pages_path(user_id: user.id))
+        = link_to(user.name_with_pages, pages_path(user_id: user.id))
 
 
 
