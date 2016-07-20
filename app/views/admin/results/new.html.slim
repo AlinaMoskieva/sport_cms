@@ -5,7 +5,7 @@
     br
 .row
   .medium-12.columns
-    = simple_form_for(result) do |f|
+    = simple_form_for([:admin, result]) do |f|
       .form-inputs
         .medium-6.medium-centered.columns
           = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )

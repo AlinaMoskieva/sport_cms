@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   resources :pages, only: %i(new update destroy index show)
   resources :categories, only: [:index]
   resources :profile, only: [:index]
-  resources :results, only: %i(index new create destroy)
+  resources :results, only: %i(index destroy show)
   resources :notifications, only: %i(index create destroy)
   resources :hashtags, only: %i(index create show)
 
   namespace :admin do
+    resources :results, only: %i(create new)
     resources :users, only: %i(update show index edit)
     resources :categories, only: %i(index create destroy)
   end
