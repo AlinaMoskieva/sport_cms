@@ -3,11 +3,11 @@ class CommentsController < ApplicationController
 
   expose(:comment, attributes: :comment_params)
   expose(:comments) { Comment.page(params[:page]).page params[:page] }
+  expose(:page)
+
+  before_action :authorize_resource
 
   def create
-    authorize comment
-
-    page = Page.find(params[:page_id])
     comment.author = current_user
     comment.page_id = page.id
     Comments::Submit.call(comment: comment)
@@ -15,13 +15,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    authorize comment
     Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
   end
 
   def destroy
-    authorize comment
     comment.destroy
     respond_with comment, location: comment.page
   end
@@ -30,5 +28,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :user_id, :page_id)
+  end
+
+  def authorize_resource
+    authorize comment
   end
 end
