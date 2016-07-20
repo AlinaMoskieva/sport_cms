@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :results, only: %i(create new)
     resources :users, only: %i(update show index edit)
     resources :categories, only: %i(index create destroy)
+    resources :masquerades, only: %i(new)
   end
 
   resources :pages do
