@@ -1,6 +1,6 @@
 class HashtagsController < ApplicationController
   expose(:hashtag, attributes: :hashtag_params)
-  expose(:hashtags) { Hashtag.all }
+  expose(:hashtags)
   expose_decorated(:pages) { pages_finder }
 
   private
