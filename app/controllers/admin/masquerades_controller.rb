@@ -1,6 +1,5 @@
 module Admin
   class MasqueradesController < ApplicationController
-
     def new
       session[:admin_id] = current_user.id
       user = User.find(params[:user_id])
