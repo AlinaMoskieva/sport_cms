@@ -10,7 +10,7 @@ feature "Create page" do
       login_as admin_user
     end
 
-    before { visit new_page_path }
+    before { visit new_admin_page_path }
 
     it "can create page" do
       expect do

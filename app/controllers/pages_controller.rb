@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   expose_decorated(:page, attributes: :page_params)
   expose_decorated(:comments) { page.comments.includes(:author).page params[:page] }
-  expose_decorated(:categories) { Category.all }
+  expose_decorated(:categories)
   expose_decorated(:pages)
   expose_decorated(:users)
 
@@ -11,20 +11,9 @@ class PagesController < ApplicationController
     self.pages = pages.where(user_id: params[:user_id]) if params[:user_id]
   end
 
-  def new
-    authorize page
-  end
-
   def show
     page.increment(:visitors)
     page.save
-  end
-
-  def create
-    authorize page, :create?
-    page.user = current_user
-    Pages::Submit.call(page: page)
-    respond_with page, location: page
   end
 
   def update

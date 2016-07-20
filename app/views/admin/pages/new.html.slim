@@ -3,7 +3,7 @@
    h2
      ="New page"
   .medium-7.columns
-    = simple_form_for(page) do |f|
+    = simple_form_for([:admin, page]) do |f|
       .form-inputs
         = f.input :title
         = "Content"
