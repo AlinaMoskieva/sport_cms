@@ -7,5 +7,9 @@ module Pages
     def call
       page.save || context.fail!
     end
+
+    def rollback
+      page.destroy
+    end
   end
 end

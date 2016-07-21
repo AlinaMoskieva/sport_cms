@@ -32,12 +32,12 @@ module Hashtags
     end
 
     def create_new_hash(hash)
-      Hashtag.create(hashtag: hash, pages: [id]) || context.fail!
+      Hashtag.create(hashtag: hash, pages: [id]) || context.fail!(message: "Create fail")
     end
 
     def update_hash_info(hashtag)
       hashtag.pages << id
-      hashtag.save || context.fail!
+      hashtag.save || context.fail!(message: "Update fail")
     end
   end
 end

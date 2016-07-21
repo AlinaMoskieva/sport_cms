@@ -7,8 +7,15 @@ module Admin
 
     def create
       page.user = current_user
-      Pages::Submit.call(page: page)
-      respond_with page, location: page
+      result = Pages::Submit.call(page: page)
+
+      respond_to do |format|
+        if result.success?
+          format.html { redirect_to page, notice: "Page created" }
+        else
+          format.html { redirect_to new_admin_page_path, notice: result.message }
+        end
+      end
     end
 
     private
