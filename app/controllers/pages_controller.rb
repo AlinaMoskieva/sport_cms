@@ -18,8 +18,14 @@ class PagesController < ApplicationController
 
   def update
     authorize page, :update?
-    Pages::Submit.call(page: page)
-    respond_with page, location: page
+    result = Pages::Submit.call(page: page)
+    respond_to do |format|
+      if result.success?
+        format.html { redirect_to page, notice: "Page updated" }
+      else
+        format.html { render page, notice: result.message }
+      end
+    end
   end
 
   def destroy

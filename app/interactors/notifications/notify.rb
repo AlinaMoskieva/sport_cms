@@ -19,7 +19,7 @@ module Notifications
     def create_notification
       mention.each do |man|
         notification = Notification.new(comment_id: comment.id, user_id: user_finder(man))
-        notification.save || context.fail!(message: "Create fail")
+        notification.save || context.fail!(message: "Notification was not delivered")
       end
     end
 

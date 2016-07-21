@@ -1,5 +1,5 @@
 class CommentDecorator < ApplicationDecorator
-  delegate :full_name, :email, :image_path, to: :author, prefix: true
+  delegate :full_name, :email, :image, to: :author, prefix: true
   delegate :user_id, :page_id, :created_at, :page, :author
 
   def date
@@ -14,6 +14,6 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def image_path
-    author.image.blank? ? "noavatar.png" : object.image
+    author.image.blank? ? "noavatar.png" : author.image
   end
 end

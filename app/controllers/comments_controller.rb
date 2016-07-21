@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def create
     comment.author = current_user
     comment.page_id = page.id
-    result = Comments::Submit.call(comment: comment)
+    result = Comments::Submit.call(comment: comment, action: "create")
     respond_to do |format|
       if result.success?
         format.html { redirect_to comment.page, notice: "Comment created" }
@@ -21,7 +21,14 @@ class CommentsController < ApplicationController
   end
 
   def update
-    Comments::Submit.call(comment: comment)
+    result = Comments::Submit.call(comment: comment)
+    respond_to do |format|
+      if result.success?
+        format.html { redirect_to comment.page, notice: "Comment updeted" }
+      else
+        format.html { render comment.page, notice: result.message }
+      end
+    end
     respond_with comment, location: comment.page
   end
 
