@@ -14,7 +14,7 @@ feature "Create masquerade" do
       expect(page).to have_link("New session as #{ user.email}".truncate(22))
     end
 
-   scenario "Create masquerade" do
+    scenario "Create masquerade" do
       click_link "New session as #{user.email}".truncate(22)
       visit root_path
       expect(page).to have_content(user.full_name)
