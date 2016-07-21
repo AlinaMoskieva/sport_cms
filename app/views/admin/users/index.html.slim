@@ -3,7 +3,7 @@
     h2(align="center")
       ="Users listing"
 .row
-  .medium-8.columns
+  .medium-9.columns
     .table-stack
       table
         tr
@@ -26,7 +26,7 @@
               td
                 = link_to("Update", edit_admin_user_path(id: user.id))
               td
-                = link_to("New session as #{user.email}".truncate(22), new_admin_masquerade_path(user_id: user.id))
+                = link_to(user.new_session, new_admin_masquerade_path(user_id: user.id))
       = paginate users
   .medium-3.columns data-sticky-container=""
     = render "tools_menu"

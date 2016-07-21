@@ -25,4 +25,12 @@ class UserDecorator < ApplicationDecorator
   def name_with_pages
     "#{object.full_name} (#{object.pages_count})"
   end
+
+  def new_session
+    "New session as #{object.email}".truncate(29)
+  end
+
+  def subscriptions?
+    object.subscriptions.count > 0
+  end
 end

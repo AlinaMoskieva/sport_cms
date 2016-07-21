@@ -10,7 +10,7 @@ feature "DEstroy masquerade" do
   end
 
   scenario "Destroy masquerade" do
-    click_link "New session as #{user.email}".truncate(22)
+    click_link "New session as #{user.email}".truncate(29)
     visit root_path
     click_link "Stop Masquerading"
     visit admin_users_path

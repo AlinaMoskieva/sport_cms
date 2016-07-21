@@ -11,11 +11,11 @@ feature "Create masquerade" do
 
   describe "#create" do
     it "exist link 'new session as ..'" do
-      expect(page).to have_link("New session as #{ user.email}".truncate(22))
+      expect(page).to have_link("New session as #{ user.email}".truncate(29))
     end
 
     scenario "Create masquerade" do
-      click_link "New session as #{user.email}".truncate(22)
+      click_link "New session as #{user.email}".truncate(29)
       visit root_path
       expect(page).to have_content(user.full_name)
       expect(page).to have_link("Stop Masquerading")
