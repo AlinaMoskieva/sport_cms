@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   respond_to :html, :js
 
   expose(:comment, attributes: :comment_params)
-  expose(:comments) { Comment.page(params[:page]).page params[:page] }
+  expose(:comments) { |default| default.page(params[:page]).page params[:page] }
   expose(:page)
 
   before_action :authorize_resource
