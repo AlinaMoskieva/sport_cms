@@ -1,5 +1,5 @@
 class HashtagsController < ApplicationController
-  expose(:hashtag, attributes: :hashtag_params)
+  expose_decorated(:hashtag, attributes: :hashtag_params)
   expose(:hashtags)
   expose_decorated(:pages) { pages_finder }
 
