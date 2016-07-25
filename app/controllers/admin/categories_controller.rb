@@ -17,7 +17,7 @@ module Admin
     private
 
     def category_params
-      params.require(:category).permit(:category, :id)
+      params.require(:category).permit(:category)
     end
 
     def authorize_resource
