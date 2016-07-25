@@ -10,26 +10,15 @@ class CommentsController < ApplicationController
   def create
     comment.author = current_user
     comment.page_id = page.id
-    result = Comments::Submit.call(comment: comment, action: "create")
-    respond_to do |format|
-      if result.success?
-        format.html { redirect_to comment.page, notice: "Comment created" }
-      else
-        format.html { redirect_to comment.page, notice: result.message }
-      end
-    end
+    result = Comments::Submit.call(comment: comment)
+    redirect_to comment.page
+    flash[:notice] = result.message if result.failure?
   end
 
   def update
     result = Comments::Submit.call(comment: comment)
-    respond_to do |format|
-      if result.success?
-        format.html { redirect_to comment.page, notice: "Comment updeted" }
-      else
-        format.html { render comment.page, notice: result.message }
-      end
-    end
-    respond_with comment, location: comment.page
+    redirect_to comment.page
+    flash[:notice] = result.message if result.failure?
   end
 
   def destroy
