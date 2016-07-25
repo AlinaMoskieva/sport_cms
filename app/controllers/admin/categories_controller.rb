@@ -6,18 +6,18 @@ module Admin
 
     def create
       category.save
-      respond_with category, location: -> { admin_categories_url }
+      respond_with category, location: admin_categories_path
     end
 
     def destroy
       category.destroy
-      respond_with category, location: -> { admin_categories_url }
+      respond_with category, location: admin_categories_path
     end
 
     private
 
     def category_params
-      params.require(:category).permit(:category, :id)
+      params.require(:category).permit(:category)
     end
 
     def authorize_resource

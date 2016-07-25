@@ -1,0 +1,7 @@
+h4(align="center")
+  = link_to( "Categories:", categories_path)
+ul
+  - categories.each do |category|
+    - if category.content?
+      li
+        = link_to(category.name_with_pages, pages_path(category_id: category.id))

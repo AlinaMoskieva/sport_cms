@@ -2,7 +2,8 @@ br
 .row
   .medium-4.columns
     .panel
-      = image_tag user.image
+      .small-12.small-centered.columns
+        = image_tag user.image_path
   .medium-2.columns
   .medium-3.columns
     h2
@@ -10,7 +11,9 @@ br
     h4
       = user.email
   .medium-2.columns
-    = link_to "Edit profile", edit_user_registration_path
+      span
+        i.fi-pencil
+          = link_to "Edit profile", edit_user_registration_path
 .row
   .medium-4.columns
     .panel
@@ -25,7 +28,7 @@ br
       h4="My pages (#{user.pages_count})"
 
   .medium-8.columns
-    - if policy(current_user).index?
+    - if user.pages?
       .panel
         -pages.each do |page|
             h5

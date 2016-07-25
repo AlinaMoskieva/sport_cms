@@ -3,7 +3,7 @@ class UserDecorator < ApplicationDecorator
 
   private :pages
 
-  delegate :id, :full_name, :email, :role, :image, :pages,
+  delegate :id, :full_name, :email, :role, :pages,
     :pages_count, :subscriptions_count, :subscribed?
 
   def full_name_with_email
@@ -16,5 +16,13 @@ class UserDecorator < ApplicationDecorator
 
   def pages?
     object.pages_count > 0
+  end
+
+  def image_path
+    object.image.blank? ? "noavatar.png" : object.image
+  end
+
+  def name_with_pages
+    "#{object.full_name} (#{object.pages_count})"
   end
 end

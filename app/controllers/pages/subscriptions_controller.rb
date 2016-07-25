@@ -4,19 +4,24 @@ module Pages
     expose(:page)
     expose(:subscriptions)
     expose(:subscription)
+    before_action :authorize_resource
 
     def create
-      authorize subscription, :create?
       subscription.user = current_user
       subscription.category = page.category
       subscription.save
-      respond_with subscription, location: -> { page }
+      respond_with subscription, location: page
     end
 
     def destroy
-      authorize subscription
       subscription.destroy
-      respond_with subscription, location: -> { page }
+      respond_with subscription, location: page
+    end
+
+    private
+
+    def authorize_resource
+      authorize subscription
     end
   end
 end

@@ -20,6 +20,6 @@ class NotificationDecorator < ApplicationDecorator
   end
 
   def sender_photo
-    comment.author_image
+    comment.image_path
   end
 end

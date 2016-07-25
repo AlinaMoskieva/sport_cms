@@ -1,0 +1,9 @@
+h4 Authors
+ul
+  - users.each do |user|
+    - if  user.pages?
+      li
+        = link_to(user.name_with_pages, pages_path(user_id: user.id))
+
+
+

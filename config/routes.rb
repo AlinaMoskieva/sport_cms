@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => "/ckeditor"
 
-  resources :comments
-  resources :pages
+  resources :comments, only: %i(update destroy show)
+  resources :pages, only: %i(update destroy index show)
   resources :categories, only: [:index]
   resources :profile, only: [:index]
-  resources :results
+  resources :results, only: %i(index destroy show)
   resources :notifications, only: %i(index create destroy)
-  resources :hashtags
+  resources :hashtags, only: %i(index create show)
 
   namespace :admin do
-    resources :users
-    resources :categories
+    resources :pages, only: %i(create new)
+    resources :results, only: %i(create new)
+    resources :users, only: %i(update show index edit)
+    resources :categories, only: %i(index create destroy)
   end
 
   resources :pages do

@@ -3,7 +3,7 @@ module Users
     expose(:user)
     expose(:subscriptions)
     expose_decorated(:pages) { subscribed_pages_finder }
-    expose(:categories) { |default| default.where(id: category_ids ) }
+    expose(:categories) { |default| default.where(id: category_ids) }
 
     private
 

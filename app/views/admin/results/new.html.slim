@@ -1,15 +1,11 @@
 .row
-  .medium-12.columns
-    .medium-4.medium-centered.columns
+  .medium-10.columns
+    .medium-6.medium-centered.columns
       h2="Add new result"
-    br
 .row
-  .medium-12.columns
-    = simple_form_for(result) do |f|
+  .medium-9.columns
+    = simple_form_for([:admin, result]) do |f|
       .form-inputs
-        .medium-6.medium-centered.columns
-          = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
-        br
         .medium-12.columns
           .medium-6.columns
             h4= "For individual sport"
@@ -21,6 +17,7 @@
             h4="General information"
             = f.input :competition
             = f.select( :page_id, Page.all.order(created_at: :desc).take(10).map {|page| [page.title.slice(0 .. 45).html_safe.concat(" ..."), page.id]})
+            = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
         .medium-12.columns
           h4(align="center")= "For team sport"
           .medium-6.columns
@@ -38,3 +35,5 @@
         = f.button :submit, class:"secondary small button"
         '
         = link_to 'Back', :back, class:"secondary small button"
+  .medium-3.columns
+    = render "tools_menu"

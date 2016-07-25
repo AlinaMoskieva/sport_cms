@@ -1,6 +1,6 @@
 class HashtagsController < ApplicationController
-  expose(:hashtag, attributes: :hashtag_params)
-  expose(:hashtags) { Hashtag.all }
+  expose_decorated(:hashtag, attributes: :hashtag_params)
+  expose(:hashtags)
   expose_decorated(:pages) { pages_finder }
 
   private
@@ -10,8 +10,7 @@ class HashtagsController < ApplicationController
   end
 
   def pages_finder
-    Page.includes(:category)
-      .includes(:user)
+    Page.includes(:category, :user)
       .where(id: hashtag.pages).page params[:page]
   end
 end
