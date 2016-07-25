@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   enum role: { user: "user", admin: "administrator" }
 
-  paginates_per 2
+  paginates_per 7
 
   mount_uploader :image, ImageUploader
 

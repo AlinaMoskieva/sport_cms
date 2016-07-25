@@ -30,27 +30,35 @@ br
   .medium-8.columns
     - if user.pages?
       .panel
-        -pages.each do |page|
-            h5
-              =(link_to page.title, page)
-            p
+        - pages.each do |page|
+          h5(align="center")
+            =(link_to page.shorten_title, page)
+          p
+            .medium-6.columns
               span
                 i.fi-torso
-                  = page.user_full_name
+                  = link_to(page.user_full_name, pages_path(user_id: page.user_id))
+            .medium-6.columns
               span
                 i.fi-calendar
                   = page.data_format
 
-            p
+          p
+            .medium-8.columns
               = page.preview_body
-            span
-              i.fi-price-tag
+            .medium-5.columns
+              span
+                i.fi-price-tag
                 = "Tags:  "
                 = link_to(page.category_category, pages_path(category_id: page.category.id) )
-            .right align="right "
+            .medium-5.columns
+              span
+                i.fi-torsos-all-female
+                  = "Viewed #{page.visitors} times"
+            .medium-2.columns
               span
                 i.fi-comments
-
                   = page.comments_count
+            br
             hr/
         = paginate pages, outer_window: 3

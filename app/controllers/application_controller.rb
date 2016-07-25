@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
+
+  def masquerading?
+    session[:admin_id].present?
+  end
+  helper_method :masquerading?
 end

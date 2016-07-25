@@ -2,7 +2,7 @@ module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :authorize_resource, only: %i(show update index)
-    expose(:users) { |users| users.order(id: :asc).page params[:page] }
+    expose_decorated(:users) { |users| users.order(id: :asc).page params[:page] }
     expose(:user, attributes: :user_params)
 
     def update

@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  paginates_per 2
+  paginates_per 4
 
   validates :body, presence: true
 

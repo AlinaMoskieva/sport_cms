@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
 
   def destroy
     notification.delete
-    respond_with notification, location: -> { notifications_path }
+    respond_with notification, location: notifications_path
   end
 
   private
