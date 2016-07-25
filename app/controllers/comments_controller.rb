@@ -10,13 +10,15 @@ class CommentsController < ApplicationController
   def create
     comment.author = current_user
     comment.page_id = page.id
-    Comments::Submit.call(comment: comment)
+    result = Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
+    flash[:notice] = result.message if result.failure?
   end
 
   def update
-    Comments::Submit.call(comment: comment)
+    result = Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
+    flash[:notice] = result.message if result.failure?
   end
 
   def destroy
@@ -27,7 +29,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :page_id)
+    params.require(:comment).permit(:body)
   end
 
   def authorize_resource

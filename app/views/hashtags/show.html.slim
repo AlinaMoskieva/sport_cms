@@ -20,44 +20,45 @@
       li
         = "##{hashtag.hashtag}"
     .medium-2.columns
-      = hashtag.pages.count
+      = hashtag.pages_count
     .medium-4.end
 .row
   .small-7.small-centered.columns
     h2="Content"
 .row
   .medium-8.columns
-    - if pages.count == 0
+    - unless hashtag.pages?
       h4="Unfortunately, pages are not found"
-    - pages.each do |page|
-      .column
-        h5(align="center")
-          =(link_to page.shorten_title, page)
-      p
-        .medium-6.columns
-          span
-            i.fi-torso
-              = link_to(page.user_full_name, pages_path(user_id: page.user_id))
-        .medium-6.columns
-          span
-            i.fi-calendar
-              = page.data_format
-      .column
+    - else
+      - pages.each do |page|
+        .column
+          h5(align="center")
+            =(link_to page.shorten_title, page)
         p
-          = page.preview_body
-        .medium-5.columns
-          span
-            i.fi-price-tag
-            = "Tags:  "
-            = link_to(page.category_category, pages_path(category_id: page.category.id) )
-        .medium-5.columns
-          span
-            i.fi-torsos-all-female
-              = "Viewed #{page.visitors} times"
-        .medium-2.columns
-          span
-            i.fi-comments
-              = page.comments_count
-        br
-        hr/
-    = paginate pages, outer_window: 3
+          .medium-6.columns
+            span
+              i.fi-torso
+                = link_to(page.user_full_name, pages_path(user_id: page.user_id))
+          .medium-6.columns
+            span
+              i.fi-calendar
+                = page.data_format
+        .column
+          p
+            = page.preview_body
+          .medium-5.columns
+            span
+              i.fi-price-tag
+              = "Tags:  "
+              = link_to(page.category_category, pages_path(category_id: page.category.id) )
+          .medium-5.columns
+            span
+              i.fi-torsos-all-female
+                = "Viewed #{page.visitors} times"
+          .medium-2.columns
+            span
+              i.fi-comments
+                = page.comments_count
+          br
+          hr/
+      = paginate pages, outer_window: 3

@@ -14,6 +14,6 @@ class CommentDecorator < ApplicationDecorator
   end
 
   def image_path
-    author_image.blank? ? "noavatar.png" : author_image
+    author.image.blank? ? "noavatar.png" : author.image
   end
 end

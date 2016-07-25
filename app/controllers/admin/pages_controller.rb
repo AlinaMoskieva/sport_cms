@@ -7,14 +7,15 @@ module Admin
 
     def create
       page.user = current_user
-      Pages::Submit.call(page: page)
+      result = Pages::Submit.call(page: page)
       respond_with page, location: page
+      flash[:error] = result.message if result.failure?
     end
 
     private
 
     def page_params
-      params.require(:page).permit(:title, :body, :user_id, :category_id, :visitors)
+      params.require(:page).permit(:title, :body, :category_id)
     end
 
     def authorize_resource

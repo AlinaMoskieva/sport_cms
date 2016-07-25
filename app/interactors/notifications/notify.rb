@@ -18,9 +18,13 @@ module Notifications
 
     def create_notification
       mention.each do |man|
-        Notification.create(comment_id: comment.id, user_id: User
-          .where(nickname: man.slice(1..man.length)).ids.first)
+        notification = Notification.new(comment_id: comment.id, user_id: user_finder(man))
+        notification.save || context.fail!(message: "Notification was not delivered")
       end
+    end
+
+    def user_finder(man)
+      User.where(nickname: man.slice(1..man.length)).ids.first
     end
   end
 end
