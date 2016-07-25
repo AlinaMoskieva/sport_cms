@@ -10,11 +10,13 @@ Rails.application.routes.draw do
   resources :hashtags, only: %i(index create show)
 
   namespace :admin do
+    resources :users do
+      resources :masquerades, only: %i(new destroy), module: :users
+    end
     resources :pages, only: %i(create new)
     resources :results, only: %i(create new)
     resources :users, only: %i(update show index edit)
     resources :categories, only: %i(index create destroy)
-    resources :masquerades, only: %i(new destroy)
   end
 
   resources :pages do
