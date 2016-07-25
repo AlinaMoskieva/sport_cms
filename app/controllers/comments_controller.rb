@@ -11,13 +11,13 @@ class CommentsController < ApplicationController
     comment.author = current_user
     comment.page_id = page.id
     result = Comments::Submit.call(comment: comment)
-    redirect_to comment.page
+    respond_with comment, location: comment.page
     flash[:notice] = result.message if result.failure?
   end
 
   def update
     result = Comments::Submit.call(comment: comment)
-    redirect_to comment.page
+    respond_with comment, location: comment.page
     flash[:notice] = result.message if result.failure?
   end
 
