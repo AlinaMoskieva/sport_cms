@@ -5,7 +5,7 @@ feature "View page" do
   let!(:admin_user) { create :user, :administrator }
   let!(:viewed_page) { create :page, user: admin_user, category: category }
 
-  context "view page content as administrator" do
+  describe "view" do
     background do
       login_as admin_user
       visit page_path(viewed_page)

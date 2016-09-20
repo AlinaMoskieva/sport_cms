@@ -2,8 +2,8 @@ require "rails_helper"
 
 feature "Destroy subscription" do
   let!(:category) { create :category }
-  let!(:user) { create :user, :administrator }
-  let!(:site_page) { create :page, user: user, category: category }
+  let!(:user) { create :user, :user }
+  let!(:site_page) { create :page, category: category }
   let!(:subscription) { create :subscription, user: user, category: category }
 
   describe "Destroy" do

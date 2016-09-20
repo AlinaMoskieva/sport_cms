@@ -6,7 +6,7 @@ class HashtagsController < ApplicationController
   private
 
   def hashtag_params
-    params.require(:hashtag).permit(:hashtag, :pages)
+    params.require(:hashtag).permit(:hashtag)
   end
 
   def pages_finder

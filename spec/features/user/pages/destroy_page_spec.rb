@@ -1,19 +1,13 @@
 require "rails_helper"
 
 feature "Destroy page" do
-  let!(:admin_user) { create :user, :administrator }
-  let!(:test_page) { create :page, user: admin_user }
+  let!(:test_page) { create :page }
   let!(:user) { create :user, :user }
 
-  context "Logged as user" do
-    background do
-      login_as user
-    end
+  scenario "Logged as user hasn't link to destroy page" do
+    login_as user
+    visit page_path(test_page)
 
-    before { visit page_path(test_page) }
-
-    it "hasn't link to destroy page" do
-      expect(page).not_to have_link("Delete")
-    end
+    expect(page).not_to have_link("Delete")
   end
 end

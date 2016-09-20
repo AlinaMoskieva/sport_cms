@@ -3,14 +3,10 @@ require "rails_helper"
 feature "Create page" do
   let!(:user) { create :user, :user }
 
-  context "Logged as user" do
-    background do
-      login_as user
-      visit root_path
-    end
+  scenario "Logged as user hasn't link to create new page" do
+    login_as user
+    visit root_path
 
-    it "hasn't link to create new page" do
-      expect(page).not_to have_link("New page")
-    end
+    expect(page).not_to have_link("New page")
   end
 end

@@ -25,19 +25,18 @@ module Hashtags
 
     def init(hashtag, hash)
       if hashtag.nil?
-        create_new_hash(hash)
+        create_new_tag(create_new_hash(hash))
       else
-        update_hash_info(hashtag) unless hashtag.pages.include?(id)
+        create_new_tag(hashtag) unless PagesHashtag.where(hashtag_id: hashtag.id, page_id: id).exists?
       end
     end
 
     def create_new_hash(hash)
-      Hashtag.create(hashtag: hash, pages: [id]) || context.fail!(message: "Hashtag addition fail")
+      Hashtag.create(hashtag: hash) || context.fail!(message: "Hashtag addition fail")
     end
 
-    def update_hash_info(hashtag)
-      hashtag.pages << id
-      hashtag.save || context.fail!(message: "Hashtag addition fail")
+    def create_new_tag(hashtag)
+      PagesHashtag.create(hashtag_id: hashtag.id, page_id: id) || context.fail!(message: "Hashtag addition fail")
     end
   end
 end

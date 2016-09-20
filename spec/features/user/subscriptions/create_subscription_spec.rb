@@ -2,8 +2,8 @@ require "rails_helper"
 
 feature "Create subscription" do
   let!(:category) { create :category }
-  let!(:user) { create :user, :administrator }
-  let!(:site_page) { create :page, user: user }
+  let!(:user) { create :user, :user }
+  let!(:site_page) { create :page }
 
   describe "create" do
     before do

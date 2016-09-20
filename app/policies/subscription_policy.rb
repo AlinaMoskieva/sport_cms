@@ -4,6 +4,6 @@ class SubscriptionPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present? && record.user_id == user.id
+    user.present? && record.user == user
   end
 end

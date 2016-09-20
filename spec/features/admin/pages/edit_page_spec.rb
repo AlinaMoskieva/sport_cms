@@ -7,7 +7,7 @@ feature "Edit page" do
   let(:new_title) { "new test title" }
   let(:new_body) { "new test body" }
 
-  context "As administrator i am able to edit my page" do
+  describe "edit" do
     background do
       login_as admin_user
       visit page_path(testing_page)

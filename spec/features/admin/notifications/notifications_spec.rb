@@ -5,7 +5,7 @@ feature "Notification" do
   let!(:tested_page) { create :page, user: admin_user }
   let!(:comment_text) { "@#{admin_user.nickname}" }
 
-  context "As administrator" do
+  describe "create" do
     background do
       login_as admin_user
       visit page_path(tested_page)

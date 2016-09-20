@@ -6,7 +6,7 @@ feature "Create comment" do
   let!(:site_page) { create :page, user: admin_user }
   let(:test_comment_message)  { "it is test comment ;)" }
 
-  context "As user i am able to create comment" do
+  describe "create" do
     before do
       login_as user
       visit page_path(site_page)

@@ -1,14 +1,15 @@
 .row
   .medium-8.medium-centred.columns
-    h2
+    h2(align="center")
       = "Editing page"
   .medium-7.columns
     = simple_form_for(page) do |f|
       .form-inputs
         = f.input :title
         = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 300}, required: true
-        = f.input :category_id
-      .form-actions
+        br
+        = f.select( :category_id, Category.all.map {|c| [c.category, c.id]})
+      .form-actions(align="center")
         = f.button :submit, class:"secondary small button"
         '
         = link_to 'Back', :back, class:"secondary small button"

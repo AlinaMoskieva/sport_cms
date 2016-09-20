@@ -5,7 +5,7 @@
 .row
   .medium-12.columns
     - results.each do |result|
-      .medium-8.columns.end
+      .medium-10.columns.end
         br
         .medium-1.columns
           span
@@ -61,7 +61,7 @@
           .medium-6.columns
             br
             h6="First team"
-            .medium-2.columns
+            .medium-1.columns
               span
                 i.fi-torsos-all
             .medium-8.columns.end
@@ -112,8 +112,7 @@
               = result.second_team_country
       .row
         .large-6.large-offset-6.columns
-          - policy = ResultPolicy.new(current_user, result)
-          - if policy.destroy?
+          - if policy(result).destroy?
             = link_to("Delete result",result, method: :delete, class: "tiny hollow alert button")
         .large-8
           hr/

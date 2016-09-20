@@ -25,10 +25,8 @@
                 = category.how_many_viewed
               td
                 = link_to("Delete", ([:admin, category]) , method: :delete, data: { confirm: 'Are you sure?' })
-
-
+      = paginate categories
     = render "form"
-
   .medium-3.columns data-sticky-container=""
     = render "tools_menu"
 

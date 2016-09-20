@@ -9,7 +9,7 @@
         = "Content"
         = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 300}, required: true
         br
-        = f.select( :category_id, Category.all.map {|c| [c.category, c.id]})
+        = f.select( :category_id, Category.all.map { |c| [c.category, c.id] })
       .form-actions(align="center")
         = f.button :submit, class:"secondary small button"
         '

@@ -47,9 +47,4 @@ br
         = link_to "Categories", categories_path
   .medium-1.columns
   .medium-3.columns
-    h4="Noteworthy categories (#{current_user.subscriptions_count}):"
-    ul
-      - categories.each do |c|
-        li
-          = link_to c.name_with_pages, pages_path(category_id: c.id)
-
+    = render "noteworthy_categories"

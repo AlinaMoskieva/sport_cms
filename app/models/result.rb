@@ -19,10 +19,10 @@ class Result
   field :competition, type: String
   field :page_id, type: String
 
+  paginates_per 5
+
   validates :category_id, presence: true
 
   has_one :page
   has_one :category
-
-  paginates_per 5
 end

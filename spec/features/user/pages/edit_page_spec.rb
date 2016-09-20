@@ -1,18 +1,13 @@
 require "rails_helper"
 
 feature "Edit page" do
-  let!(:admin_user) { create :user, :administrator }
   let!(:user) { create :user, :user }
-  let!(:testing_page) { create :page, user: admin_user }
+  let!(:testing_page) { create :page }
 
-  context "Logged as user" do
-    background do
-      login_as user
-      visit page_path(testing_page)
-    end
+  scenario "Logged as user hasn't link to edit page" do
+    login_as user
+    visit page_path(testing_page)
 
-    scenario "hasn't link to edit page" do
-      expect(page).not_to have_link("Edit page")
-    end
+    expect(page).not_to have_link("Edit page")
   end
 end
