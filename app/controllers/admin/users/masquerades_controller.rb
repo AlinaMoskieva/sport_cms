@@ -1,5 +1,6 @@
-module Admin::Users
-  class MasqueradesController < ApplicationController
+module Admin
+  module Users
+    class MasqueradesController < ApplicationController
       expose(:user)
 
       def new
@@ -10,10 +11,10 @@ module Admin::Users
 
       def destroy
         user = User.find(session[:admin_id])
-        sign_in(:user, user)
+        sign_in(user)
         session[:admin_id] = nil
         redirect_to admin_users_path, notice: "Stopped masquerading"
       end
     end
-
+  end
 end

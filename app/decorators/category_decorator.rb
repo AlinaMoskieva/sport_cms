@@ -14,7 +14,7 @@ class CategoryDecorator < ApplicationDecorator
   end
 
   def start_with?(letter)
-    object.category.start_with?(letter)
+    object.category.start_with?(letter.downcase)
   end
 
   def how_many_viewed

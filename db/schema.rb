@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714152206) do
+ActiveRecord::Schema.define(version: 20160726104058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20160714152206) do
   end
 
   create_table "hashtags", force: :cascade do |t|
-    t.string   "hashtag",    null: false
-    t.text     "pages"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "hashtag",                 null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "page_id"
+    t.integer  "pages_count", default: 0
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -70,9 +71,20 @@ ActiveRecord::Schema.define(version: 20160714152206) do
     t.integer  "category_id"
     t.integer  "visitors"
     t.integer  "comments_count", default: 0
+    t.integer  "hashtag_count",  default: 0
   end
 
   add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
+
+  create_table "pages_hashtags", force: :cascade do |t|
+    t.integer  "page_id",    null: false
+    t.integer  "hashtag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pages_hashtags", ["hashtag_id"], name: "index_pages_hashtags_on_hashtag_id", using: :btree
+  add_index "pages_hashtags", ["page_id"], name: "index_pages_hashtags_on_page_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -113,6 +125,8 @@ ActiveRecord::Schema.define(version: 20160714152206) do
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "pages_hashtags", "hashtags"
+  add_foreign_key "pages_hashtags", "pages"
   add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "users"
 end

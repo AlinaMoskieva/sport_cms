@@ -1,21 +1,14 @@
 require "rails_helper"
 
 feature "View page" do
-  let!(:category) { create :category }
-  let!(:admin_user) { create :user, :administrator }
-  let!(:viewed_page) { create :page, user: admin_user, category: category }
+  let!(:viewed_page) { create :page }
+  let!(:user) { create :user, :user }
 
-  context "view page content as user" do
-    let!(:user) { create :user, :user }
+  scenario "view page content as user has not link to edit/destroy page" do
+    login_as user
+    visit page_path(viewed_page)
 
-    background do
-      login_as user
-      visit page_path(viewed_page)
-    end
-
-    it "has not link to edit/destroy page" do
-      expect(page).not_to have_link("Delete")
-      expect(page).not_to have_link("Edit page")
-    end
+    expect(page).not_to have_link("Delete")
+    expect(page).not_to have_link("Edit page")
   end
 end

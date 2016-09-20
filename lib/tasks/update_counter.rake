@@ -7,7 +7,7 @@ namespace :update_counter do
     puts "Categories update"
 
     Page.ids.each do |p|
-      Page.reset_counters(p, :comments)
+      Page.reset_counters(p, :comments, :pages_hashtags)
     end
     puts "Pages update"
 
@@ -15,5 +15,10 @@ namespace :update_counter do
       User.reset_counters(u, :pages, :subscriptions)
     end
     puts "Users update"
+
+    Hashtag.ids.each do |h|
+      Hashtag.reset_counters(h, :pages_hashtags)
+    end
+    puts "Hashtags update"
   end
 end

@@ -5,7 +5,7 @@ feature "Create comment" do
   let!(:site_page) { create :page, user: admin_user }
   let(:test_comment_message)  { "it is test comment ;)" }
 
-  context "As administrator" do
+  describe "create" do
     before do
       login_as admin_user
       visit page_path(site_page)
@@ -26,4 +26,3 @@ feature "Create comment" do
     end
   end
 end
-

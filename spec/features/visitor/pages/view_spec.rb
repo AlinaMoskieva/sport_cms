@@ -1,9 +1,7 @@
 require "rails_helper"
 
 feature "View page" do
-  let!(:user) { create :user }
-  let!(:category) { create :category }
-  let!(:site_page) { create :page, user: user, category: category }
+  let!(:site_page) { create :page }
 
   scenario "view page content" do
     visit root_path
@@ -14,7 +12,5 @@ feature "View page" do
     expect(page).to_not have_link("Edit page")
     expect(page).to_not have_link("Subscribe")
     expect(page).to_not have_link("Edit")
-    expect(page).to have_link("Back")
-    expect(page).to_not have_field("body")
   end
 end

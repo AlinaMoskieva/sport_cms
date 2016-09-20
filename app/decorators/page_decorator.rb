@@ -1,6 +1,6 @@
 class PageDecorator < ApplicationDecorator
-  delegate :title, :body, :created_at, :category_id, :visitors, :category, :user,
-    :comments_count
+  delegate :title, :created_at, :category_id, :visitors, :category, :user,
+    :comments_count, :body
   delegate :full_name, :id, to: :user, prefix: true
   delegate :category, :count, to: :category, prefix: true
 

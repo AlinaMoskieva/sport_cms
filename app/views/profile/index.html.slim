@@ -17,15 +17,9 @@ br
 .row
   .medium-4.columns
     .panel
-      h4="My subscriptions (#{user.subscriptions_count})"
-      .row
-        .medium-10.columns
-          ul
-          - categories.each do |sub|
-            li
-              = sub.category
+      = render "noteworthy_categories"
     .panel
-      h4="My pages (#{user.pages_count})"
+      h5="My pages (#{user.pages_count})"
 
   .medium-8.columns
     - if user.pages?

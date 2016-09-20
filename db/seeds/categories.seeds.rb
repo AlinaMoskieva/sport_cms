@@ -1,3 +1,3 @@
-10.times do
+15.times do
   Category.create!(category: Faker::Lorem.word)
 end

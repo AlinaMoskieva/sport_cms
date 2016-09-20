@@ -17,12 +17,12 @@
               i.fi-graph-trend
           hr/
           ul
-          - hashtags.order(updated_at: :desc ).limit(10).each do |hashtag|
+          - hashtags.order(updated_at: :desc).limit(10).each do |hashtag|
             .medium-10.columns
               li
                 = link_to hashtag.hashtag, hashtag_path(hashtag)
             .medium-2.columns
-              = hashtag.pages.length
+              = hashtag.pages_count
   .medium-5.columns
     .panel
       .small-7.small-centered.columns
@@ -42,11 +42,11 @@
               li
                 = link_to hashtag.hashtag, hashtag_path(hashtag)
             .medium-2.columns
-              = hashtag.pages.length
+              = hashtag.pages_count
   .medium-2.columns.end
 .row
   .small-4.small-centered.columns
-    h2="All Hashtags"
+    h2="All Hashtags (#{hashtags.count})"
     br
 .row
   .medium-10.columns
@@ -58,12 +58,12 @@
             span
               i.fi-graph-trend
         hr/
-        - hashtags.limit(hashtags.length / 3 + 1).each do |hash|
+        - hashtags.limit(hashtags.count / 3 + 1).each do |hash|
           .medium-10.columns
             li
              = link_to hash.hashtag, hashtag_path(hash)
           .medium-2.columns
-            = hash.pages.length
+            = hash.pages_count
       .medium-4.columns
         .medium-10.columns
             span
@@ -72,12 +72,12 @@
             span
               i.fi-graph-trend
         hr/
-        - hashtags.limit(hashtags.length / 3 + 1).offset(hashtags.length / 3 + 1).each do |hash|
+        - hashtags.limit(hashtags.count / 3 + 1).offset(hashtags.count/ 3 + 1).each do |hash|
           .medium-10.columns
             li
              = link_to hash.hashtag, hashtag_path(hash)
           .medium-2.columns
-            = hash.pages.length
+            = hash.pages_count
       .medium-4.columns
         .medium-10.columns
             span
@@ -86,12 +86,12 @@
             span
               i.fi-graph-trend
         hr/
-        - hashtags.offset(2*hashtags.length / 3 + 1).each do |hash|
+        - hashtags.offset(2*hashtags.count / 3 + 1).each do |hash|
           .medium-10.columns
             li
              = link_to hash.hashtag, hashtag_path(hash)
           .medium-2.columns
-            = hash.pages.length
+            = hash.pages_count
 
 
 

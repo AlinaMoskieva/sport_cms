@@ -5,14 +5,13 @@ feature "Create page" do
   let!(:category) { create :category }
   let!(:user) { create :user, :user }
 
-  context "as administrator I have ability to create page" do
+  describe "create" do
     background do
       login_as admin_user
+      visit new_admin_page_path
     end
 
-    before { visit new_admin_page_path }
-
-    it "can create page" do
+    scenario "can create page" do
       expect do
         fill_in "Title", with: "New page"
         fill_in "page_body", with: "New page content"

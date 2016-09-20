@@ -16,7 +16,7 @@
           .medium-6.columns
             h4="General information"
             = f.input :competition
-            = f.select( :page_id, Page.all.order(created_at: :desc).take(10).map {|page| [page.title.slice(0 .. 45).html_safe.concat(" ..."), page.id]})
+            = f.select( :page_id, Page.all.order(created_at: :desc).take(20).map {|page| [page.title.html_safe.truncate(45), page.id]})
             = f.select( :category_id, Category.all.map {|c| [c.category, c.id]} )
         .medium-12.columns
           h4(align="center")= "For team sport"

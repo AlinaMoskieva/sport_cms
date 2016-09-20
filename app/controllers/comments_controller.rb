@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   respond_to :html, :js
 
   expose(:comment, attributes: :comment_params)
-  expose(:comments) { |default| default.page(params[:page]).page params[:page] }
   expose(:page)
 
   before_action :authorize_resource
@@ -14,6 +13,7 @@ class CommentsController < ApplicationController
     respond_with comment, location: comment.page
     flash[:notice] = result.message if result.failure?
   end
+
 
   def update
     result = Comments::Submit.call(comment: comment)

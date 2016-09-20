@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
-    expose_decorated(:categories) { |categories| categories.order(:id) }
+    expose_decorated(:categories) { |categories| categories.order(:id).page params[:page] }
     expose_decorated(:category, attributes: :category_params)
     before_action :authorize_resource
 

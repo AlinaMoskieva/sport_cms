@@ -1,0 +1,5 @@
+h5="Noteworthy categories (#{current_user.subscriptions_count}):"
+ul
+  - categories.each do |c|
+    li
+      = link_to c.name_with_pages, pages_path(category_id: c.id)
