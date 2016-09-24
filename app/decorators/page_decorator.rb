@@ -15,4 +15,10 @@ class PageDecorator < ApplicationDecorator
   def shorten_title
     object.title.truncate(79)
   end
+
+  def hours
+    hours = ((DateTime.now.to_time - created_at) / 1.hours).to_i
+    return "#{((DateTime.now.to_time - created_at) / 1.minutes).to_i} minutes" if hours == 0
+    "#{hours} hours"
+  end
 end
