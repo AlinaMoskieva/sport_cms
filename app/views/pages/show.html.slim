@@ -92,6 +92,15 @@
             p
               .panel(class="callout")
                 h6="You should sign in for have ability to add comments"
+         h4="Top news"
+         - top_news.each do |news|
+           .medium-4.columns
+             .news
+               = news.title
+
+
+
+
   .medium-3.columns data-sticky-container=""
     = render "categories_menu"
     = render "authors_menu"
