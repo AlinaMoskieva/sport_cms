@@ -33,7 +33,7 @@
           - else
             = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
           '
-        = link_to("Back", :back, class: "small radius expanded secondary  button")
+        /= link_to("Back", :back, class: "small radius expanded secondary  button")
     .row
       .medium-11.columns
         p

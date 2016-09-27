@@ -40,6 +40,6 @@ class PagesController < ApplicationController
   protected
 
   def top_news
-    @top_news ||= TopNewsInCategoryQuery.new(page).all.map(&:decorate)
+    @top_news ||= TopNewsInCategoryQuery.new(page).all.includes(:category).map(&:decorate)
   end
 end

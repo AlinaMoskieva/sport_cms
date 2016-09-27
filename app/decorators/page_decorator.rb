@@ -1,4 +1,6 @@
 class PageDecorator < ApplicationDecorator
+  include ActionView::Helpers::DateHelper
+
   delegate :title, :created_at, :category_id, :visitors, :category, :user,
     :comments_count, :body
   delegate :full_name, :id, to: :user, prefix: true
@@ -17,8 +19,6 @@ class PageDecorator < ApplicationDecorator
   end
 
   def hours
-    hours = ((DateTime.now.to_time - created_at) / 1.hours).to_i
-    return "#{((DateTime.now.to_time - created_at) / 1.minutes).to_i} minutes" if hours == 0
-    "#{hours} hours"
+    time_ago_in_words(object.created_at)
   end
 end
