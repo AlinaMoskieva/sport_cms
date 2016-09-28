@@ -15,7 +15,7 @@ class PageDecorator < ApplicationDecorator
   end
 
   def shorten_title
-    object.title.truncate(79)
+    object.title.truncate(45)
   end
 
   def hours

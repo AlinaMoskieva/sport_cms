@@ -75,39 +75,41 @@
                      i.fi-trash
                        = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
             hr/
-          p
-           strong Add a comment
-           - if policy(:comment).create?
-             = form_for([page, Comment.new(page_id: page.id)]) do |f|
-               p
-                 strong Commenter:
-                 = current_user.full_name_with_email
-               p
-                 strong Comment
-               br
-               = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
-               p
-               = f.button :submit , class:"secondary small button"
-           - else
-             p
-               .panel(class="callout")
-                 h6="You should sign in for have ability to add comments"
+          h4="Add a comment"
+          hr/
+          - if policy(:comment).create?
+            = form_for([page, Comment.new(page_id: page.id)]) do |f|
+              p
+                strong Commenter:
+                = current_user.full_name_with_email
+              p
+                strong Comment
+              br
+              = f.cktext_area :body, :cols => 20,:ckeditor => {:uiColor => '#67b1d5', :height => 200}, required: true
+              p
+              = f.button :submit , class:"secondary small button"
+          - else
+            p
+              .panel(class="callout")
+                h6="You should sign in for have ability to add comments"
+          hr/
           h4="Top news"
           br
           - top_news.each do |news|
             .medium-4.columns
-                h5(align="center")= news.category_category
-                hr/
-                h5(align="center")= news.shorten_title
-                hr/
-                span
-                  i.fi-clock
+              .card
+                .content
+                  span
+                    .category
+                      = news.category_category
+                  p
+                    = link_to news.shorten_title, page_path(news), class: title
+                .info
+                  .hours
                     = news.hours
-
-
-
-
-
+                  .clock
+                    span
+                      i.fi-clock
 
   .medium-3.columns data-sticky-container=""
     = render "categories_menu"
