@@ -17,9 +17,12 @@
     height: 170px;
 
   }
-  .card .title {
+  .card .shorten_title {
     color: #6ab1c9;
     transition: color 0.3s ease;
+  }
+  .card .full_title {
+    display: none;
   }
   .card p {
     margin: 0;
