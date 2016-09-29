@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
   expose(:categories)
 
   def destroy
-    authorize result
+    authorize result, :manage?
     result.destroy
     respond_with result, location: results_path
   end

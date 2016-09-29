@@ -22,10 +22,9 @@
       br
       .medium-11.medium-centered.columns
         - if current_user.present?
-          - if policy(page).update?
+          - if policy(page).owner?
             = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
             '
-          - if policy(page).destroy?
             = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
             '
           - if current_user.subscribed?(page.category_id)

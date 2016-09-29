@@ -4,14 +4,11 @@ ul.right
       a.user-dropdown(href="#") = current_user.full_name_with_email
       ul.dropdown
         li
-          - policy = ProfilePolicy.new(current_user, Page.new)
-          - if policy(:user).index?
+          - if policy(:user).manage?
              = link_to "Profile", profile_index_path
+             = link_to("Administrator's tools", admin_users_path)
           - else
             = link_to "Edit profile", edit_user_registration_path
-        li
-          - if policy(:user).index?
-            = link_to("Administrator's tools", admin_users_path)
         li
           = link_to "Notifications #{"+#{Notification.where(user_id: current_user.id).count}" if Notification.exists?(user_id: current_user.id)}", notifications_path
         li
