@@ -8,7 +8,7 @@ describe Hashtags::Add do
       let(:site_page) { create :page, user: user, body: "#test" }
       subject(:result) { described_class.call(page: site_page) }
 
-      it { expect { result }.to change { [PagesHashtag.count, Hashtag.count] }.by([1,1]) }
+      it { expect { result }.to change { [PagesHashtag.count, Hashtag.count] }.by([1, 1]) }
     end
 
     context "without hashtag" do

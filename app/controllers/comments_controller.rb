@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
     flash[:notice] = result.message if result.failure?
   end
 
-
   def update
     result = Comments::Submit.call(comment: comment)
     respond_with comment, location: comment.page
