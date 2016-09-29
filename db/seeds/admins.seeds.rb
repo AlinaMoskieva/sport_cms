@@ -1,8 +1,6 @@
-3.times do
-  User.create!(email: Faker::Internet.email,
-              full_name:  Faker::Name.name,
-              password: Faker::Internet.password,
-              nickname: Faker::Name.first_name,
-              role: :admin,
-              confirmed_at: DateTime.now )
-end
+User.create!(email: "admin@example.com",
+            full_name:  Faker::Name.name,
+            password: "1234567890",
+            nickname: Faker::Name.first_name,
+            role: :admin,
+            confirmed_at: DateTime.now )
