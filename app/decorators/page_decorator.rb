@@ -14,7 +14,7 @@ class PageDecorator < ApplicationDecorator
     object.body.html_safe.truncate(230)
   end
 
-  def shorten_title
+  def preview_title
     object.title.truncate(45)
   end
 
