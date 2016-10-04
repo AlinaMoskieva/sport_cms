@@ -32,8 +32,12 @@
             = link_to("Subscribe", page_subscriptions_path(page), method: :post, class: "small secondary button")
           - else
             = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
-          '
-        = link_to("Back", :back, class: "small radius expanded secondary  button")
+          - if policy(page).like? && page.like?(current_user)
+            = link_to("Like", likes_path(page), class: "small secondary  button")
+        - else
+          p
+            .panel(class="callout")
+              h6= "You should sign in for have ability to estimate post"
     .row
      .medium-11.columns
        p
@@ -91,7 +95,7 @@
           - else
             p
               .panel(class="callout")
-                h6="You should sign in for have ability to add comments"
+                h6="You should sign in for have ability to add or estimate comments"
   .medium-3.columns data-sticky-container=""
     = render "categories_menu"
     = render "authors_menu"

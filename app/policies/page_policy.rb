@@ -11,6 +11,10 @@ class PagePolicy < ApplicationPolicy
     admin?
   end
 
+  def like?
+    user && record.user != user
+  end
+
   alias_method :new?, :create?
 
   private

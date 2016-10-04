@@ -6,6 +6,6 @@ feature "Create comment" do
   scenario "as visitor i can't create comment hasn't link to create comment" do
     visit page_path(site_page)
     expect(page).not_to have_button("submit")
-    expect(page).to have_content("You should sign in for have ability to add comments")
+    expect(page).to have_content("You should sign in for have ability to add or estimate comments")
   end
 end

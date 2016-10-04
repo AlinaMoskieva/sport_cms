@@ -15,4 +15,8 @@ class PageDecorator < ApplicationDecorator
   def shorten_title
     object.title.truncate(79)
   end
+
+  def like?(user)
+    Like.exists?(user_id: user.id, likeable_type: object.class.name, likeable_id: object.id)
+  end
 end
