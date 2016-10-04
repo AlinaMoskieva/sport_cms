@@ -26,7 +26,7 @@ br
       .panel
         - pages.each do |page|
           h5(align="center")
-            =(link_to page.shorten_title, page)
+            =(link_to page.preview_title, page)
           p
             .medium-6.columns
               span

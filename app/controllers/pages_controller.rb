@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   expose_decorated(:pages)
   expose_decorated(:users)
 
+  helper_method :top_news
+
   def index
     self.pages = Page.includes(:category, :user).order(created_at: :desc).page params[:page]
     self.pages = pages.where(category_id: params[:category_id]) if params[:category_id]
@@ -33,5 +35,11 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title, :body, :category_id)
+  end
+
+  protected
+
+  def top_news
+    @top_news ||= TopNewsInCategoryQuery.new(page).all.includes(:category).map(&:decorate)
   end
 end
