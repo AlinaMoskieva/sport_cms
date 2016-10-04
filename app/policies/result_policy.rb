@@ -1,9 +1,5 @@
 class ResultPolicy < ApplicationPolicy
-  def create?
-    admin?
-  end
-
-  def destroy?
+  def manage?
     admin?
   end
 end

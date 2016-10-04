@@ -19,14 +19,14 @@ class PagesController < ApplicationController
   end
 
   def update
-    authorize page, :update?
+    authorize page, :owner?
     result = Pages::Submit.call(page: page)
     respond_with page, location: page
     flash[:error] = result.message if result.failure?
   end
 
   def destroy
-    authorize page, :destroy?
+    authorize page, :owner?
     page.destroy
     respond_with page, location: root_path
   end

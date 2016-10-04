@@ -112,7 +112,7 @@
               = result.second_team_country
       .row
         .large-6.large-offset-6.columns
-          - if policy(result).destroy?
+          - if policy(result).manage?
             = link_to("Delete result",result, method: :delete, class: "tiny hollow alert button")
         .large-8
           hr/
