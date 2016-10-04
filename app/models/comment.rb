@@ -6,4 +6,5 @@ class Comment < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: :user_id
   belongs_to :page, counter_cache: :comments_count
   has_many :notifications, dependent: :destroy
+  has_many :likes, as: :likeable, dependent: :destroy
 end

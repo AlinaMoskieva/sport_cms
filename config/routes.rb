@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :results, only: %i(index destroy show)
   resources :notifications, only: %i(index create destroy)
   resources :hashtags, only: %i(index create show)
+  resources :likes, only: :create
 
   namespace :admin do
     resources :users do

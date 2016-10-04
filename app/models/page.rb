@@ -8,4 +8,5 @@ class Page < ActiveRecord::Base
   has_one :result
   has_many :pages_hashtags
   has_many :hashtags, through: :pages_hashtags
+  has_many :likes, as: :likeable, dependent: :destroy
 end

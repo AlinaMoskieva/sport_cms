@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726104058) do
+ActiveRecord::Schema.define(version: 20161004142416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20160726104058) do
     t.integer  "page_id"
     t.integer  "pages_count", default: 0
   end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "likes", ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -125,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160726104058) do
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "likes", "users"
   add_foreign_key "pages_hashtags", "hashtags"
   add_foreign_key "pages_hashtags", "pages"
   add_foreign_key "subscriptions", "categories"
