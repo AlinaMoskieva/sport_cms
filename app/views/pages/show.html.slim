@@ -9,12 +9,20 @@
     .medium-11.columns
       p
         = page.body.html_safe
-      .left(align="left")
+    .medium-11.columns
+      .medium-4.columns
         span
           i.fi-bookmark
             = "Theme:"
             = link_to(page.category.category, pages_path(category_id: page.category.id))
-      .rigth(align="right")
+      .medium-4.columns
+        - if policy(page).like?
+          .medium-6.columns
+            - unless page.like?(current_user)
+              = link_to "Like!", likes_path(page)
+          .medium-6.columns
+            = "Likes: #{page.likes_count}"
+      .medium-4.columns
         span
           i.fi-torsos-all-female
             = "Viewed #{page.visitors} times"
@@ -32,8 +40,6 @@
             = link_to("Subscribe", page_subscriptions_path(page), method: :post, class: "small secondary button")
           - else
             = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
-          - if policy(page).like? && page.like?(current_user)
-            = link_to("Like", likes_path(page), class: "small secondary  button")
         - else
           p
             .panel(class="callout")

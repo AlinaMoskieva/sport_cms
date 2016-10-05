@@ -12,7 +12,7 @@ class PagePolicy < ApplicationPolicy
   end
 
   def like?
-    user && record.user != user
+    user.present?
   end
 
   alias_method :new?, :create?
