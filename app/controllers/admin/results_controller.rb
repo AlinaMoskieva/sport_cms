@@ -3,7 +3,7 @@ module Admin
     expose(:result, attributes: :result_params)
 
     def create
-      authorize result
+      authorize result, :manage?
       result.save
       respond_with result, location: results_path
     end

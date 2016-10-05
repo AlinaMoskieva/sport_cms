@@ -30,10 +30,9 @@
       br
       .medium-11.medium-centered.columns
         - if current_user.present?
-          - if policy(page).update?
+          - if policy(page).owner?
             = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
             '
-          - if policy(page).destroy?
             = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
             '
           - if current_user.subscribed?(page.category_id)
@@ -45,48 +44,48 @@
             .panel(class="callout")
               h6= "You should sign in for have ability to estimate post"
     .row
-     .medium-11.columns
-       p
-         h4="Comments (#{page.comments_count})"
-         = paginate comments
-         hr/
-         - comments.each do |comment|
-           .row
-             .medium-1.columns
-               span
-                i.fi-torso
-             .medium-11.columns
-                = comment.author_full_name
-           .row
-             .medium-1.columns
-               span
-                 i.fi-comment
-             .medium-11.columns
-                - if policy(comment).update?
-                 = best_in_place comment, :body,
-                   path: edit_comment_path(comment),
-                   display_with: lambda { |v| v.html_safe },
-                   as: :textarea,
-                   ok_button: "Save",
-                   ok_button_class: "tiny secondary button",
-                   cancel_button: "Cancel",
-                   cancel_button_class: "tiny alert button"
-                - else
-                 = comment.body
-           .row
-             .medium-1.columns
-               span
-                 i.fi-clock
-             .medium-6.columns
-               = comment.date
-             .medium-2.columns
-                - if policy(comment).destroy?
-                  span
-                    i.fi-trash
-                      = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
-           hr/
-         p
-          strong Add a comment
+      .medium-11.columns
+        p
+          h4="Comments (#{page.comments_count})"
+          = paginate comments
+          hr/
+          - comments.each do |comment|
+            .row
+              .medium-1.columns
+                span
+                 i.fi-torso
+              .medium-11.columns
+                 = comment.author_full_name
+            .row
+              .medium-1.columns
+                span
+                  i.fi-comment
+              .medium-11.columns
+                 - if policy(comment).update?
+                  = best_in_place comment, :body,
+                    path: edit_comment_path(comment),
+                    display_with: lambda { |v| v.html_safe },
+                    as: :textarea,
+                    ok_button: "Save",
+                    ok_button_class: "tiny secondary button",
+                    cancel_button: "Cancel",
+                    cancel_button_class: "tiny alert button"
+                 - else
+                  = comment.body
+            .row
+              .medium-1.columns
+                span
+                  i.fi-clock
+              .medium-6.columns
+                = comment.date
+              .medium-2.columns
+                 - if policy(comment).destroy?
+                   span
+                     i.fi-trash
+                       = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
+            hr/
+          h4="Add a comment"
+          hr/
           - if policy(:comment).create?
             = form_for([page, Comment.new(page_id: page.id)]) do |f|
               p
@@ -102,6 +101,26 @@
             p
               .panel(class="callout")
                 h6="You should sign in for have ability to add or estimate comments"
+          hr/
+          h4="Top news"
+          br
+          - top_news.each do |news|
+            .medium-4.columns
+              .card
+                .content
+                  span
+                    .category
+                      = news.category_category
+                  .shorten_title
+                    = link_to news.preview_title, page_path(news)
+                  .full_title
+                    = link_to news.title, page_path(news)
+                .info
+                  .hours
+                    = news.hours
+                  .clock
+                    span
+                      i.fi-clock
   .medium-3.columns data-sticky-container=""
     = render "categories_menu"
     = render "authors_menu"

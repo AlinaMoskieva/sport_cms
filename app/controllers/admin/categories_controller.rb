@@ -21,7 +21,7 @@ module Admin
     end
 
     def authorize_resource
-      authorize category
+      authorize category, :manage?
     end
   end
 end

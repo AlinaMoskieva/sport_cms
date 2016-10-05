@@ -1,4 +1,6 @@
 class PageDecorator < ApplicationDecorator
+  include ActionView::Helpers::DateHelper
+
   delegate :title, :created_at, :category_id, :visitors, :category, :user,
     :comments_count, :body, :likes
   delegate :full_name, :id, to: :user, prefix: true
@@ -13,8 +15,12 @@ class PageDecorator < ApplicationDecorator
     object.body.html_safe.truncate(230)
   end
 
-  def shorten_title
-    object.title.truncate(79)
+  def preview_title
+    object.title.truncate(45)
+  end
+
+  def hours
+    time_ago_in_words(object.created_at)
   end
 
   def like?(user)

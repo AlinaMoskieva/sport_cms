@@ -17,7 +17,7 @@ module Admin
     end
 
     def authorize_resource
-      authorize user
+      authorize user, :manage?
     end
   end
 end
