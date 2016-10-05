@@ -23,7 +23,7 @@ class PageDecorator < ApplicationDecorator
     time_ago_in_words(object.created_at)
   end
 
-  def like?(user)
-    Like.exists?(user_id: user.id, likeable_type: object.class.name, likeable_id: object.id)
+  def liked?(user)
+    like?(user)
   end
 end

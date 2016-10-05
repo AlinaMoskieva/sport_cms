@@ -11,6 +11,10 @@ class CommentPolicy < ApplicationPolicy
     owner?
   end
 
+  def like?
+    user.present?
+  end
+
   private
 
   def owner?

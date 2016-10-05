@@ -16,12 +16,17 @@
             = "Theme:"
             = link_to(page.category.category, pages_path(category_id: page.category.id))
       .medium-4.columns
-        - if policy(page).like?
-          .medium-6.columns
-            - unless page.like?(current_user)
-              = link_to "Like!", likes_path(page)
-          .medium-6.columns
-            = "Likes: #{page.likes_count}"
+        .like-box data-id=page.id data-type="Page"
+          - if policy(page).like?
+            .medium-6.columns
+              - unless page.liked?(current_user)
+                = link_to "Like!", likes_path(page), class: "like-button"
+            .medium-2.columns
+              span
+                i.fi-heart
+            .medium-4.columns
+              .like-counter
+                = page.likes_count
       .medium-4.columns
         span
           i.fi-torsos-all-female
@@ -60,7 +65,7 @@
               .medium-1.columns
                 span
                   i.fi-comment
-              .medium-11.columns
+              .medium-9.columns
                  - if policy(comment).update?
                   = best_in_place comment, :body,
                     path: edit_comment_path(comment),
@@ -72,6 +77,20 @@
                     cancel_button_class: "tiny alert button"
                  - else
                   = comment.body
+              .medium-3.columns
+                .like-box
+                  .medium-6.columns
+                    - if policy(comment).like?
+                      - unless comment.liked?(current_user)
+                        = link_to "Like!", likes_path(page), class: "like-button"
+                  .medium-6.columns
+                    span
+                      i.fi-heart
+                    .like-counter
+                      = comment.likes_count
+
+
+
             .row
               .medium-1.columns
                 span

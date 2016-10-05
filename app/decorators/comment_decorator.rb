@@ -1,6 +1,8 @@
 class CommentDecorator < ApplicationDecorator
+  delegate :user_id, :page_id, :created_at, :page, :author, :likes
+
   delegate :full_name, :email, :image, to: :author, prefix: true
-  delegate :user_id, :page_id, :created_at, :page, :author
+  delegate :count, to: :likes, prefix: true
 
   def date
     object.created_at.strftime("%m.%d.%Y at %I:%M%P")
@@ -15,5 +17,9 @@ class CommentDecorator < ApplicationDecorator
 
   def image_path
     author.image.blank? ? "noavatar.png" : author.image
+  end
+
+  def liked?(user)
+    like?(user)
   end
 end
