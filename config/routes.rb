@@ -23,6 +23,11 @@ Rails.application.routes.draw do
   resources :pages do
     resources :comments, shallow: true
     resources :subscriptions, only: %i(create destroy), module: :pages
+    resources :likes, only: :create, module: :pages
+  end
+
+  resources :comments do
+    resources :likes, only: :create, module: :comments
   end
 
   resources :user do

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :notifications, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def administrator?
     self.admin?

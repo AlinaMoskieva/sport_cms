@@ -78,19 +78,17 @@
                  - else
                   = comment.body
               .medium-3.columns
-                .like-box
+                .like-box data-id=comment.id data-type="Comment"
                   .medium-6.columns
                     - if policy(comment).like?
                       - unless comment.liked?(current_user)
                         = link_to "Like!", likes_path(page), class: "like-button"
-                  .medium-6.columns
+                  .medium-3.columns
                     span
                       i.fi-heart
+                  .medium-3.columns
                     .like-counter
                       = comment.likes_count
-
-
-
             .row
               .medium-1.columns
                 span
