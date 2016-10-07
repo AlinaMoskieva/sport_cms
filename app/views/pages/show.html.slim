@@ -18,15 +18,13 @@
       .medium-4.columns
         .like-box data-id=page.id data-type="Page"
           - if policy(page).like?
-            .medium-6.columns
-              - unless page.liked?(current_user)
-                = link_to "Like!", likes_path(page), class: "like-button"
-            .medium-2.columns
+            - unless page.liked?(current_user)
+              = link_to "Like!", page_likes_path(page), class: "like-button"
+            .like-symbol
               span
                 i.fi-heart
-            .medium-4.columns
-              .like-counter
-                = page.likes_count
+            .like-counter
+              = page.likes_count
       .medium-4.columns
         span
           i.fi-torsos-all-female
@@ -82,7 +80,7 @@
                   .medium-6.columns
                     - if policy(comment).like?
                       - unless comment.liked?(current_user)
-                        = link_to "Like!", likes_path(page), class: "like-button"
+                        = link_to "Like!", comment_likes_path(comment), class: "like-button"
                   .medium-3.columns
                     span
                       i.fi-heart

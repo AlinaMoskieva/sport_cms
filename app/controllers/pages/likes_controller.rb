@@ -1,12 +1,12 @@
 module Pages
   class LikesController < ApplicationController
     respond_to :json
-    expose(:like)
+
     expose(:page)
+    expose(:likes, ancestor: :page)
+    expose(:like)
 
     def create
-      like.likeable_id = page.id
-      like.likeable_type = "Page"
       like.user = current_user
       like.save
       respond_with like, location: nil

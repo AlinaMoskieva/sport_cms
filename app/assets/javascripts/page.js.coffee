@@ -15,21 +15,20 @@ class Page
 
   likeHandler: (event)=>
     event.preventDefault()
+
+    url = @like_button.attr("href")
+
     $.ajax(
-      url: @generateUrl()
+      url: url
       method: "POST"
       dataType: "json"
       success: =>
-        @like_button.hide()
         @updateLikeCounter()
     )
 
   updateLikeCounter: =>
     element =  parseInt(@likes.text()) + 1
     @likes.text(element)
-
-  generateUrl: =>
-    "/:type/:id/likes".replace(":id", @id).replace(":type", @type.toLowerCase() + "s")
 
 $ ->
   pages = $(".like-box")
