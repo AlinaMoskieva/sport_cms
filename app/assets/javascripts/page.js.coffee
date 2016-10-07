@@ -23,6 +23,7 @@ class Page
       method: "POST"
       dataType: "json"
       success: =>
+        @like_button.hide()
         @updateLikeCounter()
     )
 

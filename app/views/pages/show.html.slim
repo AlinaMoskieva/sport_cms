@@ -63,7 +63,7 @@
               .medium-1.columns
                 span
                   i.fi-comment
-              .medium-9.columns
+              .medium-11.columns
                  - if policy(comment).update?
                   = best_in_place comment, :body,
                     path: edit_comment_path(comment),
@@ -75,18 +75,6 @@
                     cancel_button_class: "tiny alert button"
                  - else
                   = comment.body
-              .medium-3.columns
-                .like-box data-id=comment.id data-type="Comment"
-                  .medium-6.columns
-                    - if policy(comment).like?
-                      - unless comment.liked?(current_user)
-                        = link_to "Like!", comment_likes_path(comment), class: "like-button"
-                  .medium-3.columns
-                    span
-                      i.fi-heart
-                  .medium-3.columns
-                    .like-counter
-                      = comment.likes_count
             .row
               .medium-1.columns
                 span
@@ -94,10 +82,22 @@
               .medium-6.columns
                 = comment.date
               .medium-2.columns
+                .like-box data-id=comment.id data-type="Comment"
+                  - if policy(comment).like?
+                    - unless comment.liked?(current_user)
+                      = link_to "Like!", comment_likes_path(comment), class: "like-button"
+                  .like-symbol
+                    span
+                      i.fi-heart
+                  .like-counter
+                    = comment.likes_count
+            .row
+              .medium-2.columns.medium-offset-10
                  - if policy(comment).destroy?
                    span
                      i.fi-trash
                        = link_to("Delete",comment, method: :delete, class: 'btn btn-danger', id: "delete_comment")
+
             hr/
           h4="Add a comment"
           hr/
