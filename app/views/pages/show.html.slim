@@ -17,7 +17,7 @@
             = link_to(page.category.category, pages_path(category_id: page.category.id))
       .medium-4.columns
         .page-like-box
-          .like-box data-id=page.id data-type="Page"
+          .like-box
             - if policy(page).like?
               - unless page.liked?(current_user)
                 = link_to "Like!", page_likes_path(page), class: "like-button"
@@ -85,7 +85,7 @@
                 = comment.date
               .medium-2.columns
                 .comment-like-box
-                  .like-box data-id=comment.id data-type="Comment"
+                  .like-box
                     - if policy(comment).like?
                       - unless comment.liked?(current_user)
                         = link_to "Like!", comment_likes_path(comment), class: "like-button"

@@ -5,8 +5,6 @@ class Page
 
     @like_button = $(".like-button", @$el)
     @likes = $(".like-counter", @$el)
-    @id = @$el.data("id")
-    @type = @$el.data("type")
 
     @bindings()
 
