@@ -16,15 +16,16 @@
             = "Theme:"
             = link_to(page.category.category, pages_path(category_id: page.category.id))
       .medium-4.columns
-        .like-box data-id=page.id data-type="Page"
-          - if policy(page).like?
-            - unless page.liked?(current_user)
-              = link_to "Like!", page_likes_path(page), class: "like-button"
-            .like-symbol
-              span
-                i.fi-heart
-            .like-counter
-              = page.likes_count
+        .page-like-box
+          .like-box data-id=page.id data-type="Page"
+            - if policy(page).like?
+              - unless page.liked?(current_user)
+                = link_to "Like!", page_likes_path(page), class: "like-button"
+              .like-symbol
+                span
+                  i.fi-heart
+              .like-counter
+                = page.likes_count
       .medium-4.columns
         span
           i.fi-torsos-all-female
@@ -32,6 +33,7 @@
 
       br
       .medium-11.medium-centered.columns
+        br
         - if current_user.present?
           - if policy(page).owner?
             = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
@@ -82,15 +84,16 @@
               .medium-6.columns
                 = comment.date
               .medium-2.columns
-                .like-box data-id=comment.id data-type="Comment"
-                  - if policy(comment).like?
-                    - unless comment.liked?(current_user)
-                      = link_to "Like!", comment_likes_path(comment), class: "like-button"
-                  .like-symbol
-                    span
-                      i.fi-heart
-                  .like-counter
-                    = comment.likes_count
+                .comment-like-box
+                  .like-box data-id=comment.id data-type="Comment"
+                    - if policy(comment).like?
+                      - unless comment.liked?(current_user)
+                        = link_to "Like!", comment_likes_path(comment), class: "like-button"
+                    .like-symbol
+                      span
+                        i.fi-heart
+                    .like-counter
+                      = comment.likes_count
             .row
               .medium-2.columns.medium-offset-10
                  - if policy(comment).destroy?

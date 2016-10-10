@@ -12,5 +12,6 @@ feature "View page" do
     expect(page).to_not have_link("Edit page")
     expect(page).to_not have_link("Subscribe")
     expect(page).to_not have_link("Edit")
+    expect(page).to_not have_link("Like!")
   end
 end
