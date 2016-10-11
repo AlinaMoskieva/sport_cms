@@ -1,6 +1,6 @@
 module Pages
   class SubscriptionsController < ApplicationController
-    respond_to :html
+    respond_to :json
     expose(:page)
     expose(:subscriptions)
     expose(:subscription)
@@ -10,12 +10,12 @@ module Pages
       subscription.user = current_user
       subscription.category = page.category
       subscription.save
-      respond_with subscription, location: page
+      respond_with subscription, location: nil
     end
 
     def destroy
       subscription.destroy
-      respond_with subscription, location: page
+      respond_with subscription, location: nil
     end
 
     private

@@ -13,5 +13,6 @@
 #= require_tree ../templates
 #= require ckeditor/init
 
+#= require subscriptions
 #= require_tree .
 $(document).foundation()

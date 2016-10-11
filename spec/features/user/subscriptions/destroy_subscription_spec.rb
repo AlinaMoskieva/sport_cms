@@ -12,14 +12,13 @@ feature "Destroy subscription" do
       visit page_path(site_page)
     end
 
-    it "has link to Unsubscribe" do
+    scenario "can Destroy subscription", js: true do
       expect(page).to have_link("Unsubscribe")
-    end
-
-    scenario "can Destroy subscription" do
-      expect do
-        click_link "Unsubscribe"
-      end.to change { Subscription.count }.by(-1)
+      click_link "Unsubscribe"
+      expect(page).not_to have_link("Unsubscribe")
+      # expect(page).to have_link("Unsubscribe")
+      visit user_subscriptions_path(user)
+      expect(page).not_to have_content(site_page.category.category)
     end
   end
 end
