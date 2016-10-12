@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
   end
 
   def subscribed?(category_id)
-    Subscription.where(category_id: category_id, user_id: id).empty?
+    !Subscription.where(category_id: category_id, user_id: id).empty?
   end
 end

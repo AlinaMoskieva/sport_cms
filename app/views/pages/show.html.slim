@@ -27,8 +27,10 @@
             '
             = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
             '
-          .subscription-block
-            = page.subscription_block(current_user)
+          .subscriptions(class=(page.subscribe_status(current_user) ? "subscriptions--subscribed" : ""))
+            .subscriptions__buttons(id="buttons")
+              = link_to "Subscribe", page_subscriptions_path(page), class: "subscriptions__subscribe-button"
+              = link_to "Unsubscribe", [page, page.subscription_finder(current_user)], class: "subscriptions__unsubscribe-button"
     .row
       .medium-11.columns
         p

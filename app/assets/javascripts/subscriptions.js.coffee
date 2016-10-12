@@ -3,42 +3,40 @@ class Subscriptions
     @el = el
     @$el = $(el)
 
-    @subscribe_button = $(".subscribe-button", @$el)
-    @unsubscribe_button = $(".unsubscribe-button", @$el)
+    @subscribeStatus = $(".subscriptions__buttons", @$el).parent()
+    @subscribeButton = $(".subscriptions__subscribe-button", @$el)
+    @unsubscribeButton = $(".subscriptions__unsubscribe-button", @$el)
 
     @bindings()
 
   bindings: (el)->
-
-    @subscribe_button.on "click",  @subscribeHandler
-    @unsubscribe_button.on "click", @unsubscribeHandler
+    @subscribeButton.on "click",  @subscribeHandler
+    @unsubscribeButton.on "click", @unsubscribeHandler
 
   subscribeHandler: (event)=>
     event.preventDefault()
 
-    url = @subscribe_button.attr("href")
+    url = @subscribeButton.attr("href")
 
     $.ajax(
       url: url
       method: "POST"
       dataType: "json"
-      success: =>
-        @subscribe_button.hide()
-        @unsubscribe_button.show()
+      success: (returnedData) =>
+        @subscribeStatus.addClass("subscriptions--subscribed")
       )
 
   unsubscribeHandler: (event)=>
     event.preventDefault()
-    url = @unsubscribe_button.attr("href")
+    url = @unsubscribeButton.attr("href")
 
     $.ajax(
       url: url
       method: "DELETE"
       dataType: "json"
       success: =>
-        @unsubscribe_button.hide()
-        @subscribe_button.show()
+        @subscribeStatus.removeClass("subscriptions--subscribed")
       )
 
  $ ->
-  new Subscriptions(".subscription-block")
+  new Subscriptions(".subscriptions")

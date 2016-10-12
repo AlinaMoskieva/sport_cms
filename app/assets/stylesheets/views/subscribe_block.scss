@@ -1,0 +1,19 @@
+.subscriptions {
+  &__subscribe-button {
+    display: inline-block;
+  }
+
+  &__unsubscribe-button {
+    display: none;
+  }
+
+  &--subscribed {
+    .subscriptions__subscribe-button {
+      display: none;
+    }
+
+    .subscriptions__unsubscribe-button {
+      display: inline-block;
+    }
+  }
+}
