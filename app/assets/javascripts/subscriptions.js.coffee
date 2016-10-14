@@ -24,6 +24,7 @@ class Subscriptions
       dataType: "json"
       success: (returnedData) =>
         @subscribeStatus.addClass("subscriptions--subscribed")
+        @id = returnedData.id
       )
 
   unsubscribeHandler: (event)=>
@@ -31,12 +32,23 @@ class Subscriptions
     url = @unsubscribeButton.attr("href")
 
     $.ajax(
-      url: url
+      url: @url()
       method: "DELETE"
       dataType: "json"
       success: =>
         @subscribeStatus.removeClass("subscriptions--subscribed")
       )
+  url: ->
+    if @id?
+      @generateURL()
+    else
+      @unsubscribeButton.attr("href")
+
+  generateURL: ->
+    url = @unsubscribeButton.attr("href").split("/")
+    url[3] = "subscriptions"
+    url[4] = @id
+    url.join("/")
 
  $ ->
   new Subscriptions(".subscriptions")
