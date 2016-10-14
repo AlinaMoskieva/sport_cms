@@ -15,18 +15,19 @@
           i.fi-bookmark
             = "Theme:"
             = link_to(page.category.category, pages_path(category_id: page.category.id))
-      .medium-4.columns
+      .medium-2.columns
         .page-like-box
           .like-box
-            - if policy(page).like?
-              - unless page.liked?(current_user)
-                = link_to "Like!", page_likes_path(page), class: "like-button"
-              .like-symbol
-                span
-                  i.fi-heart
-              .like-counter
-                = page.likes_count
-      .medium-4.columns
+            .like-box_like-button(class=(policy(page).like? ? " " : "likes-button--disable"))
+              - if policy(page).like?
+                - unless current_user.liked?(page)
+                  = link_to "Like!", page_likes_path(page), class: "like-button"
+            .like-symbol
+              span
+                i.fi-heart
+            .like-counter
+              = page.likes_count
+      .medium-4.columns.medium-offset-2
         span
           i.fi-torsos-all-female
             = "Viewed #{page.visitors} times"
@@ -34,9 +35,9 @@
       br
       .medium-11.medium-centered.columns
         br
-        - if current_user.present?
-          - if policy(page).owner?
-            = (link_to "Edit page", edit_page_path(page), class: "small secondary button")
+        - if user_signed_in?
+          - if policy(page).manage?
+            = link_to "Edit page", edit_page_path(page), class: "small secondary button"
             '
             = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
             '
@@ -86,9 +87,10 @@
               .medium-2.columns
                 .comment-like-box
                   .like-box
-                    - if policy(comment).like?
-                      - unless comment.liked?(current_user)
-                        = link_to "Like!", comment_likes_path(comment), class: "like-button"
+                    .like-box_like-button(class=(policy(comment).like? ? "" : "likes-box--disable"))
+                      - if policy(comment).like?
+                        - unless current_user.liked?(comment)
+                          = link_to "Like!", comment_likes_path(comment), class: "like-button"
                     .like-symbol
                       span
                         i.fi-heart

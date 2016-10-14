@@ -18,8 +18,4 @@ class CommentDecorator < ApplicationDecorator
   def image_path
     author.image.blank? ? "noavatar.png" : author.image
   end
-
-  def liked?(user)
-    like?(user)
-  end
 end

@@ -29,4 +29,8 @@ class UserDecorator < ApplicationDecorator
   def subscriptions?
     object.subscriptions.count > 0
   end
+
+  def liked?(resource)
+    Like.exists?(user_id: object.id, likeable_type: resource.to_model.class.name, likeable_id: resource.id)
+  end
 end

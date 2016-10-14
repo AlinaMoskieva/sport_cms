@@ -22,8 +22,4 @@ class PageDecorator < ApplicationDecorator
   def hours
     time_ago_in_words(object.created_at)
   end
-
-  def liked?(user)
-    like?(user)
-  end
 end

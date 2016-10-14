@@ -3,11 +3,16 @@
     float: left;
     margin-right: 10px;
   }
-  .like-symbol {
-    float: left;
-    margin-right: 5px;
+  .likes-box--disable {
+    visibility: hidden;
   }
   .like-counter {
-    float: left;
+    float: right;
   }
+}
+
+.like-symbol {
+  float: left;
+  width: 10px;
+  margin-right: 5px;
 }

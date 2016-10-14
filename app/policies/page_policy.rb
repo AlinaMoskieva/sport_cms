@@ -9,7 +9,7 @@ class PagePolicy < ApplicationPolicy
 
   alias_method :new?, :create?
 
-  def owner?
+  def manage?
     user.admin? && record.user == user
   end
 end
