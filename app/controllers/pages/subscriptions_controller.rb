@@ -1,9 +1,8 @@
 module Pages
   class SubscriptionsController < ApplicationController
     respond_to :json
-    expose(:page)
-    expose(:subscriptions)
-    expose(:subscription)
+    expose :page
+    expose :subscription
     before_action :authorize_resource
 
     def create
