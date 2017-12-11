@@ -39,12 +39,9 @@
           - if policy(page).manage?
             = link_to "Edit page", edit_page_path(page), class: "small secondary button"
             '
-            = link_to("Delete",page, method: :delete, data: { confirm: 'Are you sure?' }, class: "small secondary button")
+            = link_to("Delete", page, method: :delete, data: { confirm: "Are you sure?" }, class: "small secondary button")
             '
-          - if current_user.subscribed?(page.category_id)
-            = link_to("Subscribe", page_subscriptions_path(page), method: :post, class: "small secondary button")
-          - else
-            = link_to("Unsubscribe", ([page, Subscription.where(category_id: page.category_id, user_id: current_user.id).first]), method: :delete, class: "small alert button")
+          = page.subscription_block_for(current_user)
         - else
           p
             .panel(class="callout")

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     self.admin?
   end
 
-  def subscribed?(category_id)
-    Subscription.where(category_id: category_id, user_id: id).empty?
+  def unsubscribed?(category_id)
+    Subscription.find_by(category_id: category_id, user_id: id).nil?
   end
 end
